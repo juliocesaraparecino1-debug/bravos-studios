@@ -1,0 +1,2 @@
+Apresentação v3: `pres.html` (motion, cada estilo é função do tempo `seek(t)`), `seekrender.cjs` (render a 180 quadros/s; ffmpeg `tmix` + 1 a cada 3 gera 60 fps com desfoque de movimento), `mix.py` (narração + trilha + efeitos do sfx-kit nos tempos de `cues.json`), `vo.wav`/`vo.json` (narração Will e tempos das palavras).
+Os assets usados em `pres.html` ficam em `assets/` (ver video/fonte/assets, graficos/ e marca/).
