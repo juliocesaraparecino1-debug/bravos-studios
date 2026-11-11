@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Brasa</title>
+<!-- Motion Prompt #005 #012 #017 #042 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/ (moves re-implemented: mask reveal, shape morph, mask transition, match cut) -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&display=block" rel="stylesheet">
+<style>
+:root{--bg:#F4F3EF;--ink:#0B0B0C;--g1:#9A968F;--g2:#D9D6CF;--g3:#E8E5DF;--or:#F87F23}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:'Bricolage Grotesque',sans-serif;color:var(--ink)}
+.abs{position:absolute}.full{position:absolute;inset:0}
+.g{position:absolute;inset:0;transform-origin:0 0}
+.line{position:absolute;left:60px;right:60px;text-align:center;font-weight:800;letter-spacing:-.04em;line-height:1.0}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .05em .14em;margin:0 .06em}
+.wi{display:inline-block}
+.k{color:var(--or)}
+.card{position:absolute;background:#fff;border-radius:34px;box-shadow:0 0 0 2px var(--g3)}
+.ico{fill:none;stroke-linecap:round;stroke-linejoin:round}
+</style></head><body><div id="stage">
+<svg width="0" height="0" style="position:absolute"><defs id="fdefs"></defs></svg>
+<div id="cam" class="full" style="transform-origin:540px 960px">
+
+ <!-- S1 feed -->
+ <div id="g1" class="g"><div id="feedwin" class="abs" style="left:0;top:500px;width:1080px;height:1420px;overflow:hidden"><div id="feed" class="abs" style="left:0;top:0;width:1080px"></div></div></div>
+ <!-- S2 motion inside centered card: drawn in feed card 4 (ids m*) -->
+ <!-- S3 wave -->
+ <div id="g3" class="g"><svg id="wave" class="abs" style="left:0;top:0" width="1080" height="1920"><path id="wp" fill="none" stroke="#0B0B0C" stroke-width="10" stroke-linecap="round"/><line id="sand" x1="80" x2="1000" y1="1660" y2="1660" stroke="#D9D6CF" stroke-width="6" stroke-linecap="round"/></svg>
+   <div id="sq" class="abs" style="left:140px;top:1440px;width:220px;height:220px;border-radius:24px;background:#D9D6CF;transform-origin:50% 100%"><div class="abs" style="left:55px;top:55px;width:110px;height:110px;border-radius:50%;background:#C9C5BD"></div></div></div>
+ <!-- S4 shop -->
+ <div id="g4" class="g">
+  <div id="shop" class="abs" style="left:190px;top:640px;width:700px;height:760px">
+   <div class="abs" style="left:170px;top:0;width:360px;height:96px;border-radius:16px;background:var(--ink);color:#fff;display:grid;place-items:center;font:800 54px 'Bricolage Grotesque';letter-spacing:.14em">LOJA</div>
+   <div class="abs" style="left:0;top:120px;width:700px;height:640px;background:#fff;box-shadow:inset 0 0 0 6px var(--ink)"></div>
+   <div class="abs" style="left:-20px;top:110px;width:740px;height:110px;background:repeating-linear-gradient(90deg,#0B0B0C 0 74px,#fff 74px 148px);box-shadow:0 0 0 6px var(--ink);border-radius:0 0 18px 18px"></div>
+   <div id="win" class="abs" style="left:40px;top:260px;width:330px;height:400px;background:var(--g3);box-shadow:inset 0 0 0 6px var(--ink)"></div>
+   <div id="door" class="abs" style="left:420px;top:290px;width:240px;height:470px;background:#fff;box-shadow:inset 0 0 0 6px var(--ink)"><div id="handleA" class="abs" style="left:28px;top:226px;width:2px;height:2px"></div></div>
+  </div>
+  <div id="walk" class="full"></div>
+  <div id="sidewalk" class="abs" style="left:0;top:1397px;width:1080px;height:6px;background:var(--ink)"></div>
+ </div>
+ <!-- S5-S8 phone -->
+ <div id="g5" class="g">
+  <div id="phone" class="abs" style="border-radius:70px;background:var(--ink)">
+   <div id="scr" class="abs" style="left:14px;top:14px;right:14px;bottom:14px;border-radius:58px;background:#fff;overflow:hidden">
+    <div id="tiles" class="abs" style="left:0;top:0;width:100%"></div>
+    <div id="browser" class="full" style="background:#fff">
+      <div id="abar" class="abs" style="left:28px;right:28px;top:90px;height:84px;border-radius:42px;background:var(--g3);font:600 34px 'Bricolage Grotesque';color:var(--ink);display:flex;align-items:center;padding-left:34px"><span id="url"></span></div>
+      <div id="empty" class="abs" style="left:0;right:0;top:520px;text-align:center;font:600 40px 'Bricolage Grotesque';color:var(--g1)"><div style="width:120px;height:120px;border-radius:50%;box-shadow:inset 0 0 0 6px var(--g2);margin:0 auto 26px"></div>Nada por aqui.</div>
+    </div>
+    <div id="site" class="full" style="background:#fff">
+      <div id="s_head" class="abs" style="left:28px;right:28px;top:84px;height:70px;display:flex;align-items:center;justify-content:space-between"><img src="assets/bravos-word-dark.png" style="height:42px"><span style="padding:12px 22px;border-radius:30px;background:var(--g3);font:700 22px 'Bricolage Grotesque'">Orçamento</span></div>
+      <div id="s_eye" class="abs" style="left:32px;top:210px;font:700 20px 'Bricolage Grotesque';letter-spacing:.14em;color:var(--g1)">ESTÚDIO CRIATIVO DIGITAL</div>
+      <div id="s_h1" class="abs" style="left:28px;right:28px;top:252px;font:800 70px/0.98 'Bricolage Grotesque';letter-spacing:-.04em"></div>
+      <div id="s_p" class="abs" style="left:32px;right:40px;top:640px;font:500 27px/1.4 'Bricolage Grotesque';color:var(--g1)">Criamos sites, aplicativos, identidade visual e mídias digitais que trabalham pelo seu negócio.</div>
+      <div id="btnA" class="abs" style="left:32px;top:830px;width:300px;height:84px"></div>
+      <div id="s_chips" class="abs" style="left:32px;top:960px;display:flex;flex-wrap:wrap;gap:12px;width:460px"></div>
+    </div>
+    <div id="chat" class="abs" style="background:#ECE9E4;overflow:hidden">
+      <div class="abs" style="left:0;right:0;top:0;height:200px;background:#fff;display:flex;align-items:flex-end;padding:0 34px 28px;gap:20px"><div style="width:76px;height:76px;border-radius:50%;background:var(--ink)"></div><div><div style="font:800 34px 'Bricolage Grotesque'">Bravos Studios</div><div style="font:500 24px 'Bricolage Grotesque';color:var(--g1)">online</div></div></div>
+      <div id="bub" class="abs" style="right:28px;top:300px;width:420px;padding:24px 28px;border-radius:30px 30px 8px 30px;background:#fff;font:500 30px/1.35 'Bricolage Grotesque';transform-origin:100% 100%">Olá, Bravos Studios! Vim pelo site e quero um orçamento.</div>
+      <div id="typing" class="abs" style="left:28px;top:560px;padding:20px 26px;border-radius:30px 30px 30px 8px;background:#fff;display:flex;gap:10px;transform-origin:0 100%"><i class="tdot"></i><i class="tdot"></i><i class="tdot"></i></div>
+      <div id="inp" class="abs" style="left:24px;right:120px;bottom:40px;height:84px;border-radius:42px;background:#fff;font:500 26px 'Bricolage Grotesque';color:var(--ink);display:flex;align-items:center;padding:0 28px;overflow:hidden;white-space:nowrap"><span id="inpt"></span></div>
+      <div id="sendA" class="abs" style="right:24px;bottom:40px;width:84px;height:84px"></div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <!-- S9 carousel -->
+ <div id="g9" class="g"><div id="car" class="abs" style="left:0;top:520px;width:3400px;height:1000px"></div></div>
+ <!-- S10 app -->
+ <div id="g10" class="g">
+  <div id="aph" class="abs" style="left:250px;top:470px;width:580px;height:1160px;border-radius:70px;background:var(--ink);padding:14px">
+   <div class="full" style="left:14px;top:14px;right:14px;bottom:14px;border-radius:58px;background:#141416;overflow:hidden;color:#fff">
+    <div class="abs" style="left:34px;top:96px;font:500 22px 'Bricolage Grotesque';color:#8D8981">Passo 1 de 4 · Serviço</div>
+    <div class="abs" style="left:34px;top:130px;font:800 56px 'Bricolage Grotesque';letter-spacing:-.03em">Agendar</div>
+    <div id="rows" class="abs" style="left:24px;right:24px;top:240px;display:flex;flex-direction:column;gap:16px"></div>
+    <div id="contA" class="abs" style="left:24px;right:24px;bottom:40px;height:96px"></div>
+   </div>
+  </div>
+ </div>
+ <!-- BRASA -->
+ <div id="brasa" class="abs" style="left:0;top:0;background:var(--or);transform-origin:50% 50%;overflow:hidden">
+  <svg id="b_heart" class="abs ico" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.4" style="left:50%;top:50%;width:56%;height:56%;margin:-28% 0 0 -28%"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>
+  <svg id="b_play" class="abs" viewBox="0 0 24 24" style="left:50%;top:50%;width:50%;height:50%;margin:-25% 0 0 -22%"><path d="M7 4.5v15l12.5-7.5z" fill="#fff"/></svg>
+  <svg id="b_send" class="abs ico" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.4" style="left:50%;top:50%;width:50%;height:50%;margin:-25% 0 0 -27%"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+  <div id="b_label" class="abs" style="left:0;right:0;top:50%;margin-top:-.62em;text-align:center;color:#fff;font:700 36px 'Bricolage Grotesque';white-space:nowrap"></div>
+ </div>
+ <!-- END -->
+ <div id="gE" class="g">
+  <div id="mascW" class="abs" style="left:0;top:0;width:1080px;height:1560px;overflow:hidden"><img id="masc" src="assets/mascote.webp" style="position:absolute;left:300px;width:480px;top:830px"></div>
+  <div id="logoW" class="abs" style="left:230px;top:250px;width:620px;overflow:hidden;padding-bottom:6px"><img id="logo" src="assets/bravos-word-dark.png" style="width:620px;display:block"></div>
+  <div id="stud" class="abs" style="left:0;right:0;top:440px;text-align:center;font:700 66px 'Bricolage Grotesque';letter-spacing:.34em;padding-left:.34em;color:var(--or)"></div>
+  <div id="cta" class="abs" style="left:0;right:0;top:600px;text-align:center"><span id="ctaIn" style="display:inline-block;padding:26px 46px;border-radius:999px;background:var(--ink);color:#fff;font:700 46px 'Bricolage Grotesque'">Peça seu <span class="k">orçamento</span> → bravosstudio.digital</span></div>
+ </div>
+
+ <!-- TEXT -->
+ <div id="texts" class="full"></div>
+ <!-- CURSOR -->
+ <svg id="cursor" class="abs" width="96" height="96" viewBox="0 0 24 24" style="left:0;top:0;transform-origin:4px 3px"><path d="M4 3l15 7.5-6.4 1.9L10.7 19z" fill="#0B0B0C" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+</div>
+<style>.sr{margin-top:22px;padding:26px 30px;border-radius:26px;background:var(--g3);font:600 40px 'Bricolage Grotesque'}
+.tdot{display:block;width:16px;height:16px;border-radius:50%;background:#9A968F}</style>
+</div>
+<script>
+// ---------------- math ----------------
+const BPM=120,BEAT=.5,DUR=60,W=1080,H=1920;
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), lerp=(a,b,u)=>a+(b-a)*u;
+const P=(t,t0,d)=>cl((t-t0)/d);
+const E={lin:x=>x,
+ out:x=>x>=1?1:1-Math.pow(2,-10*x),                     // exponential out
+ in:x=>x<=0?0:Math.pow(2,10*x-10),
+ io:x=>x<=0?0:x>=1?1:x<.5?Math.pow(2,20*x-10)/2:(2-Math.pow(2,-20*x+10))/2,
+ q5:x=>1-Math.pow(1-x,5),                               // quintic out (#005)
+ spr:x=>x<=0?0:x>=1?1:1-Math.exp(-8*x)*Math.cos(8*x),   // spring, ~4% overshoot max
+ sin:x=>-(Math.cos(Math.PI*x)-1)/2};
+const tw=(t,t0,d,a,b,e=E.out)=>lerp(a,b,e(P(t,t0,d)));
+// keyframe track: [[t,val,ease],...] -> value (ease applies to segment ending at that key)
+function track(t,ks){ if(t<=ks[0][0]) return ks[0][1]; for(let i=1;i<ks.length;i++){ if(t<=ks[i][0]){const [t0,a]=ks[i-1],[t1,b,e]=ks[i];const u=(e||E.out)((t-t0)/(t1-t0)); return typeof a==='number'?lerp(a,b,u):a.map((v,j)=>lerp(v,b[j],u));} } return ks[ks.length-1][1]; }
+const $=id=>document.getElementById(id);
+const SC=[0,2,6,10,14,20,26,30,36,42,48,52,55,60];   // scene starts
+function sceneIdx(t){let k=0;for(let i=0;i<SC.length-1;i++) if(t>=SC[i]) k=i; return k}
+
+// ---------------- motion blur filters ----------------
+const MB={};
+function mbFilter(id){$('fdefs').insertAdjacentHTML('beforeend',`<filter id="mb_${id}" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0 0"/></filter>`);MB[id]=document.querySelector(`#mb_${id} feGaussianBlur`)}
+function applyBlur(el,id,dx,dy,k=.55){const bx=Math.min(40,Math.abs(dx)*k),by=Math.min(40,Math.abs(dy)*k);if(bx<.6&&by<.6){el.style.filter='';return}MB[id].setAttribute('stdDeviation',`${bx.toFixed(1)} ${by.toFixed(1)}`);el.style.filter=`url(#mb_${id})`}
+
+// ---------------- text system (mask reveal, #005) ----------------
+const TX=[];
+function text(id,str,top,size,tin,tout,opt={}){
+  const d=document.createElement('div');d.className='line';d.id=id;d.style.top=top+'px';d.style.fontSize=size+'px';if(opt.color)d.style.color=opt.color;$('texts').appendChild(d);
+  const words=str.split(' ');const spans=[];
+  words.forEach((w,i)=>{ if(w==='|'){d.appendChild(document.createElement('br'));return}
+    const o=document.createElement('span');o.className='w';const n=document.createElement('span');n.className='wi'+(w.startsWith('*')?' k':'');n.textContent=w.replace(/^\*/,'');o.appendChild(n);d.appendChild(o);spans.push(n)});
+  const step=opt.step??BEAT/2; const times=opt.times;
+  TX.push({spans,tin,tout,step,times});
+}
+function drawTexts(t){for(const T of TX){T.spans.forEach((s,i)=>{const ti=T.times?T.times[i]:T.tin+i*T.step;const to=T.tout+i*0.04;
+  let y; if(t<ti) y=110; else if(t<to) y=110*(1-E.q5(P(t,ti,.55))); else y=-110*E.in(P(t,to,.32));
+  s.style.transform=`translateY(${y.toFixed(2)}%)`;})}}
+
+// ---------------- build static DOM ----------------
+const POSTS=[ // static post compositions (grays)
+ ['circle',260,'#C9C5BD'],['bars',0,'#C9C5BD'],['tri',0,'#C9C5BD'],['split',0,'#C9C5BD'],['circle',180,'#BDB8AF'],['grid',0,'#C9C5BD'],['bars',0,'#BDB8AF']];
+const CARD_TOP=60, PITCH=1030;
+function build(){
+ // feed cards
+ POSTS.forEach((p,i)=>{const c=document.createElement('div');c.className='card';c.id='fc'+i;c.style.cssText+=`left:160px;top:${CARD_TOP+i*PITCH}px;width:760px;height:990px;overflow:hidden`;
+  let art='';const k=p[0];
+  if(k==='circle') art=`<div class="abs" style="left:${380-p[1]/2}px;top:${380-p[1]/2}px;width:${p[1]}px;height:${p[1]}px;border-radius:50%;background:${p[2]}"></div>`;
+  if(k==='bars') art=[0,1,2,3].map(j=>`<div class="abs" style="left:${150+j*130}px;bottom:150px;width:90px;height:${120+j*90}px;border-radius:14px;background:${p[2]}"></div>`).join('');
+  if(k==='tri') art=`<svg class="abs" style="left:180px;top:170px" width="400" height="400"><path d="M200 20L380 380H20z" fill="${p[2]}"/></svg>`;
+  if(k==='split') art=`<div class="abs" style="left:0;top:0;width:380px;height:760px;background:#DCD8D1"></div><div class="abs" style="left:470px;top:260px;width:220px;height:220px;border-radius:30px;background:${p[2]}"></div>`;
+  if(k==='grid') art=[0,1,2,3].map(j=>`<div class="abs" style="left:${130+(j%2)*270}px;top:${130+Math.floor(j/2)*270}px;width:230px;height:230px;border-radius:24px;background:${p[2]}"></div>`).join('');
+  c.innerHTML=`<div class="abs" style="left:30px;top:28px;width:56px;height:56px;border-radius:50%;background:var(--g2)"></div><div class="abs" style="left:104px;top:36px;width:220px;height:18px;border-radius:9px;background:var(--g2)"></div><div class="abs" style="left:104px;top:66px;width:140px;height:14px;border-radius:7px;background:var(--g3)"></div>
+   <div class="abs" id="img${i}" style="left:0;top:110px;width:760px;height:760px;background:var(--g3);overflow:hidden">${art}</div>
+   <div class="abs" style="left:40px;top:900px;width:60px;height:60px;border-radius:50%;box-shadow:inset 0 0 0 5px var(--g2)"></div><div class="abs" style="left:124px;top:900px;width:60px;height:60px;border-radius:50%;box-shadow:inset 0 0 0 5px var(--g2)"></div><div class="abs" style="left:208px;top:900px;width:60px;height:60px;border-radius:50%;box-shadow:inset 0 0 0 5px var(--g2)"></div><div class="abs" style="left:440px;top:916px;width:280px;height:18px;border-radius:9px;background:var(--g3)"></div>`;
+  $('feed').appendChild(c)});
+ // motion layer inside card 4 image
+ $('img4').insertAdjacentHTML('beforeend',`<div id="mo" class="full" style="background:#fff"><div id="moA" class="abs" style="left:120px;top:150px;width:220px;height:220px;border-radius:30px;background:var(--ink)"></div><div id="moB" class="abs" style="left:430px;top:380px;width:200px;height:200px;border-radius:50%;background:var(--g2)"></div><div id="moC" class="abs" style="left:160px;top:470px;width:260px;height:26px;border-radius:13px;background:var(--g1);transform-origin:0 50%"></div><div id="moD" class="abs" style="left:160px;top:520px;width:200px;height:26px;border-radius:13px;background:var(--g2);transform-origin:0 50%"></div><div class="abs" style="left:40px;right:40px;bottom:46px;height:10px;border-radius:5px;background:var(--g3)"></div></div>`);
+ // walkers
+ for(let i=0;i<3;i++){$('walk').insertAdjacentHTML('beforeend',`<div id="wk${i}" class="abs" style="left:0;top:0;width:90px;height:260px"><div class="abs" style="left:22px;top:0;width:46px;height:46px;border-radius:50%;background:${i==1?'#7D7972':'#9A968F'}"></div><div class="abs" style="left:10px;top:54px;width:70px;height:116px;border-radius:30px;background:${i==1?'#7D7972':'#9A968F'}"></div><div id="wl${i}a" class="abs" style="left:24px;top:162px;width:16px;height:96px;border-radius:8px;background:#7D7972;transform-origin:8px 4px"></div><div id="wl${i}b" class="abs" style="left:50px;top:162px;width:16px;height:96px;border-radius:8px;background:#7D7972;transform-origin:8px 4px"></div></div>`)}
+ // tiles (world's showcase)
+ let th='';for(let i=0;i<36;i++){const c=['#E8E5DF','#D9D6CF','#ECEAE5','#CFCBC3'][i*7%4];th+=`<div class="abs" style="left:${(i%3)*186+4}px;top:${Math.floor(i/3)*186+4}px;width:180px;height:180px;background:${c}">${i%5==2?`<div class="tm abs" style="left:50px;top:50px;width:80px;height:80px;border-radius:50%;background:#0B0B0C"></div>`:''}</div>`}
+ $('tiles').innerHTML=th;
+ // site headline
+ $('s_h1').innerHTML='Sua marca merece mais que um <span class="k">perfil bonito.</span>';
+ $('s_chips').innerHTML=['Sites','Aplicativos','Identidade visual'].map(s=>`<span class="chipS" style="display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:30px;background:var(--g3);font:600 24px 'Bricolage Grotesque'"><i style="width:12px;height:12px;border-radius:50%;background:var(--g1)"></i>${s}</span>`).join('');
+ // carousel slides (from the Bravos carousel)
+ const sl=[
+  `<div style="font:700 22px 'Bricolage Grotesque';letter-spacing:.14em;color:var(--g1)">O QUE FAZEMOS</div><div style="font:800 96px/0.98 'Bricolage Grotesque';letter-spacing:-.04em;margin-top:24px">Tudo que sua marca precisa, <span class="k">no mesmo lugar.</span></div>`,
+  `<div style="font:800 84px 'Bricolage Grotesque';letter-spacing:-.04em">Mídias <span class="k">digitais</span></div><div class="sr" style="margin-top:40px">Posts e carrosséis</div><div class="sr">Reels e vídeos em motion</div><div class="sr">Capas, destaques e stories</div>`,
+  `<div style="font:800 84px/1 'Bricolage Grotesque';letter-spacing:-.04em">Sites e <span class="k">aplicativos</span></div><div style="display:flex;gap:30px;margin-top:60px"><div style="width:250px;height:440px;border-radius:40px;box-shadow:inset 0 0 0 8px var(--ink)"></div><div style="width:250px;height:440px;border-radius:40px;box-shadow:inset 0 0 0 8px var(--ink)"></div></div>`];
+ sl.forEach((h,i)=>$('car').insertAdjacentHTML('beforeend',`<div class="card" id="sl${i}" style="left:${160+i*820}px;top:0;width:760px;height:950px;padding:70px 60px">${h}</div>`));
+ // app rows (real demo data from the Bravos Barber app)
+ [['Corte','30 min','R$ 60'],['Barba','30 min','R$ 50'],['Corte + barba','45 min','R$ 100'],['Sobrancelha','15 min','R$ 20']].forEach((r,i)=>$('rows').insertAdjacentHTML('beforeend',`<div id="row${i}" style="position:relative;display:flex;align-items:center;gap:22px;padding:28px 26px;border-radius:28px;background:#1E1E21"><div id="rad${i}" style="width:46px;height:46px;border-radius:50%;box-shadow:inset 0 0 0 4px #4A4844;flex:none"></div><div style="flex:1"><div style="font:700 34px 'Bricolage Grotesque'">${r[0]}</div><div style="font:500 22px 'Bricolage Grotesque';color:#8D8981">${r[1]}</div></div><div style="font:700 32px 'Bricolage Grotesque'">${r[2]}</div></div>`));
+ $('contA').innerHTML='';
+ $('stud').innerHTML=[...'STUDIOS'].map(c=>`<span class="w" style="margin:0;padding:0 0 .1em"><span class="wi">${c}</span></span>`).join('');
+
+ // texts (times on beats; separate in/out)
+ text('h1','Post parado.',640,176,0.05,1.7,{times:[0.05,0.3]});
+ text('h2','Venda *parada.',860,176,0.55,1.85,{times:[0.55,0.8]});
+ text('t1a','Você posta.',230,110,2.4,3.25);
+ text('t1b','Rola.',230,110,3.5,4.15);
+ text('t1c','Ninguém *para.',230,110,4.5,5.6);
+ text('t2a','Mas o que se mexe',200,100,6.4,9.5);
+ text('t2b','*prende.',320,100,7.6,9.55);
+ text('t3a','O motion virou a *onda.',260,104,10.4,11.95,{step:.18});
+ text('t3b','E o post parado | ficou na areia.',230,96,12.2,13.7,{step:.16});
+ text('t4a','Tem quem venda | sem site.',210,104,14.4,16.1,{step:.2});
+ text('t4b','Porta aberta, | esperando alguém *passar.',210,96,16.4,19.6,{step:.22});
+ text('t5a','Enquanto isso,',230,100,20.3,21.25);
+ text('t5b','a *vitrine mais vista | do mundo',170,90,21.5,23.2,{step:.2});
+ text('t5c','está no bolso | do seu cliente.',170,90,23.5,25.6,{step:.2});
+ text('t6a','E a sua vitrine?',220,104,26.4,28.15,{step:.2});
+ text('t6b','*Vazia.',200,170,28.5,29.7);
+ text('t7a','A gente *abre | sua vitrine.',150,92,30.4,33.4,{step:.2});
+ text('t7b','No ar *24 horas.',180,92,33.7,35.6,{step:.2});
+ text('t8a','Um toque.',190,100,37.05,38.4);
+ text('t8b','E o cliente *entra.',190,100,38.7,41.6,{step:.2});
+ text('t9a','Posts que se *mexem',240,100,42.6,44.6,{step:.2});
+ text('t9b','e fazem o dedo parar.',240,92,45.0,47.6,{step:.2});
+ text('t10a','Até *app próprio.',220,100,48.5,50.8,{step:.22});
+ text('t10b','Com a sua marca.',220,100,51.0,51.75,{step:.18});
+ text('c1','Pare de esperar | na porta.',640,124,52.55,53.8,{color:'#fff',step:.2});
+ text('c2','Abra sua vitrine.',700,130,54.3,54.75,{color:'#fff',step:.15});
+ ['brasa','cursor','feed','car','g4','phone','wk0','wk1','wk2','g9','aph'].forEach(mbFilter);
+}
+
+// ---------------- anchors (measured at runtime) ----------------
+let A={};
+function measure(){
+ const r=el=>{const b=$(el).getBoundingClientRect();return{x:b.left+b.width/2,y:b.top+b.height/2,w:b.width,h:b.height}};
+ // phone layout for measuring
+ setPhone(540,1060,600,1200); const ch=$('chat'); ch.style.left='0px';ch.style.top='0px';ch.style.width='572px';ch.style.height='1172px';
+ A.handle=r('handleA'); A.btn=r('btnA'); A.send=r('sendA'); A.abar=$('abar').getBoundingClientRect();
+ A.rad2=r('rad2'); A.cont=r('contA');
+ A.word=r('h2'); // hook line
+ const sp=$('h2').querySelectorAll('.w'); const lb=sp[sp.length-1].getBoundingClientRect(); A.parada={x:lb.left+lb.width/2,y:lb.top+lb.height/2,w:lb.width,r:lb.right};
+ A.likeY=500+CARD_TOP+930; A.likeX=160+70;      // like slot of a snapped card
+ A.imgC={x:540,y:500+CARD_TOP+110+380};
+ const cx=document.createElement('canvas').getContext('2d');cx.font="600 34px 'Bricolage Grotesque'";A.mt=s=>cx.measureText(s).width;
+}
+function setPhone(cx,cy,w,h){const p=$('phone');p.style.left=(cx-w/2)+'px';p.style.top=(cy-h/2)+'px';p.style.width=w+'px';p.style.height=h+'px'}
+
+// ---------------- scene poses ----------------
+const URL='sua-loja.com.br';
+const PS=t=>1+0.08*E.sin(P(t,33,2.6))-0.06*E.io(P(t,35.8,.9));
+const PM=(x,y,t)=>{const s=PS(t);return [540+(x-540)*s,1060+(y-1060)*s,s]};
+function frame(t){
+ const k=sceneIdx(t);
+ // camera: ping-pong 1.00 <-> 1.04 per scene, continuous across cuts
+ const zA=k%2?1.04:1.0, zB=k%2?1.0:1.04; const z=lerp(zA,zB,E.sin(P(t,SC[k],SC[k+1]-SC[k])));
+ $('cam').style.transform=`scale(${z.toFixed(5)})`;
+ const vis=(id,on)=>{$(id).style.visibility=on?'visible':'hidden'};
+ vis('g1',t<10.4); vis('g3',t>=10.1&&t<14.6); vis('g4',t>=14&&t<20.75); vis('g5',t>=20.55&&t<42.5); vis('g9',t>=42.3&&t<48.5); vis('g10',t>=48.2&&t<52.5); vis('gE',t>=54.9);
+
+ // ---- feed (S1/S2) ----
+ const scroll=track(t,[[2.0,0],[2.8,0],[3.45,-2*PITCH,E.io],[4.0,-2*PITCH],[4.6,-4*PITCH,E.io]]);
+ const feedIn=tw(t,1.95,.5,1,0,E.out); // feed rises in from below window
+ $('feed').style.transform=`translateY(${(scroll+feedIn*1500).toFixed(1)}px)`;
+ // S2: only card 4 remains; others slide away; card collapses at 10
+ for(let i=0;i<POSTS.length;i++){const c=$('fc'+i);let ty=0,sy=1;if(i!==4){ty=(i<4?-1:1)*tw(t,6.0,.45,0,1400,E.in)}
+   c.style.transform=`translateY(${ty}px)`;}
+ const col=tw(t,9.9,.3,1,0,E.io); $('fc4').style.transformOrigin='50% 819px'; if(t>=9.9)$('fc4').style.transform=`scaleY(${Math.max(.004,col)})`;
+ // motion inside card 4
+ const mo=P(t,7.05,.01); $('mo').style.clipPath=`circle(${(tw(t,7.0,.55,0,110,E.out)).toFixed(1)}% at 50% 50%)`;
+ const ph=Math.max(0,t-7.1);
+ $('moA').style.transform=`translate(${(Math.sin(ph*3.1)*120).toFixed(1)}px,${(Math.cos(ph*2.3)*40).toFixed(1)}px) rotate(${(ph*140).toFixed(1)}deg)`;
+ $('moB').style.transform=`translate(${(Math.cos(ph*2.6)*-110).toFixed(1)}px,${(-Math.abs(Math.sin(ph*4.2))*180).toFixed(1)}px)`;
+ $('moC').style.transform=`scaleX(${(.4+.6*Math.abs(Math.sin(ph*3.7))).toFixed(3)})`;
+ $('moD').style.transform=`scaleX(${(.3+.7*Math.abs(Math.cos(ph*2.9))).toFixed(3)})`;
+
+ // ---- wave (S3) ----
+ const amp = t<14 ? tw(t,10.3,.9,0,110,E.spr) : tw(t,14.0,.4,110,0,E.in);
+ const wlen = tw(t,10.25,.5,760,1300,E.out), wy=1400-tw(t,10.3,.6,0,240,E.out)+tw(t,14.0,.4,0,240,E.io);
+ let d='';const x0=540-wlen/2;for(let i=0;i<=80;i++){const x=x0+wlen*i/80;const y=wy+amp*Math.sin(x/170-t*4.2)*Math.min(1,(i/12))*Math.min(1,(80-i)/12);d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)}
+ $('wp').setAttribute('d',d);
+ $('sand').style.opacity = t>=12.1?1:0; $('sand').setAttribute('x2',(80+920*E.out(P(t,12.1,.5))).toFixed(1));
+ $('sq').style.transform=`scale(${E.spr(P(t,12.35,.55)).toFixed(4)})`;
+ const g3out=tw(t,14.2,.3,0,1,E.in); $('sq').style.opacity=1-g3out; $('sand').style.opacity=t>=12.1?1-g3out:0;
+
+ // ---- shop (S4/S5 push) ----
+ $('shop').style.clipPath=`inset(${(100-100*E.out(P(t,14.3,.7))).toFixed(2)}% 0 0 0)`;
+ const push=E.io(P(t,20.0,.75)); const ps=lerp(1,3,push);
+ $('g4').style.transformOrigin='395px 1100px'; $('g4').style.transform=`scale(${ps.toFixed(4)})`;
+ [[15.0,3.6],[16.3,3.4],[17.5,3.7]].forEach(([t0,dur],i)=>{const u=P(t,t0,dur);const x=lerp(-140,1180,u);const el=$('wk'+i);el.style.transform=`translate(${x.toFixed(1)}px,1140px)`;const sw=Math.sin((t-t0)*11)*24*(u>0&&u<1?1:0);$(`wl${i}a`).style.transform=`rotate(${sw}deg)`;$(`wl${i}b`).style.transform=`rotate(${-sw}deg)`});
+
+ // ---- phone (S5–S8) ----
+ const pm=E.spr(P(t,20.6,.6));
+ let pcx=lerp(395,540,pm),pcy=lerp(1100,1060,pm),pw=lerp(990+28,600,pm),phh=lerp(1200+28,1200,pm);
+ // S7 studio zoom on phone
+ 
+ setPhone(pcx,pcy,pw,phh); $('phone').style.transformOrigin='50% 50%';
+ let pscale = PS(t);
+ // S9 exit: phone sucked into brasa (send button)
+ const suck=E.in(P(t,42.0,.4)); if(suck>0){const sx=A.send.x-540,sy=A.send.y-1060;$('phone').style.transformOrigin=`${300+sx}px ${600+sy}px`;pscale*=1-suck;}
+ $('phone').style.transform=`scale(${Math.max(.001,pscale).toFixed(4)})`;
+ // tiles scroll
+ $('tiles').style.transform=`translateY(${(-((t-20.6)*90)%186 - 186).toFixed(1)}px)`;
+ document.querySelectorAll('.tm').forEach((m,i)=>m.style.transform=`translate(${(Math.sin(t*3+i)*40).toFixed(1)}px,${(Math.cos(t*2.4+i)*30).toFixed(1)}px)`);
+ // browser reveal (mask from top) 26.2
+ $('browser').style.clipPath=`inset(0 0 ${(100-100*E.out(P(t,26.15,.55))).toFixed(2)}% 0)`;
+ const nch=Math.floor(cl((t-27.0)/0.06,0,URL.length)); $('url').textContent=URL.slice(0,nch);
+ $('empty').style.clipPath=`inset(${(100-100*E.out(P(t,28.05,.5))).toFixed(2)}% 0 0 0)`;
+ // site build 30.2+
+ $('site').style.clipPath=`circle(${(tw(t,30.15,.7,0,160,E.io)).toFixed(1)}% at 8% 10%)`;
+ const rev=(id,t0,dist=40)=>{const u=E.q5(P(t,t0,.55));$(id).style.clipPath=`inset(0 0 ${(100-100*u).toFixed(1)}% 0)`;$(id).style.transform=`translateY(${((1-u)*dist).toFixed(1)}px)`};
+ rev('s_head',30.4);rev('s_eye',30.65);rev('s_h1',30.85,70);rev('s_p',31.3);rev('s_chips',31.9);
+ document.querySelectorAll('.chipS').forEach((c,i)=>{c.style.transform=`scale(${E.spr(P(t,31.95+i*.12,.5)).toFixed(4)})`});
+ // chat panel grows from button 37.05
+ const cg=E.out(P(t,37.05,.5)); const sr=$('scr').getBoundingClientRect();
+ const bl=A.btn, scrW=600-28, scrH=1200-28; // in scr coords
+ const bx0=(bl.x-bl.w/2)-(540-300+14), by0=(bl.y-bl.h/2)-(1060-600+14);
+ const cx0=lerp(bx0,0,cg),cy0=lerp(by0,0,cg),cw=lerp(bl.w,scrW,cg),ch=lerp(bl.h,scrH,cg);
+ const chat=$('chat'); chat.style.left=cx0+'px';chat.style.top=cy0+'px';chat.style.width=cw+'px';chat.style.height=ch+'px';chat.style.borderRadius=lerp(42,0,cg)+'px';chat.style.visibility=t>=37.05?'visible':'hidden';
+ const msg='Olá, Bravos Studios! Vim pelo site e quero um orçamento.'; const nm=Math.floor(cl((t-37.6)/0.018,0,msg.length));
+ $('inpt').textContent= t<38.95? msg.slice(0,nm):''; $('inp').style.justifyContent=nm>28&&t<38.95?'flex-end':'flex-start';
+ const bu=E.spr(P(t,38.95,.5)); $('bub').style.transform=`translateY(${((1-bu)*420).toFixed(1)}px) scale(${(.6+.4*bu).toFixed(3)})`; $('bub').style.opacity=t>=38.95?1:0;
+ const ty=E.spr(P(t,39.7,.45)); $('typing').style.transform=`scale(${ty.toFixed(3)})`;
+ document.querySelectorAll('.tdot').forEach((d,i)=>d.style.transform=`translateY(${(-Math.max(0,Math.sin(t*9-i*.9))*10).toFixed(1)}px)`);
+
+ // ---- carousel (S9) ----
+ const cin=E.out(P(t,42.4,.55)); $('g9').style.transformOrigin=`${A.carBr.x}px ${A.carBr.y}px`; $('g9').style.transform=`scale(${Math.max(.001,cin).toFixed(4)})`;
+ const cs=track(t,[[42,0],[44.0,0],[44.45,-820,E.io],[46.0,-820],[46.45,-1640,E.io]]);
+ const cout=E.in(P(t,48.0,.35)); $('car').style.transform=`translateX(${cs.toFixed(1)}px)`;
+ if(cout>0){$('g9').style.transformOrigin=`${A.carBr.x}px ${A.carBr.y}px`;$('g9').style.transform=`scale(${(1-cout).toFixed(4)})`}
+ document.querySelectorAll('.sr').forEach((r,i)=>{const u=E.q5(P(t,44.5+i*.15,.5));r.style.transform=`translateX(${((1-u)*300).toFixed(1)}px)`;r.style.opacity=u>0?1:0});
+
+ // ---- app (S10) ----
+ const ain=E.out(P(t,48.25,.55)); $('g10').style.transformOrigin=`${A.carBr.x}px ${A.carBr.y}px`; $('g10').style.transform=`scale(${Math.max(.001,ain).toFixed(4)})`;
+ [0,1,2,3].forEach(i=>{const u=E.q5(P(t,48.5+i*.1,.5));$('row'+i).style.transform=`translateX(${((1-u)*500).toFixed(1)}px)`});
+ $('row2').style.background= t>=49.05?'#2A2A2E':'#1E1E21';
+
+ // ---- END ----
+ $('mascW').style.clipPath=`inset(0 0 0 0)`;
+ const mr=E.spr(P(t,55.35,.7)); $('masc').style.transform=`translateY(${((1-mr)*700).toFixed(1)}px)`;
+ const lr=E.q5(P(t,55.75,.6)); $('logo').style.transform=`translateY(${((1-lr)*110).toFixed(1)}%)`;
+ $('stud').querySelectorAll('.wi').forEach((s,i)=>{const u=E.q5(P(t,56.05+i*.05,.5));s.style.transform=`translateY(${((1-u)*110).toFixed(1)}%)`});
+ const cr=E.spr(P(t,56.6,.6)); $('cta').style.clipPath=`inset(0 ${(50-50*E.out(P(t,56.6,.5))).toFixed(2)}% 0 ${(50-50*E.out(P(t,56.6,.5))).toFixed(2)}%)`;
+ const press=t>=58.5&&t<58.75?1-.05*Math.sin(P(t,58.5,.25)*Math.PI):1; $('ctaIn').style.transform=`scale(${press.toFixed(4)}) translateX(${(Math.sin(Math.max(0,t-57.3)*2.2)*6).toFixed(1)}px)`;
+
+ drawTexts(t);
+ const kw=$('h2').querySelectorAll('.w');const last=kw[kw.length-1];const kn=E.spr(P(t,1.5,.45));last.style.transformOrigin='0% 100%';last.style.transform=`translate(${(-kn*24).toFixed(1)}px,${(kn*26).toFixed(1)}px) rotate(${(-kn*9).toFixed(2)}deg)`;
+}
+
+// ---------------- BRASA track ----------------
+function brasa(t){
+ // returns {x,y,w,h,r,icon:{heart,play,send}, label}
+ const c=(x,y,s)=>[x,y,s,s,s/2];
+ const fp=A.parada;
+ const like=[A.likeX,A.likeY+tw(t,1.95,.5,1500,0,E.out)];
+ const prog=[200+ (690*P(t,7.4,2.6)), 500+CARD_TOP+110+760-56];
+ const waveY=(x)=>{const wy=1400-tw(t,10.3,.6,0,240,E.out)+tw(t,14.0,.4,0,240,E.io);const amp=t<14?tw(t,10.3,.9,0,110,E.spr):tw(t,14.0,.4,110,0,E.in);return wy+amp*Math.sin(x/170-t*4.2)};
+ const surfX=lerp(890,620,E.out(P(t,10.1,.8)))+Math.sin(t*1.4)*60;
+ const hx=395+(A.handle.x-395)*lerp(1,3,E.io(P(t,20,.75))), hy=1100+(A.handle.y-1100)*lerp(1,3,E.io(P(t,20,.75)));
+ // phone geometry (final)
+ const pL=540-300,pT=1060-600;
+ const noti=[pL+600-90,pT+120];
+ const caretX=A.abar.left+34+A.mt(URL.slice(0,Math.floor(cl((t-27.0)/0.06,0,URL.length))))+6, caretY=A.abar.top+A.abar.height/2;
+ let K=[
+  [0.0, [1250,fp.y,120,120,60]],
+  [1.0, [1250,fp.y,120,120,60]],
+  [1.5, [fp.r+70,fp.y,120,120,60], E.out],
+  [1.95,[fp.r+70,fp.y,120,120,60]],
+  [2.45,[like[0],like[1],72,72,36], E.io],
+  [6.15,[like[0],like[1],72,72,36]],
+  [6.7, [A.imgC.x,A.imgC.y,170,170,85], E.spr],
+  [7.0, [A.imgC.x,A.imgC.y,170,170,85]],
+  [7.4, [prog[0],prog[1],34,34,17], E.out],
+  [10.0,[prog[0],prog[1],34,34,17]],
+  [10.9,[surfX,waveY(surfX)-46,64,64,32], E.out],
+  [14.0,[surfX,waveY(surfX)-46,64,64,32]],
+  [14.9,[hx,hy,30,30,15], E.io],
+  [20.0,[hx,hy,30,30,15]],
+  [20.75,[hx,hy,30,30,15]],
+  [21.2,[noti[0],noti[1],44,44,22], E.out],
+  [26.3,[noti[0],noti[1],44,44,22]],
+  [26.75,[caretX,caretY,8,54,4], E.io],
+  [31.0,[caretX,caretY,8,54,4]],
+  [31.5,[A.btn.x,A.btn.y,A.btn.w,A.btn.h,A.btn.h/2], E.spr],
+  [37.0,[A.btn.x,A.btn.y,A.btn.w,A.btn.h,A.btn.h/2]],
+  [37.55,[A.send.x,A.send.y,A.send.w,A.send.h,A.send.w/2], E.out],
+  [42.0,[A.send.x,A.send.y,A.send.w,A.send.h,A.send.w/2]],
+  [42.5,[A.carBr.x,A.carBr.y,110,110,55], E.io],
+  [48.3,[A.carBr.x,A.carBr.y,110,110,55]],
+  [49.0,[A.rad2.x-0,A.rad2.y-0,46,46,23], E.io],
+  [49.05,[A.rad2.x,A.rad2.y,46,46,23]],
+  [49.4,[A.rad2.x,A.rad2.y,46,46,23]],
+  [50.1,[A.rad2.x,A.rad2.y,46,46,23]],
+  [50.6,[A.cont.x,A.cont.y,A.cont.w,A.cont.h,A.cont.h/2], E.spr],
+  [52.0,[A.cont.x,A.cont.y,A.cont.w,A.cont.h,A.cont.h/2]],
+  [52.5,[540,960,4500,4500,2250], E.in],
+  [55.0,[540,960,4500,4500,2250]],
+  [55.55,[540,1560,760,760,380], E.spr],
+  [60.0,[540,1560,760,760,380]],
+ ];
+ // S10 radio row offset follows row slide-in
+ let v=track(t,K);
+ // ride live targets inside holds
+ if(t>=2.45&&t<6.15) v=[like[0],like[1],72,72,36];
+ if(t>=10.9&&t<14.0) v=[surfX,waveY(surfX)-46,64,64,32];
+ if(t>=26.75&&t<31.0) v=[caretX,caretY,8,54,4];
+ if(t>=7.4&&t<10.0) v=[prog[0],prog[1],34,34,17];
+ if(t>=21.2&&t<42.0){const m=PM(v[0],v[1],t);v=[m[0],m[1],v[2]*m[2],v[3]*m[2],v[4]*m[2]]}
+ return v;
+}
+function icons(t){return{heart:E.spr(P(t,2.3,.45))*(1-E.in(P(t,6.15,.25))),play:E.spr(P(t,6.55,.45))*(1-E.in(P(t,7.0,.2))),send:E.spr(P(t,37.5,.45))*(1-E.in(P(t,42.0,.25)))+ E.spr(P(t,42.5,.45))*(1-E.in(P(t,48.0,.2))),
+ label:(t>=31.45&&t<37.0)?'Pedir orçamento':(t>=50.55&&t<52.05?'Continuar':''), lab:t<37?E.q5(P(t,31.45,.5))*(1-E.in(P(t,36.85,.15))):E.q5(P(t,50.55,.5))*(1-E.in(P(t,51.9,.15)))}}
+
+// ---------------- CURSOR track ----------------
+function cursor(t){
+ const K=[
+  [0,[1300,1800]],[2.4,[1300,1800]],
+  [2.8,[760,1500],E.out],[3.45,[760,760],E.io],[3.7,[820,1150],E.out],[4.0,[760,1500],E.out],[4.6,[760,760],E.io],[5.0,[900,1350],E.out],
+  [6.4,[900,1350]],[6.9,[A.imgC.x+20,A.imgC.y+20],E.io],[7.4,[A.imgC.x+20,A.imgC.y+20]],[8.0,[1250,1700],E.in],
+  [26.1,[1250,1700]],[26.55,[A.abar.left+200,A.abar.top+60],E.io],[27.0,[A.abar.left+200,A.abar.top+60]],[27.5,[1250,1300],E.in],
+  [36.2,[1250,1300]],[36.85,[A.btn.x+40,A.btn.y+10],E.io],[37.3,[A.btn.x+40,A.btn.y+10]],[38.6,[A.send.x+20,A.send.y+20],E.io],[39.2,[A.send.x+20,A.send.y+20]],[39.8,[1250,1500],E.in],
+  [43.6,[1250,1500]],[44.0,[860,1100],E.out],[44.45,[180,1100],E.io],[45.6,[860,1150],E.out],[46.0,[860,1150]],[46.45,[180,1150],E.io],[46.9,[1250,1600],E.in],
+  [48.6,[1250,1600]],[49.0,[A.rad2.x+300,A.rad2.y+10],E.io],[49.3,[A.rad2.x+300,A.rad2.y+10]],[49.9,[A.cont.x+60,A.cont.y+10],E.io],[50.3,[A.cont.x+60,A.cont.y+10]],[50.9,[1250,1700],E.in],
+  [57.6,[1250,1700]],[58.3,[700,665],E.io],[59.2,[720,680]],[60,[740,700]]];
+ let v=track(t,K); if(t>=26&&t<40){const m=PM(v[0],v[1],t);v=[m[0],m[1]]}
+ const clicks=[7.0,26.6,37.0,38.9,49.05,50.05,58.5]; const drags=[[2.8,3.45],[4.0,4.6],[44.0,44.45],[46.0,46.45]];
+ let s=1; for(const c of clicks){const u=P(t,c-.08,.3);if(u>0&&u<1)s=1-.18*Math.sin(u*Math.PI)}
+ for(const [a,b] of drags){if(t>=a&&t<=b)s=.84}
+ return {x:v[0],y:v[1],s};
+}
+
+// ---------------- seek ----------------
+let PREV=null;
+function placeBrasa(t,v){const b=$('brasa');b.style.width=v[2]+'px';b.style.height=v[3]+'px';b.style.borderRadius=v[4]+'px';b.style.transform=`translate(${(v[0]-v[2]/2).toFixed(2)}px,${(v[1]-v[3]/2).toFixed(2)}px)`;
+ const ic=icons(t);$('b_heart').style.transform=`scale(${ic.heart})`;$('b_play').style.transform=`scale(${ic.play})`;$('b_send').style.transform=`scale(${ic.send}) rotate(${t>=42.3?0:-28}deg)`;
+ $('b_label').textContent=ic.label;$('b_label').style.clipPath=`inset(0 ${(50-50*ic.lab).toFixed(1)}% 0 ${(50-50*ic.lab).toFixed(1)}%)`;$('b_label').style.fontSize=(t>=50?40:34)+'px';
+ b.style.visibility=(t>=55&&t<55.01)?'visible':'visible';}
+window.seek=function(t){
+ frame(t);
+ const v=brasa(t), v0=brasa(Math.max(0,t-1/60));
+ placeBrasa(t,v); applyBlur($('brasa'),'brasa',(v[0]-v0[0])*(v[2]<500?1:0),(v[1]-v0[1])*(v[2]<500?1:0));
+ const c=cursor(t), c0=cursor(Math.max(0,t-1/60));
+ $('cursor').style.transform=`translate(${(c.x-16).toFixed(1)}px,${(c.y-12).toFixed(1)}px) scale(${c.s.toFixed(3)})`; applyBlur($('cursor'),'cursor',c.x-c0.x,c.y-c0.y,.4);
+ // group blurs by derivative
+ const fy=t=>track(t,[[2.0,0],[2.8,0],[3.45,-2*PITCH,E.io],[4.0,-2*PITCH],[4.6,-4*PITCH,E.io]])+tw(t,1.95,.5,1,0,E.out)*1500;
+ applyBlur($('feed'),'feed',0,fy(t)-fy(t-1/60),.35);
+ const cx=t=>track(t,[[42,0],[44.0,0],[44.45,-820,E.io],[46.0,-820],[46.45,-1640,E.io]]);
+ applyBlur($('car'),'car',cx(t)-cx(t-1/60),0,.35);
+};
+window.ready=(async()=>{await document.fonts.ready;build();await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));
+ A.carBr={x:860,y:1380};
+ measure();
+ // anchors for carousel/app containers
+ seek(0); return true})();
+</script>
+</body></html>

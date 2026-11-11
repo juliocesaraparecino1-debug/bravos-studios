@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Brasa audio</title></head><body><script>
+// Soundtrack composed in code: 120 BPM, kick on every beat, a hit on every scene change.
+const BPM=120, BEAT=60/BPM, DUR=60, SR=44100;
+const SC=[2,6,10,14,20,26,30,36,42,48,52,55];
+const CLICKS=[7.0,26.6,37.0,38.9,49.05,50.05,58.5];
+const PROG=[[57,60,64],[53,57,60],[48,52,55],[55,59,62]]; // Am F C G (midi)
+const mtof=m=>440*Math.pow(2,(m-69)/12);
+function noiseBuf(ctx,sec){const b=ctx.createBuffer(1,Math.ceil(SR*sec),SR);const d=b.getChannelData(0);let s=12345;for(let i=0;i<d.length;i++){s=(s*1103515245+12345)&0x7fffffff;d[i]=s/0x3fffffff-1}return b}
+window.renderAudio=async function(){
+ const ctx=new OfflineAudioContext(2,SR*DUR,SR);
+ const master=ctx.createGain();master.gain.value=.8;
+ const comp=ctx.createDynamicsCompressor();comp.threshold.value=-14;comp.ratio.value=4;master.connect(comp);comp.connect(ctx.destination);
+ const fadeEnd=ctx.createGain();fadeEnd.gain.setValueAtTime(1,DUR-1.2);fadeEnd.gain.linearRampToValueAtTime(0,DUR);fadeEnd.connect(master);
+ const out=fadeEnd;
+ const NB=noiseBuf(ctx,2);
+ const sect=t=>t<2?0:t<52?1:t<55?2:3; // 0 hook, 1 body, 2 climax, 3 end
+ // kick every beat
+ for(let i=0;i<DUR/BEAT;i++){const t=i*BEAT;const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(44,t+.13);
+  const v=sect(t)===2?1.0:.85;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+.38);o.connect(g);g.connect(out);o.start(t);o.stop(t+.4)}
+ // offbeat hats + clap on 2 and 4 (body only)
+ for(let i=0;i<DUR/BEAT;i++){const t=i*BEAT+BEAT/2;if(t<2||t>58.8)continue;const s=ctx.createBufferSource();s.buffer=NB;const f=ctx.createBiquadFilter();f.type='highpass';f.frequency.value=7500;const g=ctx.createGain();g.gain.setValueAtTime(.22,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);s.connect(f);f.connect(g);g.connect(out);s.start(t,(i*.137)%1.5,.06)}
+ for(let i=1;i<DUR/BEAT;i+=2){const t=i*BEAT;if(t<2||t>58.8)continue;const s=ctx.createBufferSource();s.buffer=NB;const f=ctx.createBiquadFilter();f.type='bandpass';f.frequency.value=1600;f.Q.value=.8;const g=ctx.createGain();g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+.16);s.connect(f);f.connect(g);g.connect(out);s.start(t,(i*.31)%1.5,.2)}
+ // bass: eighth-note pulses on the chord root
+ for(let bar=1;bar<30;bar++){const ch=PROG[bar%4];for(let e=0;e<8;e++){const t=bar*2+e*BEAT/2;if(t>=58.8)break;const o=ctx.createOscillator();o.type='sawtooth';o.frequency.value=mtof(ch[0]-24);const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(900,t);f.frequency.exponentialRampToValueAtTime(180,t+.2);const g=ctx.createGain();const v=sect(t)===2?.26:.2;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+.22);o.connect(f);f.connect(g);g.connect(out);o.start(t);o.stop(t+.25)}}
+ // chord stabs on beats 1 and 2.5 of each bar
+ for(let bar=1;bar<30;bar++){const ch=PROG[bar%4];for(const off of [0,1.25]){const t=bar*2+off;if(t>=58.8)continue;for(const n of ch){for(const det of [-6,6]){const o=ctx.createOscillator();o.type='sawtooth';o.frequency.value=mtof(n);o.detune.value=det;const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=2200;const g=ctx.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.035,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+.45);o.connect(f);f.connect(g);g.connect(out);o.start(t);o.stop(t+.5)}}}}
+ // hits on scene changes (bigger at the climax)
+ for(const t of SC){const big=t===52;const s=ctx.createBufferSource();s.buffer=NB;const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(big?9000:6000,t);f.frequency.exponentialRampToValueAtTime(400,t+(big?1.4:.35));const g=ctx.createGain();g.gain.setValueAtTime(big?.9:.55,t);g.gain.exponentialRampToValueAtTime(.001,t+(big?1.6:.4));s.connect(f);f.connect(g);g.connect(out);s.start(t,0,big?1.8:.5);
+  const o=ctx.createOscillator();o.type='sine';o.frequency.setValueAtTime(big?120:95,t);o.frequency.exponentialRampToValueAtTime(38,t+(big?.9:.3));const go=ctx.createGain();go.gain.setValueAtTime(big?1:.6,t);go.gain.exponentialRampToValueAtTime(.001,t+(big?1.2:.35));o.connect(go);go.connect(out);o.start(t);o.stop(t+1.3)}
+ // cursor clicks
+ for(const t of CLICKS){const o=ctx.createOscillator();o.type='triangle';o.frequency.setValueAtTime(2200,t);o.frequency.exponentialRampToValueAtTime(900,t+.03);const g=ctx.createGain();g.gain.setValueAtTime(.3,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);o.connect(g);g.connect(out);o.start(t);o.stop(t+.06)}
+ const buf=await ctx.startRendering();
+ // WAV encode
+ const n=buf.length,chs=2,bytes=44+n*chs*2,ab=new ArrayBuffer(bytes),dv=new DataView(ab);let p=0;const ws=s=>{for(const c of s)dv.setUint8(p++,c.charCodeAt(0))};
+ ws('RIFF');dv.setUint32(p,bytes-8,true);p+=4;ws('WAVEfmt ');dv.setUint32(p,16,true);p+=4;dv.setUint16(p,1,true);p+=2;dv.setUint16(p,chs,true);p+=2;dv.setUint32(p,SR,true);p+=4;dv.setUint32(p,SR*chs*2,true);p+=4;dv.setUint16(p,chs*2,true);p+=2;dv.setUint16(p,16,true);p+=2;ws('data');dv.setUint32(p,n*chs*2,true);p+=4;
+ const L=buf.getChannelData(0),R=buf.getChannelData(1);for(let i=0;i<n;i++){dv.setInt16(p,Math.max(-1,Math.min(1,L[i]))*32767,true);p+=2;dv.setInt16(p,Math.max(-1,Math.min(1,R[i]))*32767,true);p+=2}
+ let bin='';const u8=new Uint8Array(ab);for(let i=0;i<u8.length;i+=32768)bin+=String.fromCharCode.apply(null,u8.subarray(i,i+32768));return btoa(bin);
+};
+</script></body></html>
