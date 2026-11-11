@@ -137,4 +137,10 @@ window.seek=function(t){frame(t);const dt=1/60;
  const b=brasaP(t),b0=brasaP(Math.max(0,t-dt)); $('brasa').style.transform=`translate(${b[0]-32}px,${b[1]-32}px)`; blur($('brasa'),'brasa',b[0]-b0[0],b[1]-b0[1],.5);
 };
 window.ready=(async()=>{await document.fonts.ready;build();await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));seek(0);return true})();
-</script></body></html>
+</script>
+<script>
+const WARP=[[0, 0, 15.3, 15.3], [15.3, 15.3, 15.65, 16.0], [15.65, 16.0, 17.65, 18.0]];
+window.WARPF=function(T){for(const [n0,a,n1,b] of WARP){if(T<=n1) return a+(b-a)*Math.max(0,(T-n0))/(n1-n0)}const l=WARP[WARP.length-1];return l[3]};
+const _seek=window.seek; window.seek=T=>_seek(WARPF(T));
+</script>
+</body></html>
