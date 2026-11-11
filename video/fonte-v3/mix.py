@@ -47,7 +47,7 @@ c('sting-bold-short',51.98,-17); c('pop-medium-in',54.5,-19); c('click-button-fi
 json.dump(C,open('cues.json','w'))
 inp=['-i','vo.wav','-i','/home/user/bravos-studios/video/audio/trilha.mp3']; fc=[]
 fc.append(f'[0:a]aformat=channel_layouts=stereo,apad=whole_dur={DUR},atrim=0:{DUR},asplit=2[vo][key]')
-fc.append(f'[1:a]aformat=channel_layouts=stereo,atrim=0:{DUR},asetpts=PTS-STARTPTS,extrastereo=m=2.2,volume=0.42,afade=t=in:d=0.8,afade=t=out:st={DUR-2.6}:d=2.6[m0];[m0][key]sidechaincompress=threshold=0.02:ratio=7:attack=12:release=300[mus]')
+fc.append(f'[1:a]aformat=channel_layouts=stereo,atrim=0:{DUR},asetpts=PTS-STARTPTS,extrastereo=m=3.2,equalizer=f=2500:t=q:w=1.0:g=-5,equalizer=f=900:t=q:w=1.0:g=-3,volume=0.3,afade=t=in:d=0.8,afade=t=out:st={DUR-2.6}:d=2.6[m0];[m0][key]sidechaincompress=threshold=0.012:ratio=10:attack=10:release=380[mus]')
 def peak(f):
     o=subprocess.run(['ffmpeg','-i',f,'-af','volumedetect','-f','null','-'],capture_output=True,text=True).stderr
     return float(re.search(r'max_volume: ([-\d.]+)',o).group(1))
@@ -55,7 +55,7 @@ labs=[]
 for j,(i,t,db) in enumerate(C):
     m=meta[i]; f=K+'/'+m['file']; start=max(0,t-m['sync']['at']); g=db-peak(f); d=int(start*1000)
     inp+=['-i',f]; k=2+j
-    pn=[.62,.38][j%2] if len(C)>0 else .5
+    pn=[.8,.2][j%2] if len(C)>0 else .5
     fc.append(f'[{k}:a]aformat=channel_layouts=stereo,pan=stereo|c0={2*(1-pn):.2f}*c0+{2*pn-1 if pn>.5 else 0:.2f}*c1|c1={2*pn:.2f}*c1+{2*(1-pn)-1 if pn<.5 else 0:.2f}*c0,volume={g:.1f}dB,adelay={d}|{d},apad=whole_dur={DUR},atrim=0:{DUR}[s{j}]'); labs.append(f'[s{j}]')
 fc.append(''.join(labs)+f'amix=inputs={len(labs)}:normalize=0[sfx]')
 fc.append('[vo][mus][sfx]amix=inputs=3:normalize=0,alimiter=limit=0.89[out]')
