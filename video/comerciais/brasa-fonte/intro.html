@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Intro</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Anton&family=Poppins:wght@500;600;700&family=Unbounded:wght@700;900&display=block" rel="stylesheet">
+<style>
+:root{--bg:#F4F3EF;--ink:#0B0B0C;--g1:#9A968F;--g2:#D9D6CF;--or:#F87F23;--br:#7E2E14}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:'Bricolage Grotesque',sans-serif;color:var(--ink)}
+.abs{position:absolute}.full{position:absolute;inset:0}
+.line{position:absolute;left:50px;right:50px;text-align:center;font-weight:800;letter-spacing:-.04em;line-height:1.0}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .05em .14em;margin:0 .06em}
+.wi{display:inline-block}.k{color:var(--or)}
+.grid{background-color:#FBFAF7;background-image:linear-gradient(#E4E1DA 1.5px,transparent 1.5px),linear-gradient(90deg,#E4E1DA 1.5px,transparent 1.5px);background-size:36px 36px}
+.sp{position:absolute;inset:0;padding:34px 34px}
+.sp .hd{display:flex;justify-content:space-between;font:500 15px Poppins;letter-spacing:.32em;color:var(--br)}
+.sp .hd b{letter-spacing:.06em;font-weight:700}
+.sp .ft{position:absolute;left:34px;right:34px;bottom:30px;text-align:right;font:500 14px Poppins;letter-spacing:.18em;color:var(--br)}
+.post{position:absolute;border-radius:44px;overflow:hidden;background:#000}
+.post img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pill{display:inline-flex;align-items:center;gap:12px;padding:14px 26px;border-radius:999px;font:600 26px Poppins}
+</style></head><body><div id="stage">
+<svg width="0" height="0" style="position:absolute"><defs id="fdefs"></defs></svg>
+<div id="cam" class="full" style="transform-origin:540px 960px">
+ <!-- phone with real feed -->
+ <div id="phone" class="abs" style="left:230px;top:440px;width:620px;height:1340px;border-radius:76px;background:#fff;padding:14px;box-shadow:0 0 0 2px #E2DFD8,0 60px 120px rgba(0,0,0,.16)">
+  <div id="scr" class="abs" style="left:14px;top:14px;right:14px;bottom:14px;border-radius:62px;overflow:hidden;background:#000">
+   <img id="ig" src="assets/seq/ig/0001.jpg" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover">
+   <div id="feedS" class="abs" style="left:0;top:0;width:592px;height:1312px"></div>
+  </div>
+ </div>
+ <!-- big static post with strike -->
+ <div id="bigS" class="abs" style="left:150px;top:520px;width:780px;height:975px;border-radius:26px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.15)"></div>
+ <svg id="strike" class="abs" style="left:100px;top:880px" width="880" height="260" viewBox="0 0 880 260"><path id="stp" d="M20 200 C 260 120, 560 160, 860 40" fill="none" stroke="#F87F23" stroke-width="30" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+ <!-- motion posts -->
+ <div id="posts" class="full"></div>
+ <!-- final line + brasa -->
+ <div id="hline" class="abs" style="left:-120px;top:1155px;width:1320px;height:10px;border-radius:5px;background:var(--ink);transform-origin:50% 50%"></div>
+ <div id="brasa" class="abs" style="width:64px;height:64px;border-radius:50%;background:var(--or);left:0;top:0"></div>
+ <div id="texts" class="full"></div>
+ <div id="finger" class="abs" style="left:0;top:0;width:110px;height:110px;border-radius:50%;background:rgba(11,11,12,.28);box-shadow:0 0 0 6px rgba(255,255,255,.7)"></div>
+</div>
+</div>
+<script>
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),lerp=(a,b,u)=>a+(b-a)*u,P=(t,t0,d)=>cl((t-t0)/d);
+const E={out:x=>x>=1?1:1-Math.pow(2,-10*x),in:x=>x<=0?0:Math.pow(2,10*x-10),io:x=>x<=0?0:x>=1?1:x<.5?Math.pow(2,20*x-10)/2:(2-Math.pow(2,-20*x+10))/2,q5:x=>1-Math.pow(1-x,5),spr:x=>x<=0?0:x>=1?1:1-Math.exp(-8*x)*Math.cos(8*x),sin:x=>-(Math.cos(Math.PI*x)-1)/2};
+const tw=(t,t0,d,a,b,e=E.out)=>lerp(a,b,e(P(t,t0,d)));
+function track(t,ks){if(t<=ks[0][0])return ks[0][1];for(let i=1;i<ks.length;i++){if(t<=ks[i][0]){const[t0,a]=ks[i-1],[t1,b,e]=ks[i];const u=(e||E.out)((t-t0)/(t1-t0));return typeof a==='number'?lerp(a,b,u):a.map((v,j)=>lerp(v,b[j],u))}}return ks[ks.length-1][1]}
+const $=id=>document.getElementById(id);
+const MB={};function mbF(id){$('fdefs').insertAdjacentHTML('beforeend',`<filter id="mb_${id}" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="0 0"/></filter>`);MB[id]=document.querySelector(`#mb_${id} feGaussianBlur`)}
+function blur(el,id,dx,dy,k=.5){const bx=Math.min(40,Math.abs(dx)*k),by=Math.min(40,Math.abs(dy)*k);if(bx<.6&&by<.6){el.style.filter='';return}MB[id].setAttribute('stdDeviation',`${bx.toFixed(1)} ${by.toFixed(1)}`);el.style.filter=`url(#mb_${id})`}
+const TX=[];
+function text(id,str,top,size,tin,tout,o={}){const d=document.createElement('div');d.className='line';d.style.top=top+'px';d.style.fontSize=size+'px';if(o.color)d.style.color=o.color;$('texts').appendChild(d);const sp=[];
+ str.split(' ').forEach(w=>{if(w==='|'){d.appendChild(document.createElement('br'));return}const a=document.createElement('span');a.className='w';const n=document.createElement('span');n.className='wi'+(w.startsWith('*')?' k':'');n.textContent=w.replace(/^\*/,'');a.appendChild(n);d.appendChild(a);sp.push(n)});TX.push({sp,tin,tout,step:o.step??.16})}
+function drawTexts(t){for(const T of TX)T.sp.forEach((s,i)=>{const ti=T.tin+i*T.step,to=T.tout+i*.035;let y=t<ti?150:t<to?150*(1-E.q5(P(t,ti,.5))):-150*E.in(P(t,to,.3));s.style.transform=`translateY(${y.toFixed(2)}%)`})}
+
+// static posts (generic, in the "text-heavy static" style)
+const SA=`<div class="sp grid"><div class="hd"><span>S U A <b>MARCA</b></span><span>D I C A S <b>DO DIA</b></span></div>
+ <div style="position:absolute;left:44px;right:44px;top:150px;font:400 74px/0.98 Anton;color:var(--br)">5 dicas para vender mais no Instagram</div>
+ <div style="position:absolute;left:36px;right:36px;top:410px;padding:6px 14px;background:#E8901C;color:#fff;font:600 26px Poppins">que você precisa ler até o final e salvar</div>
+ <div style="position:absolute;left:44px;right:44px;top:470px;font:500 22px/1.5 Poppins;color:#2B2B2B">Poste todos os dias, use hashtags certas, responda os comentários, capriche na legenda e tenha constância. Constância é tudo. Lembre-se: quem não é visto não é lembrado.</div>
+ <div class="ft">ARRASTA PRO LADO</div></div>`;
+const SB=`<div class="sp grid"><div class="hd"><span>S U A <b>MARCA</b></span><span>D I C A S <b>DO DIA</b></span></div>
+ <div style="position:absolute;left:44px;right:44px;top:120px;font:500 30px/1.38 Poppins;color:#E8901C">Se você não posta todo dia, o algoritmo te esquece. <span style="color:#222">E aí sua conta para de crescer, seu alcance cai e você fica sem vender.</span></div>
+ <div style="position:absolute;left:44px;right:44px;top:360px;font:500 30px/1.38 Poppins;color:#222">Por isso, faça um planejamento semanal, separe um tempo para criar e mantenha a frequência.</div>
+ <div style="position:absolute;left:44px;right:44px;top:560px;font:600 30px/1.3 Poppins;color:#E8901C">Salve este post para não esquecer!</div>
+ <div class="ft">ARRASTA PRO LADO</div></div>`;
+function build(){
+ // feed static posts inside screen, as real IG posts (header+card+actions)
+ [SA,SB].forEach((h,i)=>{$('feedS').insertAdjacentHTML('beforeend',`<div id="fs${i}" class="abs" style="left:0;top:0;width:592px;height:1000px;background:#fff">
+   <div style="height:84px;display:flex;align-items:center;gap:14px;padding:0 20px"><div style="width:52px;height:52px;border-radius:50%;background:#E8901C"></div><div style="font:600 24px Poppins;color:#111">sua.marca</div></div>
+   <div style="position:relative;width:592px;height:740px">${h.replace('class="sp grid"','class="sp grid" style="transform:scale(.759);transform-origin:0 0;width:780px;height:975px"')}</div>
+   <div style="height:90px;display:flex;align-items:center;gap:26px;padding:0 22px;font:600 22px Poppins;color:#111">♡ &nbsp; ◯ &nbsp; ➤<span style="margin-left:auto;color:#888;font-weight:500">curtido por 3 pessoas</span></div></div>`)});
+ $('bigS').innerHTML=SA.replace('class="sp grid"','class="sp grid" style="position:absolute;inset:0"');
+ // motion posts
+ const posts=[
+  {img:'ai1.jpg',html:`<div class="abs" style="left:56px;top:56px;font:600 22px Poppins;letter-spacing:.4em;color:#fff">D R O P &nbsp; 0 7</div><div class="abs" style="right:56px;top:46px" ><span class="pill" style="background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)">salve esse post</span></div>
+     <div class="big abs" style="left:0;right:0;bottom:250px;text-align:center;font:900 116px Unbounded;color:#fff;letter-spacing:-.04em;white-space:nowrap"><span class="L">P</span><span class="L">R</span><span class="L">E</span><span class="L">S</span><span class="L">E</span><span class="L">N</span><span class="L">Ç</span><span class="L">A</span></div>
+     <div class="sub abs" style="left:0;right:0;bottom:200px;text-align:center;font:600 30px Poppins;color:#fff;letter-spacing:.3em">NOVA COLEÇÃO</div>
+     <div class="cta abs" style="left:0;right:0;bottom:90px;text-align:center"><span class="pill" style="background:#fff;color:#111">Arrasta pro lado →</span></div>`},
+  {img:'ai2.jpg',html:`<div class="abs" style="left:46px;top:46px"><span class="pill" style="background:#fff;color:#111;font-size:22px;letter-spacing:.2em">ARQUIVO 07</span></div><div class="abs" style="right:46px;top:46px"><span class="pill" style="background:#fff;color:#111;font-size:22px;letter-spacing:.2em">SALVE</span></div>
+     <div class="sub abs" style="left:0;right:0;bottom:330px;text-align:center;font:600 34px Poppins;letter-spacing:.5em;color:#fff">SINAL EM MOVIMENTO</div>
+     <div class="big abs" style="left:0;right:0;bottom:120px;text-align:center;font:900 230px/1 Unbounded;color:#fff;letter-spacing:-.05em"><span class="L">P</span><span class="L">U</span><span class="L">L</span><span class="L">S</span><span class="L">O</span></div>`},
+  {img:'ai3.jpg',html:`<div class="big abs" style="left:56px;right:56px;top:90px;font:900 104px/0.98 Unbounded;color:#fff;letter-spacing:-.04em"><span class="L">CORTE</span><br><span class="L" style="color:#F87F23">DE RESPEITO</span></div>
+     <div class="sub abs" style="left:58px;top:330px;font:600 30px Poppins;color:#fff">Fade, navalha e acabamento.</div>
+     <div class="cta abs" style="left:56px;bottom:80px"><span class="pill" style="background:#F87F23;color:#fff">Agende pelo app →</span></div>`}];
+ posts.forEach((p,i)=>$('posts').insertAdjacentHTML('beforeend',`<div id="mp${i}" class="post" style="left:60px;top:390px;width:960px;height:1200px"><img class="bg" src="assets/ai/${p.img}"><div class="full" style="background:linear-gradient(180deg,rgba(0,0,0,.0) 45%,rgba(0,0,0,.45))"></div>${p.html}</div>`));
+ text('a1','O feed *não para.',190,112,0.1,1.85);
+ text('a2','Post parado, | o dedo passa *direto.',150,100,2.3,5.95,{step:.18});
+ text('a3','Hoje, isso | *não prende | mais ninguém.',150,104,6.45,7.85,{step:.16});
+ text('a4','O que prende é *movimento.',110,76,8.65,15.65,{step:.14});
+ text('a5','É isso que a | *Bravos cria.',170,128,16.05,17.45,{step:.18});
+ ['phone','finger','mp0','mp1','mp2','brasa','fs0','fs1'].forEach(mbF);
+}
+// ---- poses ----
+const SC=[0,2,6,8,10.67,13.33,16,18];
+function phoneP(t){ // [x offset, y offset, scale]
+ return track(t,[[0,[0,900,1]],[0.45,[0,0,1],E.spr],[6.0,[0,0,1]],[6.4,[0,-140,.62],E.io],[7.85,[0,-140,.62]],[8.1,[0,-1700,.62],E.in]]);
+}
+function fsY(t,i){ // static post position in screen (y), enters from bottom, leaves top
+ const t0=i?3.9:2.15; return track(t,[[t0,1400],[t0+.45,240,E.out],[t0+1.05,240],[t0+1.45,-1100,E.io]]);
+}
+function fingerP(t){return track(t,[[0,[1250,1500]],[2.9,[1250,1500]],[3.2,[640,1300],E.out],[3.6,[640,620],E.io],[3.9,[700,1350],E.out],[4.95,[700,1350]],[5.35,[640,600],E.io],[5.7,[1250,1500],E.in]])}
+function postP(t,i){ // [x, scale]
+ const a=8.0+i*2.667, b=a+2.667;
+ if(i==0) return track(t,[[7.85,[0,.2]],[8.35,[0,1],E.spr],[b-0.25,[0,1]],[b+0.12,[-1200,1],E.io]]);
+ return track(t,[[a-0.25,[1200,1]],[a+0.12,[0,1],E.io],[b-0.25,[0,1]],[b+0.12,[i==2?0:-1200,i==2?1:1],E.io]]);
+}
+function frame(t){
+ const k=SC.findIndex((s,i)=>t>=s&&t<SC[i+1]); const zA=k%2?1.04:1,zB=k%2?1:1.04; $('cam').style.transform=`scale(${lerp(zA,zB,E.sin(P(t,SC[k],SC[k+1]-SC[k]))).toFixed(5)})`;
+ // phone
+ const [px,py,ps]=phoneP(t); $('phone').style.transform=`translate(${px}px,${py}px) scale(${ps})`; $('phone').style.visibility=t<8.3?'visible':'hidden';
+ const fr=Math.min(434,1+Math.floor(t*30*1.0)); const src=`assets/seq/ig/${String(fr).padStart(4,'0')}.jpg`; if(!$('ig').src.endsWith(src))$('ig').src=src;
+ [0,1].forEach(i=>{$('fs'+i).style.transform=`translateY(${fsY(t,i).toFixed(1)}px)`});
+ // big static post + strike (6.0-7.8)
+ const bs=E.spr(P(t,6.4,.55)); $('bigS').style.transform=`translateY(${((1-bs)*900+ (t>7.75?E.in(P(t,7.75,.35))*-1500:0)).toFixed(1)}px) rotate(${(-2*bs).toFixed(2)}deg)`; $('bigS').style.visibility=t>=6.35&&t<8.2?'visible':'hidden';
+ $('stp').style.strokeDashoffset=(1-E.out(P(t,7.05,.4))).toFixed(3); $('strike').style.visibility=t>=7.0&&t<7.75?'visible':'hidden';
+ // motion posts
+ for(let i=0;i<3;i++){const [x,s]=postP(t,i);const el=$('mp'+i);const a=8.0+i*2.667;el.style.transform=`translateX(${x.toFixed(1)}px) scale(${s.toFixed(4)})`;el.style.visibility=(t>=a-0.3&&t<a+2.9&&!(i==2&&t>=16.2))?'visible':'hidden';
+  const u=P(t,a,2.8); el.querySelector('img.bg').style.transform=`scale(${(1.06+0.14*u).toFixed(4)}) translate(${(i==1?-20*u:15*u).toFixed(1)}px,${(-10*u).toFixed(1)}px)`;
+  el.querySelectorAll('.L').forEach((L,j)=>{const v=E.q5(P(t,a+0.25+j*0.05,.55));L.style.display='inline-block';L.style.transform=`translateY(${((1-v)*120).toFixed(1)}%)`;L.style.opacity=v>0?1:0;L.style.clipPath='inset(-10% -5% 0 -5%)'});
+  const big=el.querySelector('.big'); if(big) big.style.clipPath='inset(0 -20px 0 -20px)';
+  const sub=el.querySelector('.sub'); if(sub){const v=E.out(P(t,a+0.7,.6)); sub.style.clipPath=`inset(0 ${(50-50*v).toFixed(1)}% 0 ${(50-50*v).toFixed(1)}%)`; sub.style.letterSpacing=(i==1?(.8-.3*v):(.5-.2*v))+'em'}
+  const cta=el.querySelector('.cta'); if(cta){const v=E.spr(P(t,a+1.0,.5)); cta.style.transform=`translateY(${((1-v)*80).toFixed(1)}px)`; cta.style.opacity=v>0?1:0}
+ }
+ // final: last post settles lower, then collapses into the line
+ const col=E.io(P(t,17.4,.4)); if(t>=16.0){const el=$('mp2');el.style.visibility=t<17.8?'visible':'hidden';const sh=E.spr(P(t,15.9,.5));el.style.transformOrigin='50% 50%';const sc=lerp(1,.62,sh);const ty=lerp(0,330,sh);el.style.transform=`translateY(${(ty-col*(ty+600-765+ 0)).toFixed(1)}px) scale(${(sc*(1+.6*col)).toFixed(4)},${Math.max(.006,sc*(1-col)).toFixed(4)})`}
+ $('hline').style.visibility=t>=17.75?'visible':'hidden'; $('hline').style.transform=`scaleX(${tw(t,17.75,.25,.73,1).toFixed(3)})`;
+ drawTexts(t);
+ // a5 over the last post needs contrast: shift post down & dim handled by text color
+}
+function brasaP(t){ if(t<17.6) return [-200,1160]; return track(t,[[17.6,[1250,1110]],[18.0,[661,1112],E.out]])}
+window.seek=function(t){frame(t);const dt=1/60;
+ const [px,py]=phoneP(t),[px0,py0]=phoneP(Math.max(0,t-dt)); blur($('phone'),'phone',px-px0,py-py0,.35);
+ [0,1].forEach(i=>blur($('fs'+i),'fs'+i,0,fsY(t,i)-fsY(t-dt,i),.35));
+ for(let i=0;i<3;i++){const a=postP(t,i),b=postP(Math.max(0,t-dt),i);blur($('mp'+i),'mp'+i,a[0]-b[0],0,.3)}
+ const f=fingerP(t),f0=fingerP(Math.max(0,t-dt)); $('finger').style.transform=`translate(${f[0]-55}px,${f[1]-55}px)`; blur($('finger'),'finger',f[0]-f0[0],f[1]-f0[1],.3);
+ const b=brasaP(t),b0=brasaP(Math.max(0,t-dt)); $('brasa').style.transform=`translate(${b[0]-32}px,${b[1]-32}px)`; blur($('brasa'),'brasa',b[0]-b0[0],b[1]-b0[1],.5);
+};
+window.ready=(async()=>{await document.fonts.ready;build();await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));seek(0);return true})();
+</script></body></html>
