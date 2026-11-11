@@ -1,0 +1,4 @@
+node_modules/
+.netlify/
+video/fonte/assets/seq/
+*.wav

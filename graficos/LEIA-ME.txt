@@ -1,0 +1,19 @@
+BRAVOS STUDIOS - PECAS GRAFICAS
+
+CARROSSEIS (Instagram, 1080x1350, postar na ordem dos numeros)
+  c1 = O que fazemos | c2 = Site ou so Instagram? | c3 = Bravos Barber | c4 = Como funciona
+
+IMPRESSOS (PDF para a grafica, ja com 3 mm de sangria em cada lado)
+  cartao.pdf    90 x 50 mm (arquivo 96 x 56 mm), frente e verso
+  panfleto.pdf  A5 148 x 210 mm (arquivo 154 x 216 mm), frente e verso
+  banner.pdf    roll-up 80 x 200 cm (arquivo 80,6 x 200,6 cm); os ultimos 10 cm (faixa laranja) entram na base
+  adesivos.pdf  cartela A4; a linha tracejada rosa marca o corte e NAO deve ser impressa
+  Os PNG sao so previa.
+
+ADESIVOS (pasta adesivos, PNG com fundo transparente)
+  01 e 02 = aguia com contorno branco (corte no formato do contorno)
+  03 a 10 = selos, etiquetas e tags
+
+Na grafica: peca impressao em CMYK; as cores foram criadas em RGB (laranja #F87F23),
+peca uma prova de cor se a cor exata for importante. Para adesivo recortado (01 e 02),
+a grafica gera a faca de corte a partir do contorno do PNG.

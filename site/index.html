@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bravos Studios | Sites, apps e identidade visual</title>
+<meta name="description" content="Sites, aplicativos, identidade visual e mídias digitais para negócios que querem vender mais.">
+<meta property="og:title" content="Bravos Studios | Sites, apps e identidade visual">
+<meta property="og:description" content="Design com personalidade para o seu negócio. Peça seu orçamento.">
+<meta property="og:image" content="img/apresentacao-capa.jpg">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B0B0C;--or:#F87F23;--or2:#E8650A;--gray:#6F6B64;--soft:#F4F3F0;--line:#E6E4E0;--r:28px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:#fff;color:var(--ink);font:400 17px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;letter-spacing:-.03em;line-height:1.02}
+.wrap{width:min(1120px,100% - 32px);margin:0 auto}
+.or{color:var(--or)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:600 16px Inter;transition:transform .2s,background .2s}
+.btn:active{transform:scale(.97)}
+.btn-or{background:var(--or);color:#fff}.btn-or:hover{background:var(--or2)}
+.btn-ghost{background:var(--soft);color:var(--ink)}
+.btn svg{width:20px;height:20px}
+.eyebrow{display:inline-block;font:600 13px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:14px}
+section{padding:84px 0}
+.sec-title{font-size:clamp(34px,7vw,56px);max-width:16ch}
+.sec-sub{color:var(--gray);margin-top:14px;max-width:52ch}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.sc{border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;flex-direction:column;align-items:center;line-height:1}
+.logo img{height:30px;width:auto}
+.logo span{font:700 10px 'Bricolage Grotesque';letter-spacing:.42em;color:var(--or);margin-top:3px;padding-left:.42em}
+.nav .btn{min-height:44px;padding:0 18px;font-size:15px}
+.links{display:none;gap:28px;font:500 15px Inter;color:var(--gray)}
+.links a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding:40px 0 0;overflow:hidden}
+.hero-grid{display:grid;gap:10px;align-items:end}
+.hero h1{font-size:clamp(44px,11vw,88px)}
+.hero p{color:var(--gray);font-size:18px;margin:18px 0 26px;max-width:40ch}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-art{position:relative;height:430px;margin-top:20px}
+.hero-art .disk{position:absolute;left:50%;bottom:-120px;width:420px;height:420px;margin-left:-210px;border-radius:50%;background:var(--or)}
+.hero-art img{position:absolute;left:50%;bottom:0;height:420px;width:auto;transform:translateX(-50%);animation:float 5s ease-in-out infinite}
+.chip{position:absolute;z-index:2;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line),0 12px 30px rgba(0,0,0,.08);font:600 14px Inter;white-space:nowrap;animation:float 6s ease-in-out infinite}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--or)}
+.c1{left:0;top:40px}.c2{right:0;top:120px;animation-delay:-2s}.c3{left:6%;top:230px;animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-10px) translateX(var(--tx,0))}}
+.hero-art img{--tx:-50%}
+
+/* marquee */
+.marq{background:var(--ink);color:#fff;overflow:hidden;padding:18px 0}
+.marq div{display:flex;gap:40px;width:max-content;animation:mq 22s linear infinite;font:600 22px 'Bricolage Grotesque'}
+.marq span{display:flex;align-items:center;gap:40px}.marq span:after{content:'✦';color:var(--or)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* services */
+.svc{display:grid;gap:14px;margin-top:40px}
+.svc article{padding:28px;border-radius:var(--r);background:var(--soft);transition:transform .25s}
+.svc article:hover{transform:translateY(-4px)}
+.svc .ic{width:54px;height:54px;border-radius:16px;background:#fff;display:grid;place-items:center;margin-bottom:22px}
+.svc .ic svg{width:28px;height:28px;stroke:var(--or);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-size:26px}.svc p{color:var(--gray);margin-top:8px;font-size:16px}
+.svc article.hl{background:var(--ink);color:#fff}.svc article.hl p{color:#B9B4AB}.svc article.hl .ic{background:#1E1E20}
+
+/* video */
+.vid{display:grid;gap:36px;align-items:center}
+.phone{width:min(300px,78vw);margin:0 auto;border-radius:44px;padding:10px;background:#fff;box-shadow:0 0 0 1px var(--line),0 40px 80px rgba(0,0,0,.14)}
+.phone video,.phone img{border-radius:34px;width:100%;aspect-ratio:9/19.5;object-fit:cover;object-position:top;background:var(--soft)}
+
+.vbox{position:relative;cursor:pointer}
+.vbtn{position:absolute;inset:0;margin:auto;width:84px;height:84px;border:0;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;opacity:0;transform:scale(.8);transition:opacity .25s,transform .25s;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.vbtn svg{width:36px;height:36px;fill:var(--ink);margin-left:4px}
+.vbox.paused .vbtn{opacity:1;transform:scale(1)}
+.vsnd{position:absolute;right:14px;bottom:14px;width:44px;height:44px;border:0;border-radius:50%;background:rgba(11,11,12,.6);display:grid;place-items:center;cursor:pointer}
+.vsnd svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#prog{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--or);transform-origin:0 50%;transform:scaleX(0);z-index:40}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(40px);filter:blur(10px);animation:wIn .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes wIn{to{opacity:1;transform:none;filter:none}}
+.svc article,.steps li,.case li,.faq details{transition-delay:calc(var(--i,0) * 90ms)}
+[data-r].from-l:not(.in){transform:translateX(-50px)}[data-r].from-r:not(.in){transform:translateX(50px)}[data-r].zoom:not(.in){transform:scale(.88)}
+.shots{transition:transform .2s linear}
+main{overflow-x:clip}
+/* projects */
+.proj{margin-top:44px;display:grid;gap:22px}
+.case{border-radius:36px;background:var(--soft);padding:30px 24px 0;overflow:hidden}
+.case .top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.case .brand{height:40px;width:auto}
+.tag{font:600 12px Inter;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border-radius:999px;background:#fff;color:var(--gray)}
+.case h3{font-size:clamp(26px,5vw,36px);margin-top:20px}
+.case p{color:var(--gray);margin-top:8px;max-width:48ch}
+.case ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.case li{font:500 14px Inter;padding:8px 14px;border-radius:999px;background:#fff}
+.shots{display:flex;gap:14px;margin-top:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:0;scrollbar-width:none;margin-inline:-24px;padding-inline:24px}
+.shots::-webkit-scrollbar{display:none}
+.shots img{flex:0 0 auto;width:200px;max-width:none;height:auto;aspect-ratio:390/844;object-fit:cover;object-position:top;border-radius:28px 28px 0 0;scroll-snap-align:center;box-shadow:0 0 0 1px var(--line);background:#fff;transition:transform .4s}
+.shots img:hover{transform:translateY(-8px)}
+.note{font-size:13px;color:var(--gray);margin-top:16px}
+
+/* steps */
+.steps{counter-reset:s;display:grid;gap:12px;margin-top:40px}
+.steps li{list-style:none;display:flex;gap:18px;align-items:flex-start;padding:22px;border-radius:var(--r);border:1px solid var(--line)}
+.steps li:before{counter-increment:s;content:counter(s,decimal-leading-zero);font:700 22px 'Bricolage Grotesque';color:var(--or);min-width:34px}
+.steps h3{font-size:21px}.steps p{color:var(--gray);font-size:15px;margin-top:4px}
+
+/* faq */
+.faq{margin-top:36px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;font:600 17px Inter;padding:14px 0}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:'+';font:400 28px Inter;color:var(--or);transition:transform .2s}
+.faq details[open] summary:after{transform:rotate(45deg)}
+.faq p{color:var(--gray);padding:0 0 20px;max-width:62ch}
+
+/* cta */
+.final{padding:0 0 100px}
+.final .box{position:relative;overflow:hidden;border-radius:40px;background:var(--or);color:#fff;padding:48px 28px 0;text-align:center}
+.final h2{font-size:clamp(36px,8vw,64px);color:#fff;max-width:14ch;margin:0 auto}
+.final p{margin:14px auto 26px;max-width:40ch;color:#FFE8D6}
+.final .btn{background:#fff;color:var(--ink)}
+.final .btn-ghost{background:rgba(255,255,255,.18);color:#fff}
+.final .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.final img{height:260px;width:auto;margin:30px auto 0}
+
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--gray);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+
+/* floating whatsapp */
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:30;width:60px;height:60px;border-radius:50%;background:var(--ink);display:grid;place-items:center;box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.fab svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* reveal */
+[data-r]{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+[data-r].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-r]{opacity:1;transform:none}}
+
+@media (min-width:760px){
+ .svc{grid-template-columns:1fr 1fr}
+ .steps{grid-template-columns:1fr 1fr}
+ .shots img{width:230px}
+ .case{padding:44px 44px 0}.shots{margin-inline:-44px;padding-inline:44px}
+}
+@media (min-width:980px){
+ .links{display:flex}
+ .hero{padding-top:70px}
+ .hero-grid{grid-template-columns:1.1fr .9fr}
+ .hero-art{height:560px}
+ .hero-art img{height:540px}.hero-art .disk{width:520px;height:520px;margin-left:-260px}
+ .svc{grid-template-columns:repeat(4,1fr)}
+ .vid{grid-template-columns:1fr 1fr}
+ .proj{grid-template-columns:1fr 1fr}
+ .final .box{padding:70px 40px 0}
+ section{padding:110px 0}
+}
+</style>
+</head>
+<body>
+
+<header id="hd"><div class="wrap nav">
+ <a href="#" class="logo" aria-label="Bravos Studios, início"><img src="img/bravos-word-dark.webp" alt="Bravos" width="112" height="30"><span>STUDIOS</span></a>
+ <nav class="links"><a href="#servicos">Serviços</a><a href="#projetos">Projetos</a><a href="#como">Como funciona</a><a href="#faq">Dúvidas</a></nav>
+ <a class="btn btn-or js-contato" href="#">Orçamento</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap hero-grid">
+ <div data-r>
+  <span class="eyebrow">Estúdio criativo digital</span>
+  <h1>Sua marca merece mais que um <span class="or">perfil bonito.</span></h1>
+  <p>Criamos sites, aplicativos, identidade visual e mídias digitais que trabalham pelo seu negócio, 24 horas por dia.</p>
+  <div class="ctas">
+   <a class="btn btn-or js-contato" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>Pedir orçamento</a>
+   <a class="btn btn-ghost" href="#projetos">Ver projetos</a>
+  </div>
+ </div>
+ <div class="hero-art" data-r id="heroArt">
+  <div class="disk"></div>
+  <span class="chip c1"><i></i>Sites</span><span class="chip c2"><i></i>Aplicativos</span><span class="chip c3"><i></i>Identidade visual</span>
+  <img src="img/mascote.webp" alt="Mascote da Bravos Studios, uma águia de braços cruzados" width="700" height="1055">
+ </div>
+</div></section>
+
+<div class="marq" aria-hidden="true"><div>
+ <span>Sites</span><span>Aplicativos</span><span>Identidade visual</span><span>Mídias digitais</span><span>Motion</span><span>Serviços gráficos</span>
+ <span>Sites</span><span>Aplicativos</span><span>Identidade visual</span><span>Mídias digitais</span><span>Motion</span><span>Serviços gráficos</span>
+</div></div>
+
+<section id="servicos"><div class="wrap">
+ <span class="eyebrow" data-r>O que fazemos</span>
+ <h2 class="sec-title" data-r>Tudo que sua marca precisa, <span class="or">no mesmo lugar.</span></h2>
+ <div class="svc">
+  <article class="hl" data-r style="--i:1"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M7 6.5h.01"/></svg></div><h3>Sites</h3><p>Rápidos, bonitos e feitos para o celular. Do site institucional à loja com pedido no WhatsApp.</p></article>
+  <article class="hl" data-r style="--i:2"><div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div><h3>Aplicativos</h3><p>Apps sob medida: agendamento, painel do dono, fidelidade e o que seu negócio precisar.</p></article>
+  <article data-r style="--i:1"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h18"/></svg></div><h3>Identidade visual</h3><p>Logo, cores, tipografia, cartão, banner e fachada com a cara da sua marca.</p></article>
+  <article data-r style="--i:2"><div class="ic"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><h3>Mídias digitais</h3><p>Posts, reels e motion que fazem o dedo parar e a pessoa lembrar de você.</p></article>
+ </div>
+</div></section>
+
+<section style="background:var(--soft)"><div class="wrap vid">
+ <div data-r>
+  <span class="eyebrow">Em movimento</span>
+  <h2 class="sec-title">Conheça a Bravos em <span class="or">1 minuto.</span></h2>
+  <p class="sec-sub">Este vídeo foi feito por nós: roteiro, motion, trilha e narração. É o tipo de conteúdo que criamos para a sua marca.</p>
+ </div>
+ <div class="phone zoom" data-r><div class="vbox"><video id="vid" src="img/apresentacao.mp4" poster="img/apresentacao-capa.jpg" autoplay loop playsinline preload="auto"></video><button id="vbtn" class="vbtn" aria-label="Pausar vídeo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button id="vsnd" class="vsnd" aria-label="Ativar som"><svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4zM23 9l-6 6M17 9l6 6"/></svg></button></div></div>
+</div></section>
+
+<section id="projetos"><div class="wrap">
+ <span class="eyebrow" data-r>Projetos</span>
+ <h2 class="sec-title" data-r>Feito pela Bravos, <span class="or">de verdade.</span></h2>
+ <div class="proj">
+  <article class="case from-l" data-r>
+   <div class="top"><img class="brand" src="img/logo-bb-dark.webp" alt="Bravos Barber" width="111" height="40"><span class="tag">App próprio · em desenvolvimento</span></div>
+   <h3>Bravos Barber</h3>
+   <p>Aplicativo completo para barbearias: o cliente agenda sozinho, paga o sinal no Pix e ganha selos no clube de fidelidade. O dono vê agenda, faturamento e equipe na palma da mão.</p>
+   <ul><li>Agendamento online</li><li>Painel do dono</li><li>Clube de fidelidade</li><li>Marca da barbearia</li></ul>
+   <div class="shots"><img src="img/bb-cliente.webp" alt="Tela inicial do cliente" width="520" height="1126"><img src="img/bb-pix.webp" alt="Confirmação com sinal no Pix" width="520" height="1126"><img src="img/bb-clube.webp" alt="Clube de fidelidade" width="520" height="1126"><img src="img/bb-dono.webp" alt="Painel do dono" width="520" height="1126"></div>
+  </article>
+  <article class="case from-r" data-r>
+   <div class="top"><h3 style="margin:0;font-size:26px">Referência Grifes</h3><span class="tag">Loja online · em desenvolvimento</span></div>
+   <p style="margin-top:20px">Vitrine de moda streetwear feita para o celular, com catálogo, sacola e pedido direto no WhatsApp. A dona edita produtos, banners e textos sozinha pelo painel.</p>
+   <ul><li>Vitrine e catálogo</li><li>Pedido no WhatsApp</li><li>Painel de produtos</li><li>Editor do site</li></ul>
+   <div class="shots"><img src="img/rg-home.webp" alt="Vitrine da loja" width="520" height="1126"><img src="img/rg-produto.webp" alt="Página do produto" width="520" height="1126"><img src="img/rg-painel.webp" alt="Painel da loja" width="520" height="1126"></div>
+  </article>
+ </div>
+</div></section>
+
+<section id="como" style="background:var(--soft)"><div class="wrap">
+ <span class="eyebrow" data-r>Como funciona</span>
+ <h2 class="sec-title" data-r>Da ideia ao ar em <span class="or">4 passos.</span></h2>
+ <ol class="steps">
+  <li data-r style="--i:1"><div><h3>Conversa</h3><p>Entendemos seu negócio, seu público e o que você quer alcançar.</p></div></li>
+  <li data-r style="--i:2"><div><h3>Proposta</h3><p>Você recebe escopo, prazo e valor claros, sem surpresa.</p></div></li>
+  <li data-r style="--i:3"><div><h3>Criação</h3><p>Design e desenvolvimento com prévias para você aprovar em cada etapa.</p></div></li>
+  <li data-r style="--i:0"><div><h3>Entrega</h3><p>Publicamos, ensinamos a usar e seguimos junto no suporte.</p></div></li>
+ </ol>
+</div></section>
+
+<section id="faq"><div class="wrap">
+ <span class="eyebrow" data-r>Dúvidas</span>
+ <h2 class="sec-title" data-r>Perguntas frequentes</h2>
+ <div class="faq" data-r>
+  <details><summary>Quanto custa um site ou app?</summary><p>Depende do que o seu negócio precisa. Chame no direct ou no WhatsApp, conte sua ideia e enviamos uma proposta com valor e prazo.</p></details>
+  <details><summary>Quanto tempo leva?</summary><p>Um site simples fica pronto mais rápido que um aplicativo completo. O prazo exato vem na proposta, depois da primeira conversa.</p></details>
+  <details><summary>Eu consigo editar o site depois?</summary><p>Sim. Podemos entregar um painel para você trocar produtos, fotos, textos e banners sozinho, como fizemos na Referência Grifes.</p></details>
+  <details><summary>Vocês fazem só o design ou também o conteúdo do Instagram?</summary><p>Fazemos os dois: identidade visual, posts, reels e motion, além de site e app.</p></details>
+  <details><summary>Atendem negócios de outras cidades?</summary><p>Sim. Todo o processo pode ser feito online.</p></details>
+ </div>
+</div></section>
+
+<section class="final"><div class="wrap"><div class="box" data-r>
+ <h2>Bora tirar sua ideia do papel?</h2>
+ <p>Conte o que você precisa. A primeira conversa e o orçamento são sem compromisso.</p>
+ <div class="ctas"><a class="btn js-contato" href="#">Pedir orçamento</a><a class="btn btn-ghost" href="https://www.instagram.com/bravos_studios/" target="_blank" rel="noopener">@bravos_studios</a></div>
+ <img src="img/mascote.webp" alt="" width="700" height="1055">
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="y"></span> Bravos Studios</span><a href="https://www.instagram.com/bravos_studios/" target="_blank" rel="noopener">Instagram @bravos_studios</a></div></footer>
+
+<a class="fab js-contato" href="#" aria-label="Falar com a Bravos Studios"><svg viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg></a>
+
+<script>
+// ▶ Coloque aqui o WhatsApp com DDI e DDD, só números (ex.: 5516999999999).
+// Enquanto estiver vazio, os botões abrem o direct do Instagram.
+const WHATSAPP = '5516993719284';
+const MSG = 'Olá, Bravos Studios! Vim pelo site e quero um orçamento.';
+const link = WHATSAPP ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(MSG)}` : 'https://ig.me/m/bravos_studios';
+document.querySelectorAll('.js-contato').forEach(a=>{a.href=link;a.target='_blank';a.rel='noopener'});
+document.getElementById('y').textContent=new Date().getFullYear();
+const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('sc',scrollY>8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+
+const v=document.getElementById('vid'),vb=v.parentElement,snd=document.getElementById('vsnd');
+const ICON_ON='<svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>',ICON_OFF='<svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4zM23 9l-6 6M17 9l6 6"/></svg>';
+const sndIcon=()=>{snd.innerHTML=v.muted?ICON_OFF:ICON_ON;snd.setAttribute('aria-label',v.muted?'Ativar som':'Desativar som')};
+v.muted=false;v.play().then(sndIcon).catch(()=>{v.muted=true;sndIcon();v.play().catch(()=>vb.classList.add('paused'));
+ const unlock=e=>{if(e.target.closest&&e.target.closest('#vsnd'))return;v.muted=false;sndIcon();if(v.paused&&!vb.classList.contains('paused'))v.play();['pointerdown','keydown','touchstart'].forEach(t=>removeEventListener(t,unlock,true))};
+ ['pointerdown','keydown','touchstart'].forEach(t=>addEventListener(t,unlock,true))});
+vb.addEventListener('click',e=>{if(e.target.closest('#vsnd'))return;if(v.paused){v.play();vb.classList.remove('paused')}else{v.pause();vb.classList.add('paused')}});
+snd.addEventListener('click',()=>{v.muted=!v.muted;sndIcon();if(v.paused){v.play();vb.classList.remove('paused')}});
+const h1=document.querySelector('.hero h1');let k=0;h1.querySelectorAll('*').length;
+(function split(n){[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t.trim()){f.append(t);return}const sp=document.createElement('span');sp.className='w';sp.style.animationDelay=(k++*70)+'ms';sp.textContent=t;f.append(sp)});c.replaceWith(f)}else split(c)})})(h1);
+const prog=document.createElement('div');prog.id='prog';document.body.append(prog);
+const art=document.getElementById('heroArt'),rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function onScroll(){const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${max>0?y/max:0})`;
+ if(!rm){art.style.transform=`translateY(${y*.18}px)`;
+ document.querySelectorAll('.shots').forEach(sh=>{const r=sh.getBoundingClientRect();const c=(r.top+r.height/2-innerHeight/2)/innerHeight;sh.style.transform=`translateX(${(c*-60).toFixed(1)}px)`})}}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+</script>
+</body>
+</html>

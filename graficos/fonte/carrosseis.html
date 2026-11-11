@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Carrosséis Bravos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+<style>
+:root{--ink:#0B0B0C;--or:#F87F23;--or2:#E8650A;--gray:#6F6B64;--soft:#F4F3F0;--line:#E6E4E0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#ccc;font-family:Inter,sans-serif;color:var(--ink);display:flex;flex-wrap:wrap;gap:40px;padding:40px}
+.slide{position:relative;width:1080px;height:1350px;background:#fff;overflow:hidden;flex:none}
+.slide.or{background:var(--or)}
+.top{position:absolute;left:80px;right:80px;top:70px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;flex-direction:column;align-items:center;line-height:1}
+.brand img{height:44px}
+.brand span{font:700 14px 'Bricolage Grotesque';letter-spacing:.42em;color:var(--or);margin-top:5px;padding-left:.42em}
+.or .brand span{color:#fff}
+.count{font:600 26px Inter;color:var(--gray);font-variant-numeric:tabular-nums}
+.or .count{color:#FFE3CC}
+.foot{position:absolute;left:80px;right:80px;bottom:64px;display:flex;justify-content:space-between;align-items:center;font:600 26px Inter;color:var(--gray)}
+.or .foot{color:#FFE3CC}
+.swipe{display:flex;align-items:center;gap:14px;color:var(--ink);font:700 28px Inter}
+.swipe i{width:64px;height:64px;border-radius:50%;background:var(--or);display:grid;place-items:center}
+.swipe svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+h1,h2{font-family:'Bricolage Grotesque';font-weight:700;letter-spacing:-.035em;line-height:.98}
+h1{font-size:118px}
+h2{font-size:92px}
+.hl{color:var(--or)}
+.or .hl{color:#fff}
+.eyebrow{font:700 24px Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.body{position:absolute;left:80px;right:80px;top:200px}
+p.lead{font:500 38px/1.4 Inter;color:var(--gray);margin-top:34px;max-width:860px}
+.or p.lead{color:#fff}
+.list{margin-top:50px;display:flex;flex-direction:column;gap:20px}
+.list div{display:flex;align-items:center;gap:24px;padding:26px 30px;border-radius:28px;background:var(--soft);font:600 38px Inter}
+.list b{width:20px;height:20px;border-radius:50%;background:var(--or);flex:none}
+.ic{width:120px;height:120px;border-radius:34px;background:var(--soft);display:grid;place-items:center;margin-bottom:46px}
+.ic svg{width:64px;height:64px;stroke:var(--or);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.disk{position:absolute;border-radius:50%;background:var(--or)}
+.phone{position:absolute;width:420px;border-radius:64px;background:#fff;padding:13px;box-shadow:0 0 0 2px var(--line),0 50px 100px rgba(0,0,0,.16)}
+.phone img{width:100%;aspect-ratio:390/844;object-fit:cover;object-position:top;border-radius:52px;display:block}
+.chip{display:inline-flex;align-items:center;gap:14px;padding:18px 28px;border-radius:999px;background:#fff;box-shadow:0 0 0 2px var(--line),0 16px 34px rgba(0,0,0,.08);font:600 32px Inter}
+.chip i{width:14px;height:14px;border-radius:50%;background:var(--or)}
+.cta{display:inline-flex;align-items:center;gap:18px;padding:30px 48px;border-radius:999px;background:var(--ink);color:#fff;font:700 40px Inter}
+.or .cta{background:#fff;color:var(--ink)}
+.contact{margin-top:40px;display:flex;flex-direction:column;gap:14px;font:600 36px Inter}
+.contact span{display:flex;align-items:center;gap:16px}
+.contact svg{width:40px;height:40px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.step{font:800 300px 'Bricolage Grotesque';color:var(--or);letter-spacing:-.05em;line-height:.8}
+.flow{display:flex;flex-direction:column;gap:0;margin-top:60px}
+.flow .n{display:flex;align-items:center;gap:30px;padding:34px 36px;border-radius:30px;background:var(--soft)}
+.flow .n b{width:84px;height:84px;border-radius:24px;background:#fff;display:grid;place-items:center;flex:none}
+.flow .n b svg{width:46px;height:46px;stroke:var(--or);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.flow .n div{font:700 44px 'Bricolage Grotesque';letter-spacing:-.02em}
+.flow .n small{display:block;font:500 28px Inter;color:var(--gray);letter-spacing:0;margin-top:6px}
+.flow .arr{height:56px;display:grid;place-items:center}
+.flow .arr svg{width:40px;height:40px;stroke:var(--or);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sw{display:flex;gap:22px;margin-top:40px}
+.sw i{width:120px;height:120px;border-radius:50%;box-shadow:0 0 0 2px var(--line)}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+.vs>div{border-radius:34px;padding:40px 36px;background:var(--soft)}
+.vs h3{font:700 46px 'Bricolage Grotesque';letter-spacing:-.02em;margin-bottom:24px}
+.vs ul{list-style:none;display:flex;flex-direction:column;gap:18px;font:500 31px/1.3 Inter;color:var(--gray)}
+.vs li:before{content:'— ';color:var(--or)}
+.vs .on{background:var(--ink);color:#fff}.vs .on ul{color:#C9C4BB}
+.track{position:absolute;left:80px;right:80px;bottom:170px;display:flex;justify-content:space-between;align-items:flex-start}
+.track:before{content:'';position:absolute;left:60px;right:60px;top:58px;height:6px;border-radius:3px;background:var(--line)}
+.track .bar{position:absolute;left:60px;top:58px;height:6px;border-radius:3px;background:var(--or)}
+.track .st{position:relative;width:120px;display:flex;flex-direction:column;align-items:center;gap:16px;font:600 26px Inter;color:var(--gray)}
+.track .st b{width:122px;height:122px;border-radius:50%;background:var(--soft);display:grid;place-items:center;border:6px solid #fff}
+.track .st b svg{width:52px;height:52px;stroke:#B9B4AB;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.track .st.done b{background:#FFE9D6}.track .st.done b svg{stroke:var(--or)}
+.track .st.on b{background:var(--or)}.track .st.on b svg{stroke:#fff}.track .st.on{color:var(--ink)}
+</style></head><body>
+
+<!-- ============ C1 SERVIÇOS ============ -->
+<section class="slide" id="c1-1">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">1/6</div></div>
+ <div class="body"><div class="eyebrow">O que fazemos</div><h1 style="margin-top:28px">Tudo que sua marca precisa, <span class="hl">no mesmo lugar.</span></h1></div>
+ <div class="disk" style="left:250px;top:930px;width:580px;height:580px"></div>
+ <img src="assets/mascote.webp" style="position:absolute;left:290px;top:760px;width:500px">
+ <div class="chip" style="position:absolute;left:80px;top:830px"><i></i>Mídias digitais</div>
+ <div class="chip" style="position:absolute;right:80px;top:930px"><i></i>Sites e apps</div>
+ <div class="chip" style="position:absolute;left:60px;top:1060px"><i></i>Identidade visual</div>
+ <div class="foot" style="justify-content:flex-end"><div class="swipe">Arrasta <i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div></div>
+</section>
+
+<section class="slide" id="c1-2">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">2/6</div></div>
+ <div class="body"><div class="ic"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><h2>Mídias <span class="hl">digitais</span></h2>
+ <p class="lead">Conteúdo que faz o dedo parar e a pessoa lembrar da sua marca.</p>
+ <div class="list"><div><b></b>Posts e carrosséis</div><div><b></b>Reels e vídeos em motion</div><div><b></b>Capas, destaques e stories</div></div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c1-3">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">3/6</div></div>
+ <div class="body"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h6M7 14h4"/></svg></div><h2>Serviços <span class="hl">gráficos</span></h2>
+ <p class="lead">Material impresso com a mesma cara do seu digital.</p>
+ <div class="list"><div><b></b>Cartão de visita e panfleto</div><div><b></b>Banner e adesivos</div><div><b></b>Fachada e sinalização</div></div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c1-4">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">4/6</div></div>
+ <div class="body"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h18"/></svg></div><h2>Identidade <span class="hl">visual</span></h2>
+ <p class="lead">Logo, cores e tipografia pensados para a sua marca ser reconhecida em qualquer lugar.</p>
+ <div style="margin-top:56px;border-radius:34px;background:var(--soft);padding:50px;display:flex;flex-direction:column;align-items:center">
+  <img src="assets/logo-bb-dark.png" style="width:520px">
+  <div class="sw"><i style="background:#0B0B0C"></i><i style="background:#F87F23"></i><i style="background:#FF8500"></i><i style="background:#F5F1E9"></i><i style="background:#fff"></i></div>
+  <div style="margin-top:30px;font:600 30px Inter;color:var(--gray)">Exemplo: identidade do app Bravos Barber</div>
+ </div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c1-5">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">5/6</div></div>
+ <div class="body"><h2>Sites e <span class="hl">aplicativos</span></h2>
+ <p class="lead">Feitos para o celular, rápidos e prontos para vender.</p></div>
+ <div class="phone" style="left:110px;top:560px;transform:rotate(-6deg)"><img src="assets/rg-loja-home.png"></div>
+ <div class="phone" style="left:550px;top:520px;transform:rotate(5deg)"><img src="assets/04-agendar-servico.webp"></div>
+ <div class="chip" style="position:absolute;left:70px;top:1150px"><i></i>Loja com pedido no WhatsApp</div>
+ <div class="chip" style="position:absolute;right:60px;top:1060px"><i></i>App de agendamento</div>
+</section>
+
+<section class="slide or" id="c1-6">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">6/6</div></div>
+ <div class="body"><h1>Bora tirar sua ideia do papel?</h1>
+ <p class="lead">Peça seu orçamento sem compromisso.</p>
+ <div class="contact" style="color:#fff">
+  <span><svg viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>(16) 99371-9284</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>bravosstudio.digital</span>
+ </div>
+ <div style="margin-top:46px"><span class="cta">Chama no direct</span></div></div>
+ <img src="assets/mascote.webp" style="position:absolute;right:-40px;bottom:-300px;width:560px">
+</section>
+
+<!-- ============ C2 SITE x INSTAGRAM ============ -->
+<section class="slide" id="c2-1">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">1/6</div></div>
+ <div class="body" style="top:330px"><div class="eyebrow">Pergunta de quem empreende</div><h1 style="margin-top:30px;font-size:132px">Seu negócio precisa de site ou <span class="hl">só de Instagram?</span></h1></div>
+ <div class="foot"><span>@bravos_studios</span><div class="swipe">Arrasta <i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div></div>
+</section>
+
+<section class="slide" id="c2-2">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">2/6</div></div>
+ <div class="body"><h2>O Instagram é a vitrine. <span class="hl">Mas é uma vitrine alugada.</span></h2>
+ <div class="list" style="margin-top:70px"><div><b></b>As regras e o alcance mudam sem aviso</div><div><b></b>Seu cliente se distrai com o concorrente do lado</div><div><b></b>Se a conta cair, você perde o contato</div></div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c2-3">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">3/6</div></div>
+ <div class="body"><h2>O site é a sua <span class="hl">loja própria.</span></h2>
+ <div class="list" style="margin-top:70px"><div><b></b>Endereço que é seu, com o seu nome</div><div><b></b>Pode aparecer quando alguém pesquisa no Google</div><div><b></b>Atende, mostra preço e recebe pedido 24h</div></div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c2-4">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">4/6</div></div>
+ <div class="body"><h2>Lado a lado</h2>
+ <div class="vs">
+  <div><h3>Só Instagram</h3><ul><li>Cliente rola e esquece</li><li>Informação espalhada em posts</li><li>Depende do algoritmo</li><li>Pedido perdido no direct</li></ul></div>
+  <div class="on"><h3>Instagram + site</h3><ul><li>Instagram atrai, site convence</li><li>Tudo organizado num lugar</li><li>Endereço próprio para divulgar</li><li>Pedido chega pronto no WhatsApp</li></ul></div>
+ </div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c2-5">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">5/6</div></div>
+ <div class="body"><h2>A resposta: <span class="hl">os dois, juntos.</span></h2>
+ <div class="flow">
+  <div class="n"><b><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg></b><div>Instagram atrai<small>Reels e posts trazem gente nova</small></div></div>
+  <div class="arr"><svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div>
+  <div class="n"><b><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/></svg></b><div>Site convence<small>Mostra serviços, fotos e preços</small></div></div>
+  <div class="arr"><svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6"/></svg></div>
+  <div class="n"><b><svg viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg></b><div>WhatsApp fecha<small>O cliente já chega decidido</small></div></div>
+ </div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide or" id="c2-6">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">6/6</div></div>
+ <div class="body"><h1>Quer os dois funcionando juntos?</h1>
+ <p class="lead">A Bravos cria o site e cuida do visual do seu Instagram.</p>
+ <div class="contact" style="color:#fff"><span><svg viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>(16) 99371-9284</span></div>
+ <div style="margin-top:46px"><span class="cta">Pedir orçamento</span></div>
+ <p style="margin-top:34px;font:600 30px Inter;color:#FFE3CC">Salve este post para mostrar pro sócio.</p></div>
+ <img src="assets/mascote.webp" style="position:absolute;right:-40px;bottom:-300px;width:560px">
+</section>
+
+<!-- ============ C3 BRAVOS BARBER ============ -->
+<section class="slide" id="c3-1">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">1/6</div></div>
+ <div class="body"><div class="eyebrow">Projeto Bravos</div><h1 style="margin-top:28px;font-size:104px">Criamos um app completo <span class="hl">para barbearias.</span></h1></div>
+ <img src="assets/logo-bb-dark.png" style="position:absolute;left:80px;top:690px;width:380px">
+ <div class="phone" style="left:560px;top:620px;transform:rotate(5deg)"><img src="assets/01-painel.webp"></div>
+ <div class="foot" style="justify-content:flex-start"><div class="swipe">Arrasta <i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div></div>
+</section>
+
+<section class="slide" id="c3-2">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">2/6</div></div>
+ <div class="body" style="width:470px"><h2 style="font-size:84px">O cliente <span class="hl">agenda sozinho.</span></h2><p class="lead" style="font-size:34px">Escolhe o serviço, o barbeiro e o horário livre. A qualquer hora, sem esperar resposta no WhatsApp.</p></div>
+ <div class="phone" style="left:570px;top:250px"><img src="assets/04-agendar-servico.webp"></div>
+ <div class="foot"><span>@bravos_studios</span></div>
+</section>
+
+<section class="slide" id="c3-3">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">3/6</div></div>
+ <div class="body" style="width:470px"><h2 style="font-size:84px">Sinal <span class="hl">no Pix.</span></h2><p class="lead" style="font-size:34px">A barbearia pode pedir um sinal na hora de agendar, para reduzir quem marca e não aparece.</p></div>
+ <div class="phone" style="left:570px;top:250px"><img src="assets/07-agendar-confirmar-pix.webp"></div>
+ <div class="foot"><span>@bravos_studios</span></div>
+</section>
+
+<section class="slide" id="c3-4">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">4/6</div></div>
+ <div class="body" style="width:470px"><h2 style="font-size:84px">Clube de <span class="hl">fidelidade.</span></h2><p class="lead" style="font-size:34px">Cartão de selos digital: a cada visita o cliente ganha um selo e troca por prêmio.</p></div>
+ <div class="phone" style="left:570px;top:250px"><img src="assets/11-clube-fidelidade.webp"></div>
+ <div class="foot"><span>@bravos_studios</span></div>
+</section>
+
+<section class="slide" id="c3-5">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">5/6</div></div>
+ <div class="body" style="width:470px"><h2 style="font-size:84px">O dono vê <span class="hl">tudo no celular.</span></h2><p class="lead" style="font-size:34px">Agenda, faturamento, comissões e métricas por serviço e por barbeiro.</p></div>
+ <div class="phone" style="left:570px;top:250px"><img src="assets/04-metricas-visao-geral.webp"></div>
+ <div class="foot"><span>@bravos_studios</span></div>
+</section>
+
+<section class="slide or" id="c3-6">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">6/6</div></div>
+ <div class="body"><h1>Quer um app com a cara do seu negócio?</h1>
+ <p class="lead">Agendamento, fidelidade, painel do dono: a gente desenvolve sob medida.</p>
+ <div class="contact" style="color:#fff"><span><svg viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>(16) 99371-9284</span></div>
+ <div style="margin-top:46px"><span class="cta">Chama no direct</span></div></div>
+ <img src="assets/mascote.webp" style="position:absolute;right:-40px;bottom:-300px;width:560px">
+</section>
+
+<!-- ============ C4 COMO FUNCIONA ============ -->
+<section class="slide" id="c4-1">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">1/6</div></div>
+ <div class="body" style="top:330px"><div class="eyebrow">Como funciona</div><h1 style="margin-top:30px;font-size:136px">Da ideia ao ar em <span class="hl">4 passos.</span></h1>
+ <p class="lead">Sem complicação e sem surpresa no meio do caminho.</p></div>
+ <div class="foot"><span>@bravos_studios</span><div class="swipe">Arrasta <i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div></div>
+</section>
+
+<section class="slide" id="c4-2">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">2/6</div></div>
+ <div class="body" style="top:260px"><div class="step">01</div><h2 style="margin-top:50px">Conversa</h2><p class="lead">Você conta sobre o seu negócio, o seu público e o que quer alcançar. A gente escuta antes de propor qualquer coisa.</p></div>
+ <div class="track"><div class="bar" style="width:0px"></div><div class="st on"><b><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></b>Conversa</div><div class="st "><b><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></b>Proposta</div><div class="st "><b><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></b>Criação</div><div class="st "><b><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></b>Entrega</div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c4-3">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">3/6</div></div>
+ <div class="body" style="top:260px"><div class="step">02</div><h2 style="margin-top:50px">Proposta</h2><p class="lead">Você recebe o que será feito, o prazo e o valor por escrito. Aprovou, a gente começa.</p></div>
+ <div class="track"><div class="bar" style="width:266px"></div><div class="st done"><b><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></b>Conversa</div><div class="st on"><b><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></b>Proposta</div><div class="st "><b><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></b>Criação</div><div class="st "><b><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></b>Entrega</div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c4-4">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">4/6</div></div>
+ <div class="body" style="top:260px"><div class="step">03</div><h2 style="margin-top:50px">Criação</h2><p class="lead">Design e desenvolvimento com prévias para você ver e pedir ajustes em cada etapa.</p></div>
+ <div class="track"><div class="bar" style="width:533px"></div><div class="st done"><b><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></b>Conversa</div><div class="st done"><b><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></b>Proposta</div><div class="st on"><b><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></b>Criação</div><div class="st "><b><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></b>Entrega</div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide" id="c4-5">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">5/6</div></div>
+ <div class="body" style="top:260px"><div class="step">04</div><h2 style="margin-top:50px">Entrega</h2><p class="lead">Publicamos, ensinamos a usar e seguimos junto no suporte depois que tudo está no ar.</p></div>
+ <div class="track"><div class="bar" style="width:800px"></div><div class="st done"><b><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></b>Conversa</div><div class="st done"><b><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></b>Proposta</div><div class="st done"><b><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></b>Criação</div><div class="st on"><b><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></b>Entrega</div></div>
+ <div class="foot"><span>@bravos_studios</span><span>bravosstudio.digital</span></div>
+</section>
+
+<section class="slide or" id="c4-6">
+ <div class="top"><div class="brand"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div><div class="count">6/6</div></div>
+ <div class="body"><h1>O primeiro passo é uma conversa.</h1>
+ <p class="lead">Orçamento sem compromisso, pelo WhatsApp ou pelo direct.</p>
+ <div class="contact" style="color:#fff">
+  <span><svg viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>(16) 99371-9284</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>bravosstudio.digital</span></div>
+ <div style="margin-top:46px"><span class="cta">Chamar agora</span></div></div>
+ <img src="assets/mascote.webp" style="position:absolute;right:-40px;bottom:-300px;width:560px">
+</section>
+</body></html>

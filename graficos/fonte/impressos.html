@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Impressos Bravos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+<style>
+:root{--ink:#0B0B0C;--or:#F87F23;--gray:#6F6B64;--soft:#F4F3F0;--line:#E6E4E0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html,body{background:#fff;color:var(--ink);font-family:Inter,sans-serif}
+.piece{display:none}
+.page{position:relative;overflow:hidden;background:#fff;break-after:page}
+.page:last-child{break-after:auto}
+.k{font-family:'Bricolage Grotesque';font-weight:700;letter-spacing:-.035em;line-height:.98}
+.hl{color:var(--or)}
+.wm{display:flex;flex-direction:column;align-items:center;line-height:1}
+.wm span{font-family:'Bricolage Grotesque';font-weight:700;color:var(--or);letter-spacing:.42em;padding-left:.42em}
+.qr{background:#fff;display:grid;place-items:center}
+.qr img{width:100%;height:100%;display:block}
+.ct{display:flex;align-items:center}
+.ct svg{flex:none;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- CARTÃO 96x56mm (90x50 + 3mm sangria) ---------- */
+#cartao .page{width:96mm;height:56mm}
+#cartao .front{display:grid;place-items:center}
+#cartao .front .wm img{width:46mm}
+#cartao .front .wm span{font-size:4.2mm;margin-top:1.6mm}
+#cartao .front .tag{position:absolute;left:0;right:0;bottom:9mm;text-align:center;font:500 2.5mm Inter;color:var(--gray);letter-spacing:.04em}
+#cartao .front .bar{position:absolute;left:0;right:0;bottom:0;height:5mm;background:var(--or)}
+#cartao .back{background:var(--or);color:#fff}
+#cartao .back .head{position:absolute;left:-2mm;bottom:-3mm;width:36mm}
+#cartao .back .info{position:absolute;left:37mm;top:9mm;right:8mm}
+#cartao .back .name{font-size:6mm;color:#fff}
+#cartao .back .sub{font:600 2.3mm Inter;color:#FFE3CC;margin-top:1mm;letter-spacing:.03em}
+#cartao .back .list{margin-top:4mm;display:flex;flex-direction:column;gap:1.6mm;font:600 2.7mm Inter}
+#cartao .back .list svg{width:3.2mm;height:3.2mm;stroke-width:2;margin-right:1.6mm}
+#cartao .back .qr{position:absolute;right:7mm;bottom:7mm;width:13mm;height:13mm;padding:1.2mm;border-radius:1.6mm}
+
+/* ---------- PANFLETO A5 154x216mm ---------- */
+#panfleto .page{width:154mm;height:216mm}
+#panfleto .in{position:absolute;left:13mm;right:13mm;top:13mm;bottom:13mm}
+#panfleto .wm img{width:34mm}#panfleto .wm span{font-size:3.1mm;margin-top:1.2mm}
+#panfleto h1{font-size:17mm;margin-top:14mm}
+#panfleto .lead{font:500 4.4mm/1.45 Inter;color:var(--gray);margin-top:6mm;max-width:100mm}
+#panfleto .disk{position:absolute;right:-22mm;bottom:-40mm;width:120mm;height:120mm;border-radius:50%;background:var(--or)}
+#panfleto .masc{position:absolute;right:-6mm;bottom:-30mm;width:86mm}
+#panfleto .chips{display:flex;flex-direction:column;align-items:flex-start;gap:3mm;margin-top:10mm}
+#panfleto .chip{display:inline-flex;align-items:center;gap:2.4mm;padding:2.6mm 4.4mm;border-radius:99mm;background:var(--soft);font:600 4mm Inter}
+#panfleto .chip i{width:2.4mm;height:2.4mm;border-radius:50%;background:var(--or)}
+#panfleto .ctabar{position:absolute;left:0;right:0;bottom:0;height:30mm;background:var(--ink);color:#fff;display:flex;align-items:center;padding:0 16mm;gap:5mm}
+#panfleto .ctabar .t1{font:600 3.4mm Inter;color:#B9B4AB}
+#panfleto .ctabar .t2{font:700 7mm 'Bricolage Grotesque';letter-spacing:-.02em;margin-top:1mm}
+#panfleto .ctabar svg{width:9mm;height:9mm;stroke:var(--or);stroke-width:1.8}
+#panfleto .grid{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:6mm}
+#panfleto .svc{border-radius:5mm;background:var(--soft);padding:4.6mm 4.6mm}
+#panfleto .svc .ic{width:9mm;height:9mm;border-radius:2.6mm;background:#fff;display:grid;place-items:center;margin-bottom:2.6mm}
+#panfleto .svc .ic svg{width:6mm;height:6mm;stroke:var(--or);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#panfleto .svc h3{font:700 5.4mm 'Bricolage Grotesque';letter-spacing:-.02em}
+#panfleto .svc p{font:500 3.2mm/1.4 Inter;color:var(--gray);margin-top:1.6mm}
+#panfleto .svc.dk{background:var(--ink);color:#fff}#panfleto .svc.dk p{color:#B9B4AB}#panfleto .svc.dk .ic{background:#1E1E20}
+#panfleto .proj{display:flex;gap:4mm;margin-top:4mm;align-items:center}
+#panfleto .ph{width:24mm;border-radius:5mm;padding:1mm;background:#fff;box-shadow:0 0 0 .3mm var(--line),0 3mm 6mm rgba(0,0,0,.12)}
+#panfleto .ph img{width:100%;aspect-ratio:390/500;object-fit:cover;object-position:top;border-radius:4mm;display:block}
+#panfleto .contato{position:absolute;left:0;right:0;bottom:0;height:42mm;background:var(--or);color:#fff;padding:0 13mm;display:flex;align-items:center;justify-content:space-between}
+#panfleto .contato .l{display:flex;flex-direction:column;gap:2.4mm;font:600 4.2mm Inter}
+#panfleto .contato .l b{font:700 7mm 'Bricolage Grotesque';letter-spacing:-.02em;margin-bottom:1mm}
+#panfleto .contato svg{width:4.8mm;height:4.8mm;stroke-width:2;margin-right:2mm}
+#panfleto .contato .qr{width:27mm;height:27mm;padding:2.4mm;border-radius:3mm}
+#panfleto .contato .qrl{font:600 2.8mm Inter;text-align:center;margin-top:1.6mm;color:#FFE3CC}
+
+/* ---------- BANNER ROLL-UP 806x2006mm ---------- */
+#banner .page{width:806mm;height:2006mm}
+#banner .in{position:absolute;left:63mm;right:63mm;top:110mm}
+#banner .wm img{width:380mm}#banner .wm span{font-size:36mm;margin-top:12mm}
+#banner h1{font-size:118mm;text-align:center;margin-top:90mm}
+#banner .lead{font:500 34mm/1.4 Inter;color:var(--gray);text-align:center;margin-top:40mm}
+#banner .disk{position:absolute;left:103mm;top:1010mm;width:600mm;height:600mm;border-radius:50%;background:var(--or)}
+#banner .masc{position:absolute;left:183mm;top:905mm;width:440mm}
+#banner .chips{position:absolute;left:0;right:0;top:1430mm;display:flex;flex-wrap:wrap;justify-content:center;gap:16mm;padding:0 50mm}
+#banner .chip{display:inline-flex;align-items:center;gap:12mm;padding:16mm 30mm;border-radius:99mm;background:#fff;box-shadow:0 0 0 2mm var(--line),0 12mm 30mm rgba(0,0,0,.10);font:600 32mm Inter}
+#banner .chip i{width:13mm;height:13mm;border-radius:50%;background:var(--or)}
+#banner .bottom{position:absolute;left:0;right:0;top:1580mm;bottom:0;background:var(--ink);color:#fff}
+#banner .bottom .row{position:absolute;left:63mm;right:63mm;top:70mm;display:flex;justify-content:space-between;align-items:center}
+#banner .bottom .l{display:flex;flex-direction:column;gap:16mm}
+#banner .bottom .l .t{font:700 50mm 'Bricolage Grotesque';letter-spacing:-.02em}
+#banner .bottom .l .c{font:600 34mm Inter;display:flex;align-items:center}
+#banner .bottom svg{width:36mm;height:36mm;stroke:var(--or);stroke-width:1.8;margin-right:12mm}
+#banner .bottom .qr{width:190mm;height:190mm;padding:14mm;border-radius:16mm}
+#banner .bottom .base{position:absolute;left:0;right:0;bottom:0;height:110mm;background:var(--or)}
+
+/* ---------- ADESIVOS A4 ---------- */
+#adesivos .page{width:210mm;height:297mm}
+#adesivos .title{position:absolute;left:12mm;top:10mm;font:600 3mm Inter;color:var(--gray)}
+#adesivos .st{position:absolute}
+.cut{outline:.25mm dashed #E0217A;outline-offset:1.6mm}
+.seal{border-radius:50%;background:var(--or);display:grid;place-items:center;position:relative}
+.seal svg.ring{position:absolute;inset:0;width:100%;height:100%}
+.pillst{display:inline-flex;align-items:center;justify-content:center;border-radius:99mm;background:var(--or);color:#fff;font-family:'Bricolage Grotesque';font-weight:700;letter-spacing:.06em}
+.rect{border-radius:4mm;background:#fff;box-shadow:inset 0 0 0 .8mm var(--or);display:grid;place-items:center}
+</style></head><body>
+
+<!-- CARTÃO -->
+<div class="piece" id="cartao">
+ <div class="page front">
+  <div class="wm"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div>
+  <div class="tag">Sites · Apps · Identidade visual · Mídias digitais</div>
+  <div class="bar"></div>
+ </div>
+ <div class="page back">
+  <img class="head" src="assets/mascote-cabeca.png">
+  <div class="info">
+   <div class="name k">Bravos Studios</div>
+   <div class="sub">DESIGN COM PERSONALIDADE</div>
+   <div class="list">
+    <span class="ct"><svg viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>(16) 99371-9284</span>
+    <span class="ct"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>bravosstudio.digital</span>
+    <span class="ct"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>@bravos_studios</span>
+   </div>
+  </div>
+  <div class="qr"><img src="assets/qr-site.svg"></div>
+ </div>
+</div>
+
+<!-- PANFLETO -->
+<div class="piece" id="panfleto">
+ <div class="page">
+  <div class="disk"></div><img class="masc" src="assets/mascote-4x.png">
+  <div class="in">
+   <div class="wm" style="align-items:flex-start"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div>
+   <h1 class="k">Sua marca merece mais que um <span class="hl">perfil bonito.</span></h1>
+   <p class="lead">Sites, aplicativos, identidade visual e mídias digitais que trabalham pelo seu negócio, 24 horas por dia.</p>
+   <div class="chips"><span class="chip"><i></i>Sites e lojas online</span><span class="chip"><i></i>Aplicativos</span><span class="chip"><i></i>Identidade visual</span><span class="chip"><i></i>Posts, reels e motion</span></div>
+  </div>
+  <div class="ctabar"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg><div><div class="t1">Peça seu orçamento sem compromisso</div><div class="t2">(16) 99371-9284</div></div></div>
+ </div>
+ <div class="page">
+  <div class="in">
+   <div class="wm" style="align-items:flex-start"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div>
+   <h2 class="k" style="font-size:10mm;margin-top:7mm">Tudo no <span class="hl">mesmo lugar.</span></h2>
+   <div class="grid">
+    <div class="svc dk"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/></svg></div><h3>Sites</h3><p>Rápidos e feitos para o celular, com pedido direto no WhatsApp.</p></div>
+    <div class="svc dk"><div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div><h3>Aplicativos</h3><p>Agendamento, fidelidade e painel do dono, sob medida.</p></div>
+    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h18"/></svg></div><h3>Identidade visual</h3><p>Logo, cores, cartão, banner e fachada.</p></div>
+    <div class="svc"><div class="ic"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><h3>Mídias digitais</h3><p>Posts, carrosséis, reels e vídeos em motion.</p></div>
+   </div>
+   <div style="font:700 4.6mm 'Bricolage Grotesque';margin-top:6mm">Projetos da Bravos</div>
+   <div class="proj">
+    <div class="ph"><img src="assets/04-agendar-servico.webp"></div>
+    <div class="ph"><img src="assets/rg-loja-home.png"></div>
+    <div style="font:500 3.3mm/1.45 Inter;color:var(--gray);flex:1"><b style="color:var(--ink)">Bravos Barber:</b> app completo para barbearias.<br><br><b style="color:var(--ink)">Referência Grifes:</b> loja online com pedido no WhatsApp.</div>
+   </div>
+  </div>
+  <div class="contato">
+   <div class="l"><b>Bora tirar sua ideia do papel?</b>
+    <span class="ct"><svg viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>(16) 99371-9284</span>
+    <span class="ct"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>bravosstudio.digital</span>
+    <span class="ct"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>@bravos_studios</span></div>
+   <div><div class="qr"><img src="assets/qr-site.svg"></div><div class="qrl">Aponte a câmera</div></div>
+  </div>
+ </div>
+</div>
+
+<!-- BANNER -->
+<div class="piece" id="banner">
+ <div class="page">
+  <div class="in">
+   <div class="wm"><img src="assets/bravos-word-dark.png"><span>STUDIOS</span></div>
+   <h1 class="k">Sites, apps e <span class="hl">identidade visual.</span></h1>
+   <p class="lead">Design com personalidade.</p>
+  </div>
+  <div class="disk"></div><img class="masc" src="assets/mascote-4x.png">
+  <div class="chips"><span class="chip"><i></i>Sites</span><span class="chip"><i></i>Aplicativos</span><span class="chip"><i></i>Identidade visual</span><span class="chip"><i></i>Mídias digitais</span></div>
+  <div class="bottom">
+   <div class="row">
+    <div class="l"><div class="t">Peça seu orçamento</div>
+     <div class="c"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>(16) 99371-9284</div>
+     <div class="c"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>bravosstudio.digital</div>
+     <div class="c"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>@bravos_studios</div></div>
+    <div class="qr"><img src="assets/qr-site.svg"></div>
+   </div>
+   <div class="base"></div>
+  </div>
+ </div>
+</div>
+
+<!-- ADESIVOS -->
+<div class="piece" id="adesivos">
+ <div class="page">
+  <div class="title">Bravos Studios · cartela de adesivos A4 · linha tracejada rosa = faca de corte (não imprimir)</div>
+  <img class="st" src="assets/adesivo-mascote.png" style="left:14mm;top:22mm;width:62mm">
+  <img class="st" src="assets/adesivo-cabeca.png" style="left:132mm;top:22mm;width:64mm">
+  <div class="st seal cut" style="left:88mm;top:30mm;width:38mm;height:38mm">
+   <svg class="ring" viewBox="0 0 100 100"><defs><path id="cr" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text font-family="Inter" font-weight="700" font-size="7.2" fill="#fff"><textPath href="#cr" textLength="236" lengthAdjust="spacing">SITES • APPS • IDENTIDADE VISUAL • DESIGN • </textPath></text></svg>
+   <div class="wm"><img src="assets/bravos-word.png" style="width:20mm"><span style="color:#fff;font-size:2.4mm;margin-top:.8mm">STUDIOS</span></div>
+  </div>
+  <div class="st seal cut" style="left:88mm;top:84mm;width:38mm;height:38mm;background:#fff;box-shadow:inset 0 0 0 1.2mm var(--or)">
+   <svg class="ring" viewBox="0 0 100 100"><text font-family="Inter" font-weight="700" font-size="7.6" fill="#0B0B0C"><textPath href="#cr" textLength="236" lengthAdjust="spacing">FEITO PELA BRAVOS STUDIOS • FEITO PELA BRAVOS • </textPath></text></svg>
+   <img src="assets/mascote-cabeca.png" style="width:20mm">
+  </div>
+  <div class="st rect cut" style="left:16mm;top:165mm;width:84mm;height:34mm"><div class="wm"><img src="assets/bravos-word-dark.png" style="width:52mm"><span style="font-size:4.4mm;margin-top:1.4mm">STUDIOS</span></div></div>
+  <div class="st pillst cut" style="left:112mm;top:172mm;width:84mm;height:20mm;font-size:6mm">SITES · APPS · DESIGN</div>
+  <div class="st seal cut" style="left:20mm;top:218mm;width:56mm;height:56mm"><div class="wm"><img src="assets/bravos-word.png" style="width:38mm"><span style="color:#fff;font-size:4mm;margin-top:1.4mm">STUDIOS</span></div></div>
+  <div class="st rect cut" style="left:92mm;top:222mm;width:50mm;height:50mm;background:var(--ink);box-shadow:none"><div class="wm"><img src="assets/bravos-word.png" style="width:36mm"><span style="font-size:3.6mm;margin-top:1.2mm">STUDIOS</span></div></div>
+  <div class="st pillst cut" style="left:152mm;top:228mm;width:44mm;height:16mm;font-size:3.7mm;letter-spacing:.02em;background:var(--ink)">@bravos_studios</div>
+  <div class="st pillst cut" style="left:152mm;top:252mm;width:44mm;height:16mm;font-size:3.2mm;letter-spacing:.02em;background:#fff;color:var(--ink);box-shadow:inset 0 0 0 .8mm var(--or)">bravosstudio.digital</div>
+ </div>
+</div>
+
+<script>
+const p=new URLSearchParams(location.search).get('p');document.getElementById(p).style.display='block';
+</script>
+</body></html>

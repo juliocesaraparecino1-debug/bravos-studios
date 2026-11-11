@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<title>Bravos Studios v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@500;600;700&display=block" rel="stylesheet">
+<style>
+:root{--ink:#0B0B0C;--or:#F87F23;--gray:#9A968F;--soft:#F3F2EF;--line:#E6E4E0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#fff}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:'Bricolage Grotesque',sans-serif;color:var(--ink)}
+.abs{position:absolute}.full{position:absolute;inset:0}
+.scene{position:absolute;inset:0;visibility:hidden}
+.line{position:absolute;left:60px;right:60px;text-align:center;font-weight:600;letter-spacing:-.03em;line-height:1.02}
+.wd{display:inline-block;margin:0 .11em;opacity:0;will-change:transform,filter}
+.or{color:var(--or)} .gr{color:var(--gray)}
+.vis{visibility:hidden;opacity:0}
+.pill{display:inline-flex;align-items:center;gap:16px;padding:.18em .55em;border-radius:999px;background:var(--ink);color:#fff}
+.pill.o{background:var(--or);color:#fff}
+.bub{position:absolute;width:150px;height:150px;border-radius:50%;background:var(--soft);display:grid;place-items:center;box-shadow:0 20px 40px rgba(0,0,0,.08)}
+.bub svg{width:76px;height:76px;fill:none;stroke:var(--or);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.lphone{position:absolute;width:470px;height:1018px;border-radius:72px;background:#fff;padding:14px;box-shadow:0 0 0 2px var(--line),0 50px 100px rgba(0,0,0,.14)}
+.lphone .scr{width:100%;height:100%;border-radius:60px;overflow:hidden;background:#eee;position:relative}
+.lphone .scr img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.lphone .isl{position:absolute;top:28px;left:50%;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#0B0B0C;z-index:3}
+.card{position:absolute;border-radius:40px;background:#fff;box-shadow:0 0 0 2px var(--line),0 40px 80px rgba(0,0,0,.10);overflow:hidden}
+.dots{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:16px}
+.dots i{display:block;width:18px;height:18px;border-radius:50%;background:#D9D6D0}
+.tog{position:absolute;width:180px;height:100px;border-radius:50px;background:#D9D6D0}
+.tog i{position:absolute;left:10px;top:10px;width:80px;height:80px;border-radius:50%;background:#fff;box-shadow:0 6px 14px rgba(0,0,0,.18)}
+.tag{position:absolute;padding:22px 40px;border-radius:30px;background:var(--ink);color:#fff;font:600 64px 'Bricolage Grotesque';letter-spacing:-.02em}
+.tag:after{content:'';position:absolute;left:50%;bottom:-22px;margin-left:-22px;border:22px solid transparent;border-top-color:var(--ink);border-bottom:0}
+.lab{position:absolute;left:0;right:0;text-align:center;font:600 60px 'Bricolage Grotesque';letter-spacing:-.02em}
+.cursor{position:absolute;width:110px;height:110px}
+.ripple{position:absolute;border-radius:50%;border:6px solid var(--or);opacity:0}
+</style></head>
+<body><div id="stage">
+<svg width="0" height="0" style="position:absolute"><defs id="fdefs"></defs></svg>
+<div id="drift" class="full"><div id="cam" class="full">
+
+ <!-- S1 -->
+ <div id="s1" class="scene">
+  <div id="l1a" class="line" style="top:300px;font-size:150px"></div>
+  <div id="l1b" class="line" style="top:250px;font-size:112px"></div>
+  <div id="echo1" class="full"></div>
+  <div id="disk1" class="abs" style="left:150px;top:1060px;width:780px;height:780px;border-radius:50%;background:var(--or)"></div>
+  <div id="m1" class="abs" style="left:215px;top:820px;width:650px;height:980px;overflow:visible"><div id="m1b" class="full"><img src="assets/mascote-full.png" style="width:650px"></div></div>
+ </div>
+ <!-- S2 -->
+ <div id="s2" class="scene">
+  <div id="l2a" class="line gr" style="top:420px;font-size:70px"></div>
+  <div id="logo2" class="abs vis" style="left:170px;top:540px;width:740px">
+   <img src="assets/bravos-word-dark.png" style="width:740px;display:block">
+   <div id="st2" style="font:700 88px 'Bricolage Grotesque';letter-spacing:.34em;color:var(--or);text-align:center;margin-top:16px;padding-left:.34em"></div>
+  </div>
+  <div id="l2b" class="line" style="top:330px;font-size:92px"></div>
+  <div id="bulb" class="bub vis" style="left:465px;top:520px"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></div>
+  <div id="l2c" class="line" style="top:700px;font-size:190px"></div>
+  <div id="l2d" class="line" style="top:960px;font-size:104px"></div>
+  <div id="cur2" class="cursor vis" style="left:700px;top:1150px"><svg viewBox="0 0 24 24" width="110" height="110"><path d="M5 3l14 7-6 2-2 6z" fill="#0B0B0C" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+ </div>
+ <!-- S3 -->
+ <div id="s3" class="scene">
+  <div id="l3a" class="line" style="top:230px;font-size:110px"></div>
+  <div id="tog3" class="tog vis" style="left:330px;top:420px"><i></i></div>
+  <div id="l3b" class="line" style="top:410px;left:540px;right:auto;text-align:left;font-size:96px"></div>
+  <div id="lab3" class="lab" style="top:600px"></div>
+  <div id="car3" class="abs" style="left:0;top:700px;width:3000px;height:820px"></div>
+  <div id="dots3" class="dots" style="top:1520px"><i></i><i></i><i></i></div>
+  <div id="l3c" class="line gr" style="top:1590px;font-size:62px"></div>
+  <div id="tap3" class="bub vis" style="left:700px;top:1150px;background:#fff"><svg viewBox="0 0 24 24"><path d="M9 11V5a2 2 0 0 1 4 0v5M13 10V8.5a2 2 0 0 1 4 0V11M17 11a2 2 0 0 1 4 0v4a7 7 0 0 1-7 7h-1.5a7 7 0 0 1-5.6-2.8L3.3 15.9a2 2 0 0 1 3-2.6L9 15.5"/></svg></div>
+ </div>
+ <!-- S4 -->
+ <div id="s4" class="scene">
+  <div id="l4a" class="line" style="top:230px;font-size:110px"></div>
+  <div id="tog4" class="tog vis" style="left:280px;top:420px"><i></i></div>
+  <div id="l4b" class="line" style="top:410px;left:490px;right:auto;text-align:left;font-size:96px"></div>
+  <div id="lab4" class="lab" style="top:600px"></div>
+  <div id="car4" class="abs" style="left:0;top:720px;width:3400px;height:760px"></div>
+  <div id="l4c" class="line" style="top:1500px;font-size:96px"></div>
+ </div>
+ <!-- S5 -->
+ <div id="s5" class="scene">
+  <div id="or5" class="full" style="background:var(--or);clip-path:circle(0% at 50% 50%)"></div>
+  <div id="l5a" class="line" style="top:560px;font-size:76px;color:#fff"></div>
+  <div id="l5b" class="line" style="top:720px;font-size:150px;color:#fff"></div>
+  <div id="l5c" class="line gr" style="top:330px;font-size:72px"></div>
+  <div id="l5d" class="line" style="top:440px;font-size:240px"></div>
+  <div id="l5e" class="line" style="top:700px;font-size:170px"></div>
+  <svg id="brow5" class="abs" style="left:110px;top:1000px" width="400" height="300" viewBox="0 0 400 300" fill="none" stroke="#0B0B0C" stroke-width="8" stroke-linecap="round"><rect x="6" y="6" width="388" height="288" rx="30" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><path d="M6 70h388" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><circle cx="44" cy="38" r="9" fill="#F87F23" stroke="none" class="dotb" opacity="0"/></svg>
+  <svg id="ph5" class="abs" style="left:640px;top:960px" width="220" height="380" viewBox="0 0 220 380" fill="none" stroke="#F87F23" stroke-width="8" stroke-linecap="round"><rect x="6" y="6" width="208" height="368" rx="40" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><path d="M90 340h40" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+  <div id="tag5" class="tag vis" style="left:330px;top:1440px">De verdade!</div>
+ </div>
+ <!-- S6 -->
+ <div id="s6" class="scene">
+  <div id="l6a" class="line" style="top:300px;font-size:100px"></div>
+  <img id="bblogo" class="abs vis" src="assets/logo-bb-dark.png" style="left:290px;top:170px;width:500px">
+  <div id="lab6" class="lab" style="top:380px"></div>
+  <div id="car6" class="abs" style="left:0;top:470px;width:4000px;height:1040px"></div>
+  <div id="dots6" class="dots" style="top:1540px"><i></i><i></i><i></i></div>
+  <div id="l6b" class="line gr" style="top:1600px;font-size:60px"></div>
+  <div id="l6c" class="line" style="top:760px;font-size:200px"></div>
+  <div id="echo6" class="full"></div>
+ </div>
+ <!-- S7 -->
+ <div id="s7" class="scene">
+  <div id="l7a" class="line gr" style="top:700px;font-size:76px"></div>
+  <img id="rglogo" class="abs vis" src="assets/rg-logo.png" style="left:190px;top:780px;width:700px">
+  <div id="ph7" class="lphone vis" style="left:520px;top:440px"><div class="isl"></div><div class="scr"><img id="seq7" src="assets/seq/rg/0001.jpg"></div></div>
+  <div id="pills7" class="abs" style="left:50px;top:720px;width:520px"></div>
+  <div id="lab7" class="lab" style="top:380px"></div>
+  <div id="car7" class="abs vis" style="left:0;top:470px;width:4000px;height:1040px"></div>
+  <div id="chat7" class="card vis" style="left:110px;top:520px;width:860px;height:760px;border-radius:48px">
+   <div style="height:130px;border-bottom:2px solid var(--line);display:flex;align-items:center;gap:22px;padding:0 40px">
+    <div style="width:76px;height:76px;border-radius:50%;background:var(--soft);display:grid;place-items:center"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#0B0B0C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg></div>
+    <div><div style="font:700 40px Inter">Referência Grifes</div><div style="font:500 28px Inter;color:var(--gray)">WhatsApp · online</div></div>
+   </div>
+   <div id="msg1" class="abs vis" style="right:40px;top:180px;max-width:640px;padding:28px 34px;border-radius:34px 34px 8px 34px;background:var(--or);color:#fff;font:600 36px/1.3 Inter">Olá! Quero a Camisa polo Lacoste preta, tamanho M.<div style="font:500 28px Inter;opacity:.85;margin-top:8px">1x · R$ 189,00</div></div>
+   <div id="msg2" class="abs vis" style="left:40px;top:470px;max-width:620px;padding:28px 34px;border-radius:34px 34px 34px 8px;background:var(--soft);font:600 36px/1.3 Inter">Tenho sim! Já separo pra você.<span style="color:var(--or);margin-left:14px">✓✓</span></div>
+  </div>
+  <div id="l7b" class="line" style="top:220px;font-size:84px"></div>
+  <div id="l7c" class="line" style="top:1420px;font-size:120px"></div>
+ </div>
+ <!-- S8 -->
+ <div id="s8" class="scene">
+  <div id="b81" class="bub vis" style="left:150px;top:560px"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+  <div id="b82" class="bub vis" style="left:150px;top:800px"><svg viewBox="0 0 24 24"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6M14 4l-4 16"/></svg></div>
+  <div id="b83" class="bub vis" style="left:150px;top:1040px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+  <div id="l81" class="line" style="top:580px;left:340px;text-align:left;font-size:110px"></div>
+  <div id="l82" class="line" style="top:820px;left:340px;text-align:left;font-size:110px"></div>
+  <div id="l83" class="line" style="top:1060px;left:340px;text-align:left;font-size:110px"></div>
+  <div id="c8" class="abs vis" style="left:390px;top:560px;width:300px;height:300px;border-radius:50%;background:var(--or);display:grid;place-items:center;box-shadow:0 30px 60px rgba(248,127,35,.35)"><img src="assets/bravos-word.png" style="width:220px"></div>
+  <div id="l84" class="line" style="top:940px;font-size:120px"></div>
+ </div>
+ <!-- S9 -->
+ <div id="s9" class="scene">
+  <div id="l9a" class="line" style="top:280px;font-size:100px"></div>
+  <div id="prof9" class="card vis" style="left:240px;top:620px;width:600px;height:460px;padding:36px">
+   <div style="display:flex;gap:24px;align-items:center"><div style="width:120px;height:120px;border-radius:50%;background:var(--soft)"></div><div style="flex:1"><div style="height:26px;width:75%;background:var(--soft);border-radius:13px"></div><div style="height:20px;width:45%;background:var(--soft);border-radius:10px;margin-top:16px"></div></div></div>
+   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px"><i style="aspect-ratio:1;background:var(--soft);border-radius:12px"></i><i style="aspect-ratio:1;background:var(--soft);border-radius:12px"></i><i style="aspect-ratio:1;background:var(--soft);border-radius:12px"></i></div>
+  </div>
+  <div id="strike9" class="abs" style="left:200px;top:840px;width:680px;height:20px;border-radius:10px;background:var(--or);transform:rotate(-14deg) scaleX(0);transform-origin:0 50%"></div>
+  <div id="l9b" class="line" style="top:1160px;font-size:80px"></div>
+  <div id="l9c" class="line" style="top:300px;font-size:96px"></div>
+  <div id="h24" class="full"></div>
+  <div id="pd9" class="abs vis" style="left:0;right:0;top:1330px;text-align:center"><span class="pill" style="font:600 64px 'Bricolage Grotesque'">por dia</span></div>
+ </div>
+ <!-- S10 -->
+ <div id="s10" class="scene">
+  <div id="logo10" class="abs vis" style="left:210px;top:200px;width:660px">
+   <img src="assets/bravos-word-dark.png" style="width:660px;display:block">
+   <div style="font:700 78px 'Bricolage Grotesque';letter-spacing:.34em;color:var(--or);text-align:center;margin-top:12px;padding-left:.34em">STUDIOS</div>
+  </div>
+  <div id="svc10" class="line gr" style="top:520px;font:600 40px Inter;letter-spacing:0"></div>
+  <div id="l10a" class="line" style="top:620px;font-size:90px"></div>
+  <div id="cta10" class="abs vis" style="left:0;right:0;top:880px;text-align:center"><span id="ctab" class="pill o" style="font:600 70px 'Bricolage Grotesque';padding:.3em .8em;display:inline-flex">Chama a gente</span></div>
+  <div id="rip10" class="ripple" style="left:600px;top:910px;width:80px;height:80px"></div>
+  <div id="cur10" class="cursor vis" style="left:640px;top:940px"><svg viewBox="0 0 24 24" width="110" height="110"><path d="M5 3l14 7-6 2-2 6z" fill="#0B0B0C" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+  <div id="disk10" class="abs" style="left:190px;top:1240px;width:700px;height:700px;border-radius:50%;background:var(--or)"></div>
+  <div id="m10" class="abs" style="left:280px;top:1100px;width:520px"><div id="m10b"><img src="assets/mascote-full.png" style="width:520px"></div></div>
+ </div>
+
+</div></div>
+<div id="flash" class="full" style="background:#fff;opacity:0"></div>
+</div>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const VO=0.4, FPS=30, END=64.3;
+const T=x=>x+VO;
+let AMP=[], WORDS=[];
+const SFX=[]; const sfx=(t,f,v=1)=>SFX.push({t:+t.toFixed(3),f,v});
+const $=id=>document.getElementById(id);
+const tl=gsap.timeline({paused:true});
+const ws=i=>T(WORDS[i].s)-0.04;
+const MB=[]; // motion-blurred elements
+function mb(el){el=typeof el==='string'?$(el):el;const id='f'+MB.length;$('fdefs').insertAdjacentHTML('beforeend',`<filter id="${id}" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0 0"/></filter>`);MB.push({el,g:document.querySelector('#'+id+' feGaussianBlur'),id});return el}
+
+// word-by-word phrase. opts: cls map {idx:'or'|'pill'|...}, text overrides
+function phrase(id,i0,i1,o={}){
+  const box=$(id); const spans=[];
+  for(let i=i0;i<=i1;i++){const s=document.createElement('span');s.className='wd '+(o.cls?.[i]||'');
+    let tx=(o.txt?.[i]??WORDS[i].w); if(o.strip) tx=tx.replace(/[.,!?]$/,'');
+    s.innerHTML=o.cls?.[i]==='pill'?`<span class="pill">${tx}</span>`:o.cls?.[i]==='pillo'?`<span class="pill o">${tx}</span>`:tx; box.appendChild(s); if(o.br?.includes(i)) box.appendChild(document.createElement('br'));
+    spans.push(s);
+    tl.fromTo(s,{opacity:0,x:46,filter:'blur(14px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.24,ease:'power3.out',immediateRender:false},ws(i));
+  }
+  return spans;
+}
+function out(sel,at,dx=-120){tl.to(sel,{autoAlpha:0,x:dx,filter:'blur(16px)',duration:.22,ease:'power2.in'},at)}
+function pop(sel,at,o={}){tl.fromTo(sel,{autoAlpha:0,scale:o.s??.4,y:o.y??40},{autoAlpha:1,scale:1,y:0,duration:o.d||.4,ease:o.e||'back.out(2)',immediateRender:false},at); if(o.sfx!==false) sfx(at,o.sfx||'pop',o.v||.35)}
+function blurIn(sel,at,o={}){tl.fromTo(sel,{autoAlpha:0,scale:o.s??1.4,filter:'blur(18px)'},{autoAlpha:1,scale:1,filter:'blur(0px)',duration:o.d||.38,ease:'expo.out',immediateRender:false},at); if(o.sfx) sfx(at,o.sfx,o.v||.5)}
+function sceneIn(id,at){tl.set('#'+id,{visibility:'visible'},at);tl.fromTo('#'+id,{x:1080},{x:0,duration:.42,ease:'expo.inOut',immediateRender:false},at);sfx(at+.02,'whoosh'+(1+(SFX.length%3)),.45)}
+function sceneOut(id,at){tl.to('#'+id,{x:-1080,duration:.42,ease:'expo.inOut'},at);tl.set('#'+id,{visibility:'hidden'},at+.43)}
+function punch(at,a=.03){tl.fromTo('#cam',{scale:1+a},{scale:1,duration:.4,ease:'power3.out',immediateRender:false},at)}
+function echo(host,text,top,size,at,o={}){ // stacked fading copies
+  const h=$(host); const els=[];
+  for(let k=0;k<3;k++){const d=document.createElement('div');d.className='line vis '+(k===0&&o.cls?o.cls:'');d.style.cssText+=`top:${top+k*size*.95}px;font-size:${size}px;opacity:0;color:${k?['','#C9C6C0','#E4E2DE'][k]:''}`;d.textContent=text;h.appendChild(d);els.push(d);
+    tl.fromTo(d,{autoAlpha:0,y:-size*.6*k,filter:'blur(10px)'},{autoAlpha:1,y:0,filter:'blur(0px)',duration:.3,ease:'power3.out',immediateRender:false},at+k*.07);}
+  return els;
+}
+function toggle(id,at){const t=$(id);pop('#'+id,at-.25,{s:.6,y:0,sfx:false});tl.to(t,{background:'#F87F23',duration:.15},at);tl.to(t.querySelector('i'),{x:80,duration:.22,ease:'back.out(2)'},at);sfx(at,'pop',.45)}
+function drawSvg(sel,at,d=.45){tl.to(sel,{strokeDashoffset:0,duration:d,ease:'power2.inOut'},at)}
+function lphone(parent,x,src,id){const d=document.createElement('div');d.className='lphone';d.style.left=x+'px';d.style.top='0px';d.innerHTML=`<div class="isl"></div><div class="scr"><img ${id?`id="${id}"`:''} src="${src}"></div>`;$(parent).appendChild(d);return d}
+function setDots(id,n,at){tl.to(`#${id} i`,{background:'#D9D6D0',width:18,duration:.15},at);tl.to(`#${id} i:nth-child(${n})`,{background:'#F87F23',width:46,borderRadius:9,duration:.2},at)}
+function label(id,txt,at){tl.to('#'+id,{autoAlpha:0,y:-20,filter:'blur(8px)',duration:.1},at-.1);tl.set('#'+id,{innerHTML:txt},at);tl.fromTo('#'+id,{autoAlpha:0,y:30,filter:'blur(10px)'},{autoAlpha:1,y:0,filter:'blur(0px)',duration:.25,ease:'power3.out',immediateRender:false},at)}
+const ICON={cal:'<path d="M3 5h18v16H3zM16 3v4M8 3v4M3 10h18"/>'};
+
+function build(){
+ [ 's1','s2','s3','s4','s5','s6','s7','s8','s9','s10'].forEach(s=>mb(s));
+ // ===== S1 =====
+ tl.set('#s1',{visibility:'visible'},0);
+ tl.fromTo('#disk1',{scale:0},{scale:1,duration:.5,ease:'back.out(1.6)'},0.05);
+ tl.fromTo('#m1',{y:900},{y:0,duration:.55,ease:'back.out(1.4)'},T(-.2)); mb('m1');
+ sfx(0.05,'whoosh2',.5); sfx(T(0),'impact1',.45);
+ phrase('l1a',0,1,{cls:{1:'or'}});
+ out('#l1a',ws(2)-.12);
+ const sp=phrase('l1b',2,6,{cls:{4:'or'},br:[3,4]});
+ tl.fromTo(sp[2],{y:-160},{y:0,duration:.35,ease:'power3.out',immediateRender:false},ws(4));
+ // rolar ghost copies scrolling
+ for(let k=1;k<3;k++){const g=document.createElement('div');g.className='line vis';g.style.cssText+=`top:${250+112*1.02}px;font-size:112px;color:${k==1?'#F9C9A2':'#FDE6D3'}`;g.textContent='rolar';$('echo1').appendChild(g);
+   tl.fromTo(g,{autoAlpha:0,y:130*k},{autoAlpha:1,y:115*k,duration:.25,ease:'power3.out',immediateRender:false},ws(4));tl.to(g,{autoAlpha:0,y:0,duration:.25},ws(5));}
+ tl.fromTo('#l1b',{x:0},{x:-16,duration:.06,yoyo:true,repeat:3,immediateRender:false},ws(6)); punch(ws(6),.035); sfx(ws(6),'impact2',.35);
+ sceneOut('s1',T(2.25));
+ // ===== S2 =====
+ sceneIn('s2',T(2.25));
+ phrase('l2a',7,9);
+ $('st2').innerHTML=[...'STUDIOS'].map(c=>`<span class="wd" style="margin:0">${c}</span>`).join('');
+ blurIn('#logo2',ws(10),{s:1.8,sfx:'impact1',v:.5}); punch(ws(10)+.05,.04);
+ tl.fromTo('#st2 .wd',{opacity:0,y:40,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',stagger:.035,duration:.25,ease:'back.out(2)',immediateRender:false},ws(11));
+ tl.to('#logo2',{scale:1.05,duration:1,ease:'none'},ws(10)+.4);
+ out('#logo2,#l2a',ws(12)-.15);
+ phrase('l2b',12,15);
+ pop('#bulb',ws(16)-.1,{s:.2,y:0}); tl.to('#bulb',{rotation:12,duration:.5,yoyo:true,repeat:3,ease:'sine.inOut'},ws(16)+.3);
+ phrase('l2c',16,16,{cls:{16:'or'}});
+ phrase('l2d',17,20,{cls:{20:'pillo'},strip:true,br:[18]});
+ tl.fromTo('#cur2',{autoAlpha:0,x:200,y:200},{autoAlpha:1,x:0,y:0,duration:.35,ease:'power3.out',immediateRender:false},ws(20)+.05);
+ tl.to('#l2d .wd:last-child .pill',{scale:.9,duration:.08,yoyo:true,repeat:1},ws(20)+.42); sfx(ws(20)+.42,'pop',.5);
+ tl.to('#l2b,#l2c,#bulb',{y:-30,duration:1.4,ease:'none'},ws(16));
+ sceneOut('s2',T(6.55));
+ // ===== S3 =====
+ sceneIn('s3',T(6.55));
+ phrase('l3a',21,22,{cls:{22:'or'}});
+ toggle('tog3',ws(23)); phrase('l3b',23,23);
+ // carousel cards
+ const car=$('car3'); mb(car);
+ car.innerHTML=`
+  <div class="card" style="left:240px;top:60px;width:600px;height:700px"><img src="assets/campanha-streetwear.webp" style="width:600px;height:560px;object-fit:cover"><div style="padding:26px 30px;display:flex;gap:22px"><svg viewBox="0 0 24 24" width="50" height="50" fill="#F87F23"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><div style="flex:1"><div style="height:18px;width:70%;background:var(--soft);border-radius:9px;margin-top:6px"></div><div style="height:14px;width:40%;background:var(--soft);border-radius:7px;margin-top:12px"></div></div></div></div>
+  <div class="card" style="left:960px;top:0;width:460px;height:820px"><img src="assets/modelo-referencia.webp" style="width:100%;height:100%;object-fit:cover"><div class="abs" style="inset:0;display:grid;place-items:center"><div style="width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.85);display:grid;place-items:center"><svg viewBox="0 0 24 24" width="64" height="64"><path d="M8 5v14l11-7z" fill="#0B0B0C"/></svg></div></div><div class="abs" style="left:30px;right:30px;bottom:34px;height:10px;border-radius:5px;background:rgba(255,255,255,.5)"><div id="rbar" style="height:100%;width:0;background:var(--or);border-radius:5px"></div></div></div>
+  <div class="card" id="mo3" style="left:1600px;top:60px;width:600px;height:700px;background:var(--soft)"><div id="moA" class="abs" style="left:110px;top:140px;width:200px;height:200px;border-radius:50%;background:var(--or)"></div><div id="moB" class="abs" style="left:300px;top:330px;width:190px;height:190px;border-radius:40px;background:var(--ink)"></div><div id="moC" class="abs" style="left:150px;top:470px;width:140px;height:140px;border-radius:50%;border:16px solid var(--or)"></div></div>`;
+ tl.fromTo(car,{x:700,autoAlpha:0},{x:0,autoAlpha:1,duration:.45,ease:'expo.out',immediateRender:false},ws(24)-.1);
+ label('lab3','Posts',ws(24)); setDots('dots3',1,ws(24)); tl.fromTo('#dots3',{autoAlpha:0},{autoAlpha:1,duration:.2,immediateRender:false},ws(24));
+ tl.to(car,{x:-650,duration:.4,ease:'expo.inOut'},ws(25)-.12); label('lab3','Reels',ws(25)); setDots('dots3',2,ws(25)); sfx(ws(25)-.1,'whoosh1',.35);
+ tl.fromTo('#rbar',{width:'0%'},{width:'100%',duration:1.6,ease:'none',immediateRender:false},ws(25));
+ tl.to(car,{x:-1360,duration:.4,ease:'expo.inOut'},ws(27)-.12); label('lab3','Motion',ws(27)); setDots('dots3',3,ws(27)); sfx(ws(27)-.1,'whoosh3',.35);
+ tl.to('#moA',{x:200,y:120,scale:.6,duration:.6,ease:'back.inOut(2)',yoyo:true,repeat:3},ws(27));
+ tl.to('#moB',{rotation:180,x:-180,borderRadius:'50%',duration:.6,ease:'back.inOut(2)',yoyo:true,repeat:3},ws(27)+.1);
+ tl.to('#moC',{scale:1.5,x:260,duration:.6,ease:'back.inOut(2)',yoyo:true,repeat:3},ws(27)+.2);
+ phrase('l3c',28,34);
+ tl.fromTo('#tap3',{autoAlpha:0,scale:.3,x:120,y:120},{autoAlpha:1,scale:1,x:0,y:0,duration:.3,ease:'back.out(2)',immediateRender:false},ws(31));
+ tl.to('#tap3',{scale:.85,duration:.08,yoyo:true,repeat:1},ws(32)); tl.to(car,{x:-1330,duration:.08,yoyo:true,repeat:1},ws(32)); punch(ws(32),.025); sfx(ws(32),'pop',.5);
+ sceneOut('s3',T(12.0));
+ // ===== S4 =====
+ sceneIn('s4',T(12.0));
+ phrase('l4a',35,36,{cls:{36:'or'}});
+ toggle('tog4',ws(37)); phrase('l4b',37,37);
+ const c4=$('car4'); mb(c4);
+ c4.innerHTML=`
+  <div class="card" style="left:200px;top:40px;width:680px;height:680px;padding:50px">
+    <div style="height:300px;border-radius:28px;background:var(--soft);display:grid;place-items:center"><img src="assets/logo-bb-dark.png" style="width:440px"></div>
+    <div style="display:flex;gap:22px;margin-top:40px">${['#0B0B0C','#F87F23','#FF8500','#F5F1E9','#D9D6D0'].map(c=>`<div class="sw" style="width:96px;height:96px;border-radius:50%;background:${c};box-shadow:0 0 0 2px var(--line)"></div>`).join('')}</div>
+    <div style="margin-top:44px;font:600 50px 'Bricolage Grotesque'">Aa <span style="font:500 36px Inter;color:var(--gray)">Bricolage · Inter</span></div>
+  </div>
+  <div style="position:absolute;left:1040px;top:140px;width:640px;height:400px;perspective:1600px"><div id="card4" style="position:absolute;inset:0;transform-style:preserve-3d">
+    <div style="position:absolute;inset:0;border-radius:30px;background:#0B0B0C;display:grid;place-items:center;backface-visibility:hidden;box-shadow:0 40px 80px rgba(0,0,0,.2)"><img src="assets/bravos-word.png" style="width:400px"></div>
+    <div style="position:absolute;inset:0;border-radius:30px;background:var(--or);color:#fff;padding:54px;backface-visibility:hidden;transform:rotateY(180deg);font:700 60px 'Bricolage Grotesque';box-shadow:0 40px 80px rgba(0,0,0,.2)">Bravos Studios<div style="font:500 32px Inter;margin-top:20px">Mídias · Gráfica · Sites · Apps</div></div></div></div>
+  <div style="position:absolute;left:1900px;top:0;width:460px;height:760px">
+    <div style="position:absolute;left:-20px;top:0;width:500px;height:30px;border-radius:15px;background:#C9C6C0"></div>
+    <div id="ban4" style="position:absolute;left:0;top:16px;width:460px;height:720px;border-radius:0 0 18px 18px;background:var(--or);transform-origin:50% 0;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.12)">
+      <img src="assets/bravos-word.png" style="position:absolute;left:50px;top:70px;width:360px">
+      <div style="position:absolute;left:50px;top:240px;width:360px;font:700 64px/1 'Bricolage Grotesque';color:#fff">Sua marca<br>em destaque.</div>
+      <div style="position:absolute;left:50px;bottom:60px;padding:16px 30px;border-radius:999px;background:#fff;color:var(--ink);font:700 32px Inter">bravos.studio</div>
+    </div></div>
+  <div style="position:absolute;left:2560px;top:60px;width:760px;height:660px">
+    <div style="position:absolute;left:0;top:170px;width:760px;height:490px;background:var(--soft);box-shadow:0 0 0 2px var(--line)"></div>
+    <div style="position:absolute;left:-30px;top:120px;width:820px;height:110px;background:repeating-linear-gradient(90deg,#F87F23 0 68px,#fff 68px 136px);clip-path:polygon(3% 0,97% 0,100% 100%,0 100%);box-shadow:0 10px 20px rgba(0,0,0,.08)"></div>
+    <div id="sign4" style="position:absolute;left:130px;top:0;width:500px;height:110px;border-radius:20px;background:#0B0B0C;display:grid;place-items:center;font:700 66px 'Bricolage Grotesque';color:#fff;letter-spacing:.1em">BRAVOS</div>
+    <div style="position:absolute;left:70px;top:290px;width:270px;height:370px;background:#fff;box-shadow:0 0 0 4px var(--line)"></div>
+    <div style="position:absolute;left:420px;top:290px;width:270px;height:370px;background:#fff;box-shadow:0 0 0 4px var(--line)"></div>
+  </div>`;
+ tl.fromTo(c4,{x:800,autoAlpha:0},{x:0,autoAlpha:1,duration:.45,ease:'expo.out',immediateRender:false},ws(38)-.12);
+ out('#tog4,#l4b',ws(38)-.1,-60);
+ label('lab4','Identidade visual',ws(38));
+ tl.fromTo('.sw',{scale:0},{scale:1,stagger:.05,duration:.28,ease:'back.out(3)',immediateRender:false},ws(38)+.2);
+ [[40,-860,'Cartão'],[41,-1660,'Banner'],[42,-2400,'Fachada']].forEach(([i,x,l],k)=>{tl.to(c4,{x,duration:.38,ease:'expo.inOut'},ws(i)-.12);label('lab4',l,ws(i));sfx(ws(i)-.1,'whoosh'+(k+1),.35)});
+ tl.fromTo('#card4',{rotationY:-50},{rotationY:180,duration:.6,ease:'power3.inOut',immediateRender:false},ws(40)+.05);
+ tl.fromTo('#ban4',{scaleY:0},{scaleY:1,duration:.4,ease:'power3.out',immediateRender:false},ws(41)+.05);
+ tl.fromTo('#sign4',{boxShadow:'0 0 0 rgba(248,127,35,0)'},{boxShadow:'0 0 70px rgba(248,127,35,.9)',duration:.12,repeat:3,yoyo:true,immediateRender:false},ws(42)+.2);
+ // zoom out to all
+ out('#lab4',ws(43)-.1,0);
+ tl.to(c4,{x:-1100,y:-120,scale:.33,transformOrigin:'50% 50%',duration:.5,ease:'expo.inOut'},ws(43)-.1);
+ phrase('l4c',43,47,{cls:{46:'or',47:'or'},br:[45]});
+ sceneOut('s4',T(18.65));
+ // ===== S5 =====
+ sceneIn('s5',T(18.6));
+ tl.to('#or5',{clipPath:'circle(150% at 50% 50%)',duration:.5,ease:'power3.inOut'},T(18.6));
+ phrase('l5a',48,53);
+ phrase('l5b',54,55,{br:[54]}); punch(ws(55),.04); sfx(ws(55),'impact1',.45);
+ tl.to('#or5',{clipPath:'circle(0% at 50% 50%)',duration:.4,ease:'power3.inOut'},ws(56)-.25);
+ out('#l5a,#l5b',ws(56)-.25,0);
+ phrase('l5c',56,58);
+ phrase('l5d',59,59); punch(ws(59)+.05,.03); sfx(ws(59),'impact2',.4);
+ drawSvg('#brow5 rect,#brow5 path',ws(59)); tl.to('#brow5 .dotb',{opacity:1,duration:.1},ws(59)+.4);
+ phrase('l5e',60,61,{cls:{61:'or'}}); sfx(ws(61),'impact2',.4);
+ drawSvg('#ph5 rect,#ph5 path',ws(61));
+ pop('#tag5',ws(62),{s:.3,y:60,v:.5});
+ tl.to('#brow5',{rotation:-6,y:-20,duration:1.5,ease:'sine.inOut'},ws(59)); tl.to('#ph5',{rotation:6,y:-30,duration:1.5,ease:'sine.inOut'},ws(61));
+ sceneOut('s5',T(23.95));
+ // ===== S6 BRAVOS BARBER =====
+ sceneIn('s6',T(23.95));
+ phrase('l6a',64,65,{strip:false});
+ out('#l6a',ws(66)-.12);
+ blurIn('#bblogo',ws(66),{s:1.8,sfx:'impact1',v:.45}); punch(ws(66)+.05,.03);
+ const c6=$('car6'); mb(c6);
+ lphone('car6',305,'assets/seq/cli/0001.jpg','seq6');
+ lphone('car6',875,'assets/07-agendar-confirmar-pix.webp');
+ lphone('car6',1445,'assets/11-clube-fidelidade.webp');
+ lphone('car6',2015,'assets/seq/dono/0001.jpg','seq6b');
+ lphone('car6',2585,'assets/04-metricas-visao-geral.webp');
+ lphone('car6',3155,'assets/14-equipe-e-comissoes.webp');
+ tl.fromTo(c6,{x:900,autoAlpha:0},{x:0,autoAlpha:1,duration:.5,ease:'expo.out',immediateRender:false},ws(67));
+ tl.fromTo('#dots6',{autoAlpha:0},{autoAlpha:1,duration:.2,immediateRender:false},ws(67)); setDots('dots6',1,ws(67));
+ phrase('l6b',68,72,{strip:true,txt:{71:'pra'}});
+ out('#l6b',ws(75)-.1,0);
+ label('lab6','Agenda sozinho',ws(75));
+ tl.to(c6,{x:-570,duration:.4,ease:'expo.inOut'},ws(80)-.12); label('lab6','Sinal no Pix',ws(80)); setDots('dots6',2,ws(80)); sfx(ws(80)-.1,'whoosh1',.35);
+ tl.to(c6,{x:-1140,duration:.4,ease:'expo.inOut'},ws(89)-.12); label('lab6','Clube de fidelidade',ws(89)); setDots('dots6',3,ws(89)); sfx(ws(89)-.1,'whoosh2',.35);
+ // E o dono?
+ out('#lab6,#bblogo',ws(92)-.1,0); tl.to('#car6,#dots6',{y:300,autoAlpha:0,filter:'blur(12px)',duration:.25,ease:'power2.in'},ws(92)-.1);
+ const e6=echo('echo6','E o dono?',600,150,ws(92));
+ e6[0].innerHTML='E o <span class="or">dono?</span>'; sfx(ws(92),'impact2',.4);
+ tl.to(e6,{autoAlpha:0,y:-200,filter:'blur(14px)',duration:.25,stagger:.03},ws(95)-.15);
+ tl.set(c6,{x:-1710},ws(95)-.2);
+ tl.to('#car6,#dots6',{y:0,autoAlpha:1,filter:'blur(0px)',duration:.35,ease:'expo.out'},ws(95)-.1);
+ tl.fromTo('#bblogo',{autoAlpha:0},{autoAlpha:1,x:0,filter:'blur(0px)',duration:.25,immediateRender:false},ws(95));
+ setDots('dots6',1,ws(95)-.1);
+ label('lab6','Agenda',ws(96));
+ tl.to(c6,{x:-2280,duration:.38,ease:'expo.inOut'},ws(97)-.12); label('lab6','Faturamento',ws(97)); setDots('dots6',2,ws(97)); sfx(ws(97)-.1,'whoosh3',.35);
+ tl.to(c6,{x:-2850,duration:.38,ease:'expo.inOut'},ws(99)-.12); label('lab6','Equipe',ws(99)); setDots('dots6',3,ws(99)); sfx(ws(99)-.1,'whoosh1',.35);
+ phrase('l6b',100,103,{cls:{102:'or',103:'or'}});
+ tl.set('#l6b',{autoAlpha:1,x:0,filter:'blur(0px)'},ws(100)-.05);
+ tl.to(c6,{scale:1.04,duration:1,ease:'none'},ws(100));
+ sceneOut('s6',T(37.35));
+ // ===== S7 REFERENCIA =====
+ sceneIn('s7',T(37.35));
+ phrase('l7a',104,106);
+ out('#l7a',ws(107)-.1,0);
+ blurIn('#rglogo',ws(107),{s:1.7,sfx:'impact1',v:.45}); punch(ws(107)+.05,.03);
+ tl.to('#rglogo',{x:-260,y:-620,scale:.55,duration:.45,ease:'expo.inOut'},ws(109)-.05);
+ tl.fromTo('#ph7',{autoAlpha:1,x:700},{x:0,duration:.5,ease:'expo.out',immediateRender:false},ws(109)); mb('ph7'); sfx(ws(109),'whoosh2',.35);
+ const pills=[[112,'Rápida'],[113,'Bonita'],[115,'Feita pro celular']];
+ pills.forEach(([i,t],k)=>{const d=document.createElement('div');d.className='abs vis';d.style.cssText+=`left:0;top:${k*140}px;display:flex;align-items:center;gap:20px;padding:18px 30px 18px 18px;border-radius:999px;background:#fff;box-shadow:0 0 0 2px var(--line),0 20px 40px rgba(0,0,0,.08);font:600 44px 'Bricolage Grotesque';white-space:nowrap`;d.innerHTML=`<span class="tg" style="position:relative;width:100px;height:58px;border-radius:29px;background:#D9D6D0"><i style="position:absolute;left:6px;top:6px;width:46px;height:46px;border-radius:50%;background:#fff"></i></span>${t}`;$('pills7').appendChild(d);
+   pop(d,ws(i)-.12,{s:.5,y:20,sfx:false}); tl.to(d.querySelector('.tg'),{background:'#F87F23',duration:.12},ws(i)+.05); tl.to(d.querySelector('.tg i'),{x:42,duration:.2,ease:'back.out(2)'},ws(i)+.05); sfx(ws(i)+.05,'pop',.4);});
+ // vitrine/catalogo carousel
+ out('#pills7',ws(119)-.15,-80); tl.to('#ph7',{x:-800,filter:'blur(10px)',autoAlpha:0,duration:.3,ease:'power2.in'},ws(119)-.2);
+ const c7=$('car7'); mb(c7);
+ lphone('car7',305,'assets/rgshots/loja-novidades.png'); lphone('car7',875,'assets/rgshots/loja-categoria.png'); lphone('car7',1445,'assets/rgshots/loja-produto.png'); lphone('car7',2015,'assets/rgshots/loja-sacola.png');
+ tl.fromTo(c7,{x:900,autoAlpha:0},{x:0,autoAlpha:1,duration:.4,ease:'expo.out',immediateRender:false},ws(119)-.1);
+ tl.to('#rglogo',{autoAlpha:0,duration:.15},ws(119)-.15);
+ label('lab7','Vitrine',ws(119));
+ tl.to(c7,{x:-570,duration:.36,ease:'expo.inOut'},ws(120)-.12); label('lab7','Catálogo',ws(120)); sfx(ws(120)-.1,'whoosh1',.35);
+ tl.to(c7,{x:-1140,duration:.36,ease:'expo.inOut'},ws(122)); label('lab7','Pedido',ws(122)); sfx(ws(122),'whoosh3',.3);
+ tl.to(c7,{x:-1710,duration:.36,ease:'expo.inOut'},ws(123)+.15);
+ // chat
+ out('#lab7',ws(124)-.15,0); tl.to(c7,{y:-200,scale:.8,autoAlpha:0,filter:'blur(12px)',duration:.3,ease:'power2.in'},ws(124)-.15);
+ phrase('l7b',121,127,{br:[124],cls:{127:'or'}});
+ pop('#chat7',ws(124)-.05,{s:.7,y:120,sfx:'whoosh2',v:.35});
+ pop('#msg1',ws(125)+.05,{s:.5,y:40,v:.45});
+ pop('#msg2',ws(127)+.2,{s:.5,y:40,v:.45});
+ phrase('l7c',128,129,{cls:{129:'or'},br:[128]}); sfx(ws(129),'impact2',.35);
+ tl.to('#chat7',{y:-90,scale:.9,duration:.35,ease:'power3.inOut'},ws(128)-.1);
+ sceneOut('s7',T(47.65));
+ // ===== S8 =====
+ sceneIn('s8',T(47.65));
+ [[130,'b81','l81'],[131,'b82','l82'],[132,'b83','l83']].forEach(([i,b,l],k)=>{pop('#'+b,ws(i)-.08,{s:.2,y:0,v:.4});phrase(l,i,k==2?133:i,{cls:{131:'or'},strip:true})});
+ tl.to('#b81,#b82,#b83',{left:465,top:635,scale:.6,autoAlpha:0,duration:.35,ease:'expo.in',stagger:.03},ws(134)-.3);
+ tl.to('#l81,#l82,#l83',{x:200,autoAlpha:0,filter:'blur(14px)',duration:.25,ease:'power2.in'},ws(134)-.3);
+ pop('#c8',ws(134)-.02,{s:.2,y:0,sfx:'impact1',v:.45}); punch(ws(134)+.05,.035);
+ phrase('l84',134,137,{cls:{136:'or',137:'or'},br:[135]});
+ tl.to('#c8',{rotation:360,duration:1.4,ease:'power2.inOut'},ws(135));
+ sceneOut('s8',T(51.55));
+ // ===== S9 =====
+ sceneIn('s9',T(51.55));
+ phrase('l9a',138,141,{cls:{141:'or'},br:[139]});
+ pop('#prof9',ws(142),{s:.6,y:60,sfx:false});
+ phrase('l9b',142,145,{strip:false});
+ tl.to('#strike9',{scaleX:1,duration:.22,ease:'expo.out'},ws(145)+.1); sfx(ws(145)+.1,'impact2',.4);
+ out('#l9a,#prof9,#l9b,#strike9',ws(146)-.15);
+ phrase('l9c',146,152,{cls:{150:'or'},br:[148]});
+ out('#l9c',ws(153)-.15,0);
+ const e9=echo('h24','24 horas',560,190,ws(153)); e9[0].style.color='#0B0B0C'; e9[0].innerHTML='24 <span class="or">horas</span>'; sfx(ws(153),'impact1',.45); punch(ws(153)+.05,.04);
+ pop('#pd9',ws(155),{s:.4,y:30,v:.45});
+ tl.to('#h24',{scale:1.04,duration:2,ease:'none'},ws(153));
+ sceneOut('s9',T(57.85));
+ // ===== S10 =====
+ sceneIn('s10',T(57.85));
+ blurIn('#logo10',ws(157),{s:1.9,sfx:'impact1',v:.55}); punch(ws(157)+.05,.05);
+ $('svc10').innerHTML=['Mídias digitais','Gráfica','Sites','Apps'].map(s=>`<span class="wd" style="opacity:0">${s}</span>`).join('<span class="wd or" style="opacity:0">·</span>');
+ tl.fromTo('#svc10 .wd',{opacity:0,x:30,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',stagger:.05,duration:.22,immediateRender:false},ws(158)+.2);
+ phrase('l10a',159,164,{cls:{163:'or',164:'or'},br:[161]});
+ tl.fromTo('#disk10',{scale:0},{scale:1,duration:.5,ease:'back.out(1.6)',immediateRender:false},ws(159)-.2);
+ tl.fromTo('#m10',{y:800},{y:0,duration:.55,ease:'back.out(1.4)',immediateRender:false},ws(159)-.1); mb('m10'); sfx(ws(159)-.2,'whoosh3',.4);
+ pop('#cta10',ws(165),{s:.3,y:40,v:.5});
+ tl.fromTo('#cur10',{autoAlpha:0,x:220,y:260},{autoAlpha:1,x:0,y:0,duration:.4,ease:'power3.out',immediateRender:false},ws(166));
+ tl.to('#ctab',{scale:.92,duration:.09,yoyo:true,repeat:1},ws(167)+.35); sfx(ws(167)+.35,'pop',.55);
+ tl.fromTo('#rip10',{opacity:1,scale:.3},{opacity:0,scale:4,duration:.6,ease:'power2.out',immediateRender:false},ws(167)+.35);
+ tl.to('#ctab',{scale:1.05,duration:.4,yoyo:true,repeat:3,ease:'sine.inOut'},ws(167)+.8);
+ sfx(END-1.6,'impact2',.35);
+ // per-scene slow push
+ [['s1',-VO,2.3],['s2',2.25,6.6],['s3',6.55,12],['s4',12,18.7],['s5',18.6,24],['s6',23.95,37.4],['s7',37.35,47.7],['s8',47.65,51.6],['s9',51.55,57.9],['s10',57.85,END-VO]].forEach(([id,a,b])=>tl.fromTo('#'+id,{scale:1},{scale:1.04,duration:T(b)-T(a),ease:'none',immediateRender:false},T(a)));
+ tl.to('#stage',{opacity:1,duration:.01},END-.01);
+}
+
+const SEQ=[{img:'seq6',dir:'cli',from:T(24.2),to:T(33.4),rate:1.6,n:671},
+           {img:'seq6b',dir:'dono',from:T(33.6),to:T(37.6),rate:1.6,n:610},
+           {img:'seq7',dir:'rg',from:T(38.8),to:T(43.5),rate:1.4,n:240}];
+async function seqs(t){const jobs=[];for(const s of SEQ){if(t<s.from||t>=s.to)continue;const fr=Math.min(s.n,1+Math.floor((t-s.from)*FPS*s.rate));const src=`assets/seq/${s.dir}/${String(fr).padStart(4,'0')}.jpg`;const im=$(s.img);if(!im.src.endsWith(src)){im.src=src;jobs.push(im.decode().catch(()=>{}))}}await Promise.all(jobs)}
+function puppet(t){
+  const f=Math.floor((t-VO)*FPS), a=(f>=0&&f<AMP.length)?AMP[f]:0;
+  const tr=`translateY(${(Math.sin(t*2.4)*8-a*10).toFixed(1)}px) rotate(${(Math.sin(t*5.1)*a*2).toFixed(2)}deg) scaleY(${(1+a*.015).toFixed(4)})`;
+  $('m1b').style.transform=tr; $('m10b').style.transform=tr;
+}
+window.SFX=SFX; window.END=END;
+window.renderAt=async function(t){
+  const dt=1/60;
+  tl.seek(Math.max(0,t-dt),false);
+  const prev=MB.map(m=>{const r=m.el.getBoundingClientRect();return [r.left,r.top]});
+  tl.seek(t,false);
+  MB.forEach((m,k)=>{const r=m.el.getBoundingClientRect();const vx=Math.abs(r.left-prev[k][0]),vy=Math.abs(r.top-prev[k][1]);
+    const bx=Math.min(60,vx*.9),by=Math.min(60,vy*.9);
+    if(bx>0.6||by>0.6){m.g.setAttribute('stdDeviation',`${bx.toFixed(1)} ${by.toFixed(1)}`);m.el.style.filter=`url(#${m.id})`}else{m.el.style.filter='';}
+  });
+  $('drift').style.transform=`scale(${(1.02+Math.sin(t*.8)*.01).toFixed(4)}) rotate(${(Math.sin(t*.55)*.4).toFixed(3)}deg) translate(${(Math.sin(t*.6)*10).toFixed(1)}px,${(Math.cos(t*.45)*12).toFixed(1)}px)`;
+  puppet(t);
+  await seqs(t);
+};
+window.ready=(async()=>{
+  AMP=await (await fetch('amp.json')).json(); WORDS=await (await fetch('words.json')).json();
+  WORDS[91].w='fidelidade.'; WORDS[89].w='clube'; WORDS[108].w='Grifes.'; WORDS[0].w='Ei,'; WORDS[1].w='você!'; WORDS[2].w='Para'; WORDS[153].w='24';
+  build();
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));
+  return true;
+})();
+</script>
+</body></html>
