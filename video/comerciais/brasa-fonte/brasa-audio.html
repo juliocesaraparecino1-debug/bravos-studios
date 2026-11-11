@@ -2,7 +2,7 @@
 // Soundtrack composed in code: 120 BPM, kick on every beat, a hit on every scene change.
 const BPM=120, BEAT=60/BPM, DUR=60, SR=44100;
 const SC=[2,6,10,14,20,26,30,36,42,48,52,55];
-const CLICKS=[7.0,26.6,37.0,38.9,49.05,50.05,58.5];
+const CLICKS=[];
 const PROG=[[57,60,64],[53,57,60],[48,52,55],[55,59,62]]; // Am F C G (midi)
 const mtof=m=>440*Math.pow(2,(m-69)/12);
 function noiseBuf(ctx,sec){const b=ctx.createBuffer(1,Math.ceil(SR*sec),SR);const d=b.getChannelData(0);let s=12345;for(let i=0;i<d.length;i++){s=(s*1103515245+12345)&0x7fffffff;d[i]=s/0x3fffffff-1}return b}
@@ -27,6 +27,8 @@ window.renderAudio=async function(){
  // hits on scene changes (bigger at the climax)
  for(const t of SC){const big=t===52;const s=ctx.createBufferSource();s.buffer=NB;const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.setValueAtTime(big?9000:6000,t);f.frequency.exponentialRampToValueAtTime(400,t+(big?1.4:.35));const g=ctx.createGain();g.gain.setValueAtTime(big?.9:.55,t);g.gain.exponentialRampToValueAtTime(.001,t+(big?1.6:.4));s.connect(f);f.connect(g);g.connect(out);s.start(t,0,big?1.8:.5);
   const o=ctx.createOscillator();o.type='sine';o.frequency.setValueAtTime(big?120:95,t);o.frequency.exponentialRampToValueAtTime(38,t+(big?.9:.3));const go=ctx.createGain();go.gain.setValueAtTime(big?1:.6,t);go.gain.exponentialRampToValueAtTime(.001,t+(big?1.2:.35));o.connect(go);go.connect(out);o.start(t);o.stop(t+1.3)}
+ // riser into the climax
+ {const t0=50.0,t1=52.0;const s=ctx.createBufferSource();s.buffer=noiseBuf(ctx,2.1);const f=ctx.createBiquadFilter();f.type='bandpass';f.Q.value=2;f.frequency.setValueAtTime(300,t0);f.frequency.exponentialRampToValueAtTime(6000,t1);const g=ctx.createGain();g.gain.setValueAtTime(0.001,t0);g.gain.exponentialRampToValueAtTime(.5,t1-.02);g.gain.linearRampToValueAtTime(0,t1);s.connect(f);f.connect(g);g.connect(out);s.start(t0)}
  // cursor clicks
  for(const t of CLICKS){const o=ctx.createOscillator();o.type='triangle';o.frequency.setValueAtTime(2200,t);o.frequency.exponentialRampToValueAtTime(900,t+.03);const g=ctx.createGain();g.gain.setValueAtTime(.3,t);g.gain.exponentialRampToValueAtTime(.001,t+.05);o.connect(g);g.connect(out);o.start(t);o.stop(t+.06)}
  const buf=await ctx.startRendering();
