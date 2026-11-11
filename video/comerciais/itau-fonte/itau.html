@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Itau spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@500;600;700&display=block" rel="stylesheet">
+<style>
+:root{--ink:#0B0B0C;--bo:#F87F23;--io:#EC7000;--navy:#0A2A66;--soft:#F5F3F0;--line:#E8E5E0;--gray:#8A857D}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#fff}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:'Plus Jakarta Sans',sans-serif;color:var(--navy)}
+.abs{position:absolute}.full{position:absolute;inset:0}
+.scene{position:absolute;inset:0;visibility:hidden}
+.line{position:absolute;left:60px;right:60px;text-align:center;font-weight:800;letter-spacing:-.035em;line-height:1.02}
+.wd{display:inline-block;margin:0 .11em;opacity:0}
+.vis{visibility:hidden;opacity:0}
+.o{color:var(--io)}
+.phone{position:absolute;width:480px;height:1000px;border-radius:72px;background:#fff;padding:14px;box-shadow:0 0 0 2px var(--line),0 60px 120px rgba(10,42,102,.18)}
+.phone .scr{position:relative;width:100%;height:100%;border-radius:60px;overflow:hidden;background:#F7F6F4}
+.isl{position:absolute;top:26px;left:50%;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#0B0B0C;z-index:5}
+.card{position:absolute;border-radius:30px;background:#fff;box-shadow:0 0 0 2px var(--line),0 30px 60px rgba(10,42,102,.12)}
+.tg{position:relative;width:110px;height:64px;border-radius:32px;background:#DAD6CF;flex:none}
+.tg i{position:absolute;left:6px;top:6px;width:52px;height:52px;border-radius:50%;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.18)}
+.ico{fill:none;stroke-linecap:round;stroke-linejoin:round}
+</style></head><body><div id="stage">
+<svg width="0" height="0" style="position:absolute"><defs id="fdefs"></defs></svg>
+<div id="drift" class="full"><div id="cam" class="full">
+
+ <!-- S1 opener (Bravos) -->
+ <div id="s1" class="scene" style="font-family:'Bricolage Grotesque'">
+  <div id="l1a" class="line" style="top:250px;font-size:104px;color:#0B0B0C;font-weight:700"></div>
+  <div id="l1b" class="line" style="top:330px;font-size:130px;color:#0B0B0C;font-weight:700"></div>
+  <div id="disk1" class="abs" style="left:190px;top:1180px;width:700px;height:700px;border-radius:50%;background:var(--bo)"></div>
+  <div id="m1" class="abs" style="left:300px;top:1010px;width:480px"><div id="m1b"><img src="assets/mascote-full.png" style="width:480px"></div></div>
+  <div id="slate" class="abs vis" style="left:190px;top:820px;width:700px;height:420px">
+    <div id="slTop" class="abs" style="left:0;top:0;width:700px;height:90px;border-radius:16px 16px 0 0;background:repeating-linear-gradient(-55deg,#0B0B0C 0 50px,#fff 50px 100px);transform-origin:20px 90px;box-shadow:0 0 0 4px #0B0B0C"></div>
+    <div class="abs" style="left:0;top:96px;width:700px;height:324px;border-radius:0 0 22px 22px;background:#0B0B0C;color:#fff;padding:34px 40px;font:700 40px Inter">
+      <div style="display:flex;justify-content:space-between;color:#9A968F;font:600 26px Inter;letter-spacing:.1em"><span>PRODUÇÃO</span><span>TAKE 1</span></div>
+      <div style="font:800 76px 'Bricolage Grotesque';margin-top:20px;letter-spacing:-.02em">BRAVOS <span style="color:var(--bo)">×</span> ITAÚ</div>
+      <div style="color:#9A968F;font:600 26px Inter;margin-top:18px;letter-spacing:.1em">COMERCIAL CONCEITUAL</div>
+    </div>
+  </div>
+ </div>
+
+ <!-- S2 vida não para -->
+ <div id="s2" class="scene">
+  <div id="or2" class="full" style="background:var(--io);clip-path:circle(0% at 50% 60%)"></div>
+  <div id="streaks" class="full" style="opacity:0"></div>
+  <div id="l2a" class="line" style="top:700px;font-size:150px;color:#fff"></div>
+  <div id="wh2" class="full" style="background:#fff;clip-path:inset(0 0 0 100%)"></div>
+  <div id="coin" class="abs vis" style="left:390px;top:330px;width:300px;height:300px;perspective:900px">
+    <div id="coinI" style="width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFB060,#EC7000 55%,#C35A00);display:grid;place-items:center;box-shadow:0 30px 60px rgba(236,112,0,.35),inset 0 0 0 16px rgba(255,255,255,.25)">
+      <span style="font:800 110px 'Plus Jakarta Sans';color:#fff;letter-spacing:-.04em">R$</span></div>
+  </div>
+  <div id="l2b" class="line" style="top:760px;font-size:104px"></div>
+ </div>
+
+ <!-- S3 Pix / cartão -->
+ <div id="s3" class="scene">
+  <div id="l3" class="line" style="top:170px;font-size:96px"></div>
+  <div id="ph3" class="phone vis" style="left:300px;top:420px"><div class="isl"></div><div class="scr">
+    <div style="height:300px;background:linear-gradient(160deg,#F28A1E,#EC7000 60%,#D45F00);padding:110px 40px 0;color:#fff">
+      <div style="font:600 30px 'Plus Jakarta Sans';opacity:.9">Olá,</div>
+      <div style="font:800 52px 'Plus Jakarta Sans';letter-spacing:-.02em">Ana</div>
+    </div>
+    <div style="margin:-50px 26px 0;border-radius:28px;background:#fff;padding:30px;box-shadow:0 10px 30px rgba(0,0,0,.08)">
+      <div style="font:600 24px Inter;color:var(--gray)">Saldo em conta</div>
+      <div style="font:800 52px 'Plus Jakarta Sans';margin-top:6px;letter-spacing:-.02em">R$ ••••••</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:30px 26px">
+
+      <div class="qa"><b></b>Pix</div><div class="qa"><b></b>Pagar</div><div class="qa"><b></b>Cartão</div><div class="qa"><b></b>Investir</div>
+    </div>
+    <div style="margin:0 26px;border-radius:24px;background:#fff;padding:26px;font:600 26px Inter;color:var(--navy)">Últimas movimentações
+      <div style="height:16px;background:var(--soft);border-radius:8px;margin-top:22px;width:80%"></div>
+      <div style="height:16px;background:var(--soft);border-radius:8px;margin-top:16px;width:60%"></div>
+      <div style="height:16px;background:var(--soft);border-radius:8px;margin-top:16px;width:70%"></div></div>
+  </div></div>
+  <div id="pix" class="card vis" style="left:150px;top:640px;width:780px;padding:30px 36px;display:flex;align-items:center;gap:28px">
+    <div style="width:96px;height:96px;border-radius:50%;background:#E8F7EE;display:grid;place-items:center;flex:none;background:#FFF0E3"><svg viewBox="0 0 24 24" width="56" height="56" class="ico" stroke="#EC7000" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg></div>
+    <div style="flex:1"><div style="font:800 40px 'Plus Jakarta Sans';letter-spacing:-.02em">Pix enviado</div><div style="font:500 28px Inter;color:var(--gray);margin-top:4px">Para Marcos · agora</div></div>
+    <div style="font:800 44px 'Plus Jakarta Sans';letter-spacing:-.02em">R$ 120,00</div>
+  </div>
+  <div id="cardw" class="abs vis" style="left:170px;top:980px;width:740px;height:460px;perspective:1800px">
+    <div id="ccard" style="position:absolute;inset:0;border-radius:36px;background:linear-gradient(135deg,#F59B3D 0%,#EC7000 45%,#B85000 100%);box-shadow:0 50px 100px rgba(236,112,0,.35);color:#fff;padding:50px 56px;overflow:hidden">
+      <div style="position:absolute;right:-120px;top:-160px;width:520px;height:520px;border-radius:50%;background:rgba(255,255,255,.12)"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 64px 'Plus Jakarta Sans';letter-spacing:-.03em">Itaú</span>
+        <svg viewBox="0 0 24 24" width="60" height="60" class="ico" stroke="#fff" stroke-width="1.8"><path d="M8.5 7.5a6 6 0 0 1 0 9M12 5a9.5 9.5 0 0 1 0 14M5 10a2.5 2.5 0 0 1 0 4"/></svg></div>
+      <div style="width:110px;height:84px;border-radius:16px;background:linear-gradient(135deg,#FFE3B0,#E7B45C);margin-top:50px"></div>
+      <div style="font:600 40px Inter;letter-spacing:.14em;margin-top:44px;opacity:.95">•••• •••• •••• 2026</div>
+    </div>
+  </div>
+ </div>
+
+ <!-- S4 investimento noite -->
+ <div id="s4" class="scene">
+  <div id="nbg" class="full" style="background:linear-gradient(180deg,#0A2A66,#123B85)"></div>
+  <div id="stars" class="full"></div>
+  <div id="moon" class="abs vis" style="left:760px;top:180px;width:160px;height:160px;border-radius:50%;box-shadow:-38px 22px 0 0 #FFD9A8"></div>
+  <div id="l4" class="line" style="top:330px;font-size:94px;color:#fff"></div>
+  <div id="bal" class="abs vis" style="left:100px;top:760px;width:880px;border-radius:40px;background:#fff;padding:46px 50px 40px;box-shadow:0 40px 90px rgba(0,0,0,.3)">
+    <div style="font:600 28px Inter;color:var(--gray)">Investimentos</div>
+    <div style="font:800 104px 'Plus Jakarta Sans';letter-spacing:-.04em;margin-top:6px;font-variant-numeric:tabular-nums">R$ <span id="cnt">12.000,00</span></div>
+    <div id="bars" style="display:flex;align-items:flex-end;gap:16px;height:300px;margin-top:30px"></div>
+    <div style="font:500 24px Inter;color:var(--gray);margin-top:18px">Valores ilustrativos</div>
+  </div>
+ </div>
+
+ <!-- S5 dia/noite/fim de semana -->
+ <div id="s5" class="scene">
+  <div id="sky" class="full" style="background:linear-gradient(180deg,#FFE7CC,#FFF6EC)"></div>
+  <div id="l5" class="line" style="top:150px;font-size:80px"></div>
+  <div id="ph5" class="phone" style="left:300px;top:520px;background:#fff"><div class="isl"></div><div class="scr" id="lock" style="background:linear-gradient(180deg,#FFC98A,#FFE9D0)">
+    <div id="lkDay" class="abs" style="left:0;right:0;top:120px;text-align:center;font:600 30px 'Plus Jakarta Sans';color:var(--navy)">Terça-feira</div>
+    <div id="lkTime" class="abs" style="left:0;right:0;top:160px;text-align:center;font:800 170px 'Plus Jakarta Sans';letter-spacing:-.04em;color:var(--navy);font-variant-numeric:tabular-nums">09:41</div>
+    <div id="noti" class="abs" style="left:26px;right:26px;top:430px;border-radius:30px;background:rgba(255,255,255,.85);padding:24px 26px;display:flex;gap:20px;align-items:center">
+      <div style="width:72px;height:72px;border-radius:18px;background:var(--io);display:grid;place-items:center;color:#fff;font:800 24px 'Plus Jakarta Sans'">Itaú</div>
+      <div><div style="font:700 26px Inter;color:#0B0B0C" id="notiT">Conta paga no débito automático</div><div style="font:500 22px Inter;color:#6A6A6A">agora</div></div>
+    </div>
+  </div></div>
+ </div>
+
+ <!-- S6 automático -->
+ <div id="s6" class="scene">
+  <div id="l6" class="line" style="top:260px;font-size:120px"></div>
+  <div id="rows" class="abs" style="left:120px;top:620px;width:840px;display:flex;flex-direction:column;gap:22px"></div>
+ </div>
+
+ <!-- S7 Itaú -->
+ <div id="s7" class="scene">
+  <div id="or7" class="full" style="background:var(--io);clip-path:circle(0% at 50% 50%)"></div>
+  <div id="itau" class="abs vis" style="left:0;right:0;top:640px;text-align:center"><span style="display:inline-block;padding:30px 70px;border-radius:60px;background:#fff;color:var(--io);font:800 220px 'Plus Jakarta Sans';letter-spacing:-.05em;line-height:1">Itaú</span></div>
+  <div id="l7" class="line" style="top:1010px;font-size:80px;color:#fff;font-weight:700"></div>
+ </div>
+
+ <!-- S8 end card (Bravos) -->
+ <div id="s8" class="scene" style="font-family:'Bricolage Grotesque'">
+  <div id="e1" class="abs vis" style="left:0;right:0;top:380px;text-align:center;font:600 34px Inter;letter-spacing:.2em;color:#8A857D">COMERCIAL CONCEITUAL POR</div>
+  <div id="e2" class="abs vis" style="left:210px;top:460px;width:660px"><img src="assets/bravos-word-dark.png" style="width:660px;display:block"><div style="font:700 78px 'Bricolage Grotesque';letter-spacing:.34em;color:var(--bo);text-align:center;margin-top:12px;padding-left:.34em">STUDIOS</div></div>
+  <div id="e3" class="abs vis" style="left:60px;right:60px;top:820px;text-align:center;font:700 84px 'Bricolage Grotesque';letter-spacing:-.03em;line-height:1.05;color:#0B0B0C">Imagina isso <span style="color:var(--bo)">para a sua marca.</span></div>
+  <div id="e4" class="abs vis" style="left:0;right:0;top:1100px;text-align:center"><span style="display:inline-block;padding:26px 54px;border-radius:999px;background:var(--bo);color:#fff;font:700 54px Inter">@bravos_studios</span></div>
+  <div id="e5" class="abs vis" style="left:0;right:0;top:1240px;text-align:center;font:600 40px Inter;color:#0B0B0C">bravosstudio.digital</div>
+  <div id="e6" class="abs vis" style="left:120px;right:120px;top:1640px;text-align:center;font:500 26px/1.4 Inter;color:#8A857D">Peça conceitual criada pela Bravos Studios para portfólio.<br>Sem vínculo, patrocínio ou aprovação do Itaú Unibanco.</div>
+ </div>
+
+</div></div>
+<div id="flash" class="full" style="background:#fff;opacity:0;pointer-events:none"></div>
+</div>
+<style>.qa{display:flex;flex-direction:column;align-items:center;gap:10px;font:600 22px Inter;color:var(--navy)}.qa b{width:80px;height:80px;border-radius:24px;background:#FFF0E3}</style>
+<script src="node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+const VO=0.3, FPS=30, END=27.2;
+const T=x=>x+VO; let AMP=[],WORDS=[];
+const SFX=[]; const sfx=(t,f,v=1)=>SFX.push({t:+t.toFixed(3),f,v});
+const $=id=>document.getElementById(id);
+const tl=gsap.timeline({paused:true});
+const ws=i=>T(WORDS[i].s)-0.04;
+const MB=[];
+function mb(el){el=typeof el==='string'?$(el):el;const id='f'+MB.length;$('fdefs').insertAdjacentHTML('beforeend',`<filter id="${id}" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0 0"/></filter>`);MB.push({el,g:document.querySelector('#'+id+' feGaussianBlur'),id});return el}
+function phrase(id,i0,i1,o={}){const box=$(id);const sp=[];for(let i=i0;i<=i1;i++){const s=document.createElement('span');s.className='wd '+(o.cls?.[i]||'');let tx=o.txt?.[i]??WORDS[i].w;if(o.strip)tx=tx.replace(/[.,!?]$/,'');s.innerHTML=tx;box.appendChild(s);if(o.br?.includes(i))box.appendChild(document.createElement('br'));sp.push(s);
+ tl.fromTo(s,{opacity:0,x:46,filter:'blur(14px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.24,ease:'power3.out',immediateRender:false},ws(i));}return sp}
+function out(sel,at,dx=-120){tl.to(sel,{autoAlpha:0,x:dx,filter:'blur(16px)',duration:.22,ease:'power2.in'},at)}
+function pop(sel,at,o={}){tl.fromTo(sel,{autoAlpha:0,scale:o.s??.4,y:o.y??40},{autoAlpha:1,scale:1,y:0,duration:o.d||.42,ease:o.e||'back.out(2)',immediateRender:false},at);if(o.sfx!==false)sfx(at,o.sfx||'pop',o.v||.35)}
+function sceneIn(id,at,dir=1){tl.set('#'+id,{visibility:'visible'},at);tl.fromTo('#'+id,{x:1080*dir},{x:0,duration:.42,ease:'expo.inOut',immediateRender:false},at);sfx(at+.02,'whoosh'+(1+(SFX.length%3)),.45)}
+function sceneOut(id,at,dir=1){tl.to('#'+id,{x:-1080*dir,duration:.42,ease:'expo.inOut'},at);tl.set('#'+id,{visibility:'hidden'},at+.43)}
+function punch(at,a=.03){tl.fromTo('#cam',{scale:1+a},{scale:1,duration:.4,ease:'power3.out',immediateRender:false},at)}
+function flash(at,c='#fff',o=.5){tl.set('#flash',{background:c},at);tl.fromTo('#flash',{opacity:o},{opacity:0,duration:.3,immediateRender:false},at)}
+
+function build(){
+ ['s1','s2','s3','s4','s5','s6','s7','s8'].forEach(mb);
+ // ===== S1 =====
+ tl.set('#s1',{visibility:'visible'},0);
+ tl.fromTo('#disk1',{scale:0},{scale:1,duration:.5,ease:'back.out(1.6)'},0.02);
+ tl.fromTo('#m1',{y:900},{y:0,duration:.55,ease:'back.out(1.4)'},0.08); mb('m1'); sfx(0.02,'whoosh2',.5);
+ phrase('l1a',0,8,{cls:{3:'bo',8:'it'},txt:{3:'Bravos'},br:[4]});
+ phrase('l1b',9,11,{br:[9]});
+ out('#l1a',ws(9)-.15,0);
+ // slate clap
+ tl.to('#m1,#disk1',{y:900,duration:.35,ease:'power3.in'},ws(9)-.1);
+ tl.fromTo('#slate',{autoAlpha:0,y:400,rotation:-8},{autoAlpha:1,y:0,rotation:-3,duration:.45,ease:'back.out(1.6)',immediateRender:false},ws(10)-.1); sfx(ws(10)-.1,'whoosh1',.4);
+ tl.fromTo('#slTop',{rotation:-24},{rotation:0,duration:.12,ease:'power4.in',immediateRender:false},T(4.45));
+ sfx(T(4.55),'impact1',.75); punch(T(4.57),.05);
+ // ===== S2 =====
+ tl.set('#s2',{visibility:'visible'},T(4.62));
+ tl.to('#or2',{clipPath:'circle(150% at 50% 60%)',duration:.5,ease:'power3.inOut'},T(4.62));
+ tl.to('#s1',{autoAlpha:0,duration:.01},T(5.1)); sfx(T(4.62),'whoosh3',.55);
+ // speed streaks
+ const st=$('streaks');for(let i=0;i<14;i++){const d=document.createElement('div');d.className='abs';const y=Math.round(140+i*125+((i*53)%60));const w=200+((i*137)%420);d.style.cssText=`left:0;top:${y}px;width:${w}px;height:${6+(i%3)*4}px;border-radius:8px;background:rgba(255,255,255,${.18+(i%4)*.08})`;st.appendChild(d);tl.fromTo(d,{x:1200+(i*97)%600},{x:-900,duration:.7+(i%5)*.12,ease:'none',repeat:4,immediateRender:false},T(5.0)+(i%7)*.05)}
+ tl.to('#streaks',{opacity:1,duration:.3},T(5.2));
+ phrase('l2a',12,15,{br:[13]}); punch(ws(15),.04); sfx(ws(15),'impact2',.4);
+ tl.to('#wh2',{clipPath:'inset(0 0 0 0%)',duration:.45,ease:'expo.inOut'},ws(16)-.3);
+ out('#l2a',ws(16)-.3,-200); sfx(ws(16)-.3,'whoosh1',.4);
+ tl.fromTo('#coin',{autoAlpha:0,scale:.2,y:-200},{autoAlpha:1,scale:1,y:0,duration:.5,ease:'back.out(1.8)',immediateRender:false},ws(16)); sfx(ws(16),'pop',.4);
+ tl.fromTo('#coinI',{rotationY:0},{rotationY:720,duration:2.2,ease:'power2.inOut',immediateRender:false},ws(16));
+ phrase('l2b',16,23,{cls:{21:'o',22:'o',23:'o'},br:[19,20]});
+ sceneOut('s2',T(9.62));
+ // ===== S3 =====
+ sceneIn('s3',T(9.62));
+ phrase('l3',24,26,{cls:{24:'o'},br:[]});
+ tl.fromTo('#ph3',{autoAlpha:1,y:900,rotation:-10},{y:0,rotation:0,duration:.55,ease:'back.out(1.3)',immediateRender:false},T(9.66)); mb('ph3');
+ pop('#pix',ws(26)+.05,{s:.5,y:-60,v:.55}); punch(ws(26)+.1,.025);
+ tl.to('#pix',{y:-20,duration:.8,ease:'sine.inOut'},ws(26)+.5);
+ // card
+ out('#l3',ws(27)-.15,0);
+ tl.set('#l3',{innerHTML:'',autoAlpha:1,x:0,filter:'blur(0px)'},ws(27)-.02);
+ phrase('l3',27,31,{cls:{29:'o',30:'o',31:'o'},br:[28]});
+ tl.to('#pix',{autoAlpha:0,x:-300,duration:.25,ease:'power2.in'},ws(27)-.1);
+ tl.fromTo('#cardw',{autoAlpha:0,y:600},{autoAlpha:1,y:-200,duration:.55,ease:'expo.out',immediateRender:false},ws(27)); sfx(ws(27),'whoosh2',.4);
+ tl.fromTo('#ccard',{rotationY:-70,rotationX:20},{rotationY:12,rotationX:6,duration:.9,ease:'power3.out',immediateRender:false},ws(27));
+ tl.to('#ccard',{rotationY:-8,rotationX:-4,duration:1.2,ease:'sine.inOut'},ws(27)+.9);
+ tl.to('#ph3',{scale:.92,y:40,filter:'blur(3px)',duration:.6,ease:'power2.out'},ws(27));
+ sceneOut('s3',ws(32)-.25);
+ // ===== S4 night invest =====
+ sceneIn('s4',ws(32)-.25);
+ const sts=$('stars');for(let i=0;i<40;i++){const d=document.createElement('i');d.className='abs';const x=(i*197)%1060,y=(i*331)%900;const r=3+(i%3)*2;d.style.cssText=`left:${x}px;top:${y}px;width:${r}px;height:${r}px;border-radius:50%;background:#fff;opacity:.6`;sts.appendChild(d);tl.to(d,{opacity:.15,duration:.4+(i%5)*.15,yoyo:true,repeat:5,ease:'sine.inOut'},ws(32)+(i%7)*.08)}
+ pop('#moon',ws(32),{s:.3,y:-40,sfx:false});
+ phrase('l4',32,36,{cls:{33:'o'},br:[33]});
+ tl.fromTo('#bal',{autoAlpha:0,y:300},{autoAlpha:1,y:0,duration:.5,ease:'expo.out',immediateRender:false},ws(33)); sfx(ws(33),'whoosh3',.35);
+ const bars=$('bars');const hs=[22,30,28,40,46,52,58,66,74,86];hs.forEach((h,i)=>{const b=document.createElement('div');b.style.cssText=`flex:1;height:${h}%;border-radius:14px 14px 6px 6px;background:${i>6?'var(--io)':'#FFD3A8'};transform-origin:50% 100%`;bars.appendChild(b);tl.fromTo(b,{scaleY:0},{scaleY:1,duration:.4,ease:'back.out(2)',immediateRender:false},ws(33)+.25+i*.07)});
+ const cnt={v:12000};tl.to(cnt,{v:12479.53,duration:1.7,ease:'power2.out',onUpdate:()=>{$('cnt').textContent=cnt.v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}},ws(33)+.2);
+ sfx(ws(36)+.1,'pop',.4);
+ sceneOut('s4',ws(37)-.3);
+ // ===== S5 day/night/weekend =====
+ sceneIn('s5',ws(37)-.3);
+ phrase('l5',37,44,{cls:{38:'o',40:'o',44:'o'},strip:false,br:[38,40]});
+ tl.fromTo('#ph5',{y:900},{y:0,duration:.5,ease:'back.out(1.3)',immediateRender:false},ws(37)-.25); mb('ph5');
+ // de noite
+ const night=ws(39);
+ tl.to('#sky',{background:'linear-gradient(180deg,#0A2A66,#123B85)',duration:.3},night);
+ tl.to('#lock',{background:'linear-gradient(180deg,#0E2F70,#1F4FA0)',duration:.3},night);
+ tl.to('#lkTime,#lkDay',{color:'#fff',duration:.3},night);
+ tl.to('#l5',{color:'#fff',duration:.3},night);
+ tl.set('#lkTime',{innerHTML:'23:14'},night+.12); tl.set('#notiT',{innerHTML:'Pix agendado enviado'},night+.12);
+ tl.fromTo('#noti',{y:-30,opacity:0},{y:0,opacity:1,duration:.3,immediateRender:false},night+.12); sfx(night+.12,'pop',.35);
+ // fim de semana
+ const we=ws(41);
+ tl.to('#sky',{background:'linear-gradient(180deg,#FFB66B,#FFE3C4)',duration:.3},we);
+ tl.to('#lock',{background:'linear-gradient(180deg,#FFA24A,#FFD9AE)',duration:.3},we);
+ tl.to('#lkTime,#lkDay',{color:'#0A2A66',duration:.3},we);
+ tl.to('#l5',{color:'#0A2A66',duration:.3},we);
+ tl.set('#lkTime',{innerHTML:'10:30'},we+.12); tl.set('#lkDay',{innerHTML:'Sábado'},we+.12); tl.set('#notiT',{innerHTML:'Investimento do mês aplicado'},we+.12);
+ tl.fromTo('#noti',{y:-30,opacity:0},{y:0,opacity:1,duration:.3,immediateRender:false},we+.12); sfx(we+.12,'pop',.35);
+ sceneOut('s5',ws(45)-.3);
+ // ===== S6 automático =====
+ sceneIn('s6',ws(45)-.3);
+ phrase('l6',45,47,{cls:{47:'o'},br:[46]});
+ const items=[['Débito automático','contas do mês'],['Pix agendado','aluguel todo dia 5'],['Investir todo mês','direto do salário'],['Alertas de gasto','no seu celular']];
+ items.forEach(([a,b],i)=>{const r=document.createElement('div');r.className='card';r.style.cssText+='position:relative;display:flex;align-items:center;gap:28px;padding:30px 34px';r.innerHTML=`<div style="flex:1"><div style="font:800 44px 'Plus Jakarta Sans';letter-spacing:-.02em">${a}</div><div style="font:500 28px Inter;color:#8A857D;margin-top:4px">${b}</div></div><span class="tg"><i></i></span>`;$('rows').appendChild(r);
+  tl.fromTo(r,{autoAlpha:0,x:300},{autoAlpha:1,x:0,duration:.35,ease:'expo.out',immediateRender:false},ws(45)+i*.12);
+  const t=ws(47)+.05+i*.16; tl.to(r.querySelector('.tg'),{background:'#EC7000',duration:.12},t); tl.to(r.querySelector('.tg i'),{x:46,duration:.2,ease:'back.out(2)'},t); sfx(t,'pop',.3);});
+ sceneOut('s6',ws(48)-.3);
+ // ===== S7 Itaú =====
+ tl.set('#s7',{visibility:'visible'},ws(48)-.3);
+ tl.to('#or7',{clipPath:'circle(150% at 50% 50%)',duration:.5,ease:'power3.inOut'},ws(48)-.3); sfx(ws(48)-.3,'whoosh2',.5);
+ tl.fromTo('#itau',{autoAlpha:0,scale:1.8,filter:'blur(16px)'},{autoAlpha:1,scale:1,filter:'blur(0px)',duration:.45,ease:'expo.out',immediateRender:false},ws(48)); punch(ws(48)+.05,.05); sfx(ws(48),'impact1',.6);
+ phrase('l7',49,55,{br:[51]});
+ tl.to('#itau',{scale:1.04,duration:3,ease:'none'},ws(48)+.5);
+ sceneOut('s7',T(22.95));
+ // ===== S8 end =====
+ sceneIn('s8',T(22.95));
+ pop('#e1',T(23.2),{s:.8,y:20,sfx:false});
+ tl.fromTo('#e2',{autoAlpha:0,scale:1.8,filter:'blur(14px)'},{autoAlpha:1,scale:1,filter:'blur(0px)',duration:.4,ease:'expo.out',immediateRender:false},T(23.35)); sfx(T(23.35),'impact2',.5); punch(T(23.4),.04);
+ pop('#e3',T(23.9),{s:.7,y:40,sfx:false});
+ pop('#e4',T(24.5),{s:.3,y:30,v:.45});
+ pop('#e5',T(24.7),{s:.8,y:20,sfx:false});
+ pop('#e6',T(25.0),{s:1,y:10,sfx:false});
+ tl.to('#e4',{scale:1.05,duration:.45,yoyo:true,repeat:3,ease:'sine.inOut'},T(25.1));
+ [['s1',0,T(5.1)],['s2',T(4.6),T(10)],['s3',T(9.6),ws(32)],['s4',ws(32)-.25,ws(37)],['s5',ws(37)-.3,ws(45)],['s6',ws(45)-.3,ws(48)],['s7',ws(48)-.3,T(23.4)],['s8',T(22.95),END]].forEach(([id,a,b])=>tl.fromTo('#'+id,{scale:1},{scale:1.04,duration:b-a,ease:'none',immediateRender:false},a));
+ tl.to('#stage',{opacity:1,duration:.01},END-.01);
+}
+function puppet(t){const f=Math.floor((t-VO)*FPS),a=(f>=0&&f<AMP.length)?AMP[f]:0;$('m1b').style.transform=`translateY(${(Math.sin(t*2.4)*8-a*10).toFixed(1)}px) rotate(${(Math.sin(t*5.1)*a*2).toFixed(2)}deg)`}
+window.SFX=SFX;window.END=END;
+window.renderAt=async function(t){const dt=1/60;tl.seek(Math.max(0,t-dt),false);const prev=MB.map(m=>{const r=m.el.getBoundingClientRect();return[r.left,r.top]});tl.seek(t,false);
+ MB.forEach((m,k)=>{const r=m.el.getBoundingClientRect();const bx=Math.min(60,Math.abs(r.left-prev[k][0])*.9),by=Math.min(60,Math.abs(r.top-prev[k][1])*.9);if(bx>.6||by>.6){m.g.setAttribute('stdDeviation',`${bx.toFixed(1)} ${by.toFixed(1)}`);m.el.style.filter=`url(#${m.id})`}else m.el.style.filter=''});
+ $('drift').style.transform=`scale(${(1.02+Math.sin(t*.8)*.01).toFixed(4)}) rotate(${(Math.sin(t*.55)*.4).toFixed(3)}deg) translate(${(Math.sin(t*.6)*10).toFixed(1)}px,${(Math.cos(t*.45)*12).toFixed(1)}px)`;
+ puppet(t)};
+window.ready=(async()=>{AMP=await(await fetch('itau-amp.json')).json();WORDS=await(await fetch('itau-words.json')).json();
+ WORDS[7].w='pro';WORDS[24].w='Pix';WORDS[37].w='De';
+ build();await document.fonts.ready;await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));return true})();
+</script>
+<style>.bo{color:#F87F23}.it{color:#fff;background:#EC7000;border-radius:22px;padding:0 .22em}</style>
+</body></html>
