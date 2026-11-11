@@ -32,7 +32,7 @@ section{padding:84px 0}
 .sec-sub{color:var(--gray);margin-top:14px;max-width:52ch}
 
 /* header */
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid transparent;transition:border-color .2s}
 header.sc{border-color:var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{display:flex;flex-direction:column;align-items:center;line-height:1}
@@ -50,12 +50,13 @@ header.sc{border-color:var(--line)}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
 .hero-art{position:relative;height:430px;margin-top:20px}
 .hero-art .disk{position:absolute;left:50%;bottom:-120px;width:420px;height:420px;margin-left:-210px;border-radius:50%;background:var(--or)}
-.hero-art img{position:absolute;left:50%;bottom:0;height:420px;width:auto;transform:translateX(-50%);animation:float 5s ease-in-out infinite}
+.hero-art .par{position:absolute;inset:0}
+.hero-art img{position:absolute;left:50%;bottom:0;height:420px;width:auto;transform:translateX(-50%);animation:floatX 5s ease-in-out infinite}
 .chip{position:absolute;z-index:2;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px var(--line),0 12px 30px rgba(0,0,0,.08);font:600 14px Inter;white-space:nowrap;animation:float 6s ease-in-out infinite}
 .chip i{width:8px;height:8px;border-radius:50%;background:var(--or)}
 .c1{left:0;top:40px}.c2{right:0;top:120px;animation-delay:-2s}.c3{left:6%;top:230px;animation-delay:-4s}
-@keyframes float{50%{transform:translateY(-10px) translateX(var(--tx,0))}}
-.hero-art img{--tx:-50%}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes floatX{0%,100%{transform:translateX(-50%)}50%{transform:translateX(-50%) translateY(-10px)}}
 
 /* marquee */
 .marq{background:var(--ink);color:#fff;overflow:hidden;padding:18px 0}
@@ -84,11 +85,19 @@ header.sc{border-color:var(--line)}
 .vsnd{position:absolute;right:14px;bottom:14px;width:44px;height:44px;border:0;border-radius:50%;background:rgba(11,11,12,.6);display:grid;place-items:center;cursor:pointer}
 .vsnd svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 #prog{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--or);transform-origin:0 50%;transform:scaleX(0);z-index:40}
-.hero h1 .w{display:inline-block;opacity:0;transform:translateY(40px);filter:blur(10px);animation:wIn .7s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes wIn{to{opacity:1;transform:none;filter:none}}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(40px);animation:wIn .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes wIn{to{opacity:1;transform:none}}
 .svc article,.steps li,.case li,.faq details{transition-delay:calc(var(--i,0) * 90ms)}
 [data-r].from-l:not(.in){transform:translateX(-50px)}[data-r].from-r:not(.in){transform:translateX(50px)}[data-r].zoom:not(.in){transform:scale(.88)}
-.shots{transition:transform .2s linear}
+@supports (animation-timeline:scroll()){
+ #prog{animation:prog linear both;animation-timeline:scroll(root)}
+ .hero-art .par{animation:par linear both;animation-timeline:scroll(root);animation-range:0 600px}
+ .case{view-timeline-name:--case}
+ .shots{animation:shx linear both;animation-timeline:--case}
+}
+@keyframes prog{to{transform:scaleX(1)}}
+@keyframes par{to{transform:translateY(108px)}}
+@keyframes shx{from{transform:translateX(-60px)}to{transform:translateX(60px)}}
 main{overflow-x:clip}
 /* projects */
 .proj{margin-top:44px;display:grid;gap:22px}
@@ -183,9 +192,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;
   </div>
  </div>
  <div class="hero-art" data-r id="heroArt">
+  <div class="par">
   <div class="disk"></div>
   <span class="chip c1"><i></i>Sites</span><span class="chip c2"><i></i>Aplicativos</span><span class="chip c3"><i></i>Identidade visual</span>
   <img src="img/mascote.webp" alt="Mascote da Bravos Studios, uma águia de braços cruzados" width="700" height="1055">
+  </div>
  </div>
 </div></section>
 
@@ -277,7 +288,7 @@ const MSG = 'Olá, Bravos Studios! Vim pelo site e quero um orçamento.';
 const link = WHATSAPP ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(MSG)}` : 'https://ig.me/m/bravos_studios';
 document.querySelectorAll('.js-contato').forEach(a=>{a.href=link;a.target='_blank';a.rel='noopener'});
 document.getElementById('y').textContent=new Date().getFullYear();
-const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('sc',scrollY>8),{passive:true});
+const hd=document.getElementById('hd');
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
 
@@ -292,11 +303,14 @@ snd.addEventListener('click',()=>{v.muted=!v.muted;sndIcon();if(v.paused){v.play
 const h1=document.querySelector('.hero h1');let k=0;h1.querySelectorAll('*').length;
 (function split(n){[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t.trim()){f.append(t);return}const sp=document.createElement('span');sp.className='w';sp.style.animationDelay=(k++*70)+'ms';sp.textContent=t;f.append(sp)});c.replaceWith(f)}else split(c)})})(h1);
 const prog=document.createElement('div');prog.id='prog';document.body.append(prog);
-const art=document.getElementById('heroArt'),rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function onScroll(){const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${max>0?y/max:0})`;
- if(!rm){art.style.transform=`translateY(${y*.18}px)`;
- document.querySelectorAll('.shots').forEach(sh=>{const r=sh.getBoundingClientRect();const c=(r.top+r.height/2-innerHeight/2)/innerHeight;sh.style.transform=`translateX(${(c*-60).toFixed(1)}px)`})}}
-addEventListener('scroll',onScroll,{passive:true});onScroll();
+// Rolagem: só um rAF por quadro, sem ler layout. Parallax e barra de progresso rodam no CSS (animation-timeline).
+const cssScroll=CSS.supports&&CSS.supports('animation-timeline: scroll()')&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+let maxY=1,sc=false,tick=false;
+const measure=()=>{maxY=Math.max(1,document.documentElement.scrollHeight-innerHeight)};
+function frame(){tick=false;const y=scrollY;if((y>8)!==sc){sc=!sc;hd.classList.toggle('sc',sc)}
+ if(!cssScroll)prog.style.transform=`scaleX(${Math.min(1,y/maxY)})`}
+addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(frame)}},{passive:true});
+addEventListener('resize',measure,{passive:true});if(window.ResizeObserver)new ResizeObserver(measure).observe(document.body);measure();frame();
 </script>
 </body>
 </html>
