@@ -13,6 +13,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--cream)}
 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .05em .16em;margin:0 .05em}
 .wi{display:inline-block}
 .k{color:var(--or)}
+.wh{color:#fff}
 .chip{display:flex;align-items:center;gap:16px;padding:20px 36px;border-radius:999px;background:#fff;box-shadow:0 0 0 2px var(--g3),0 26px 50px rgba(0,0,0,.10);font:700 44px 'Bricolage Grotesque';letter-spacing:-.02em;white-space:nowrap}
 .chip i{display:block;width:18px;height:18px;border-radius:50%;background:var(--or);flex:none}
 .chip.d{background:var(--ink);color:#fff;box-shadow:0 26px 50px rgba(0,0,0,.25)}
@@ -98,11 +99,20 @@ line(A,360,128,[[1.06,'Para'],[1.28,'de'],[1.42,'rolar'],[1.7,'|'],[1.82,'a'],[1
 // phone with fast-scrolling feed
 const phA=an(mk(A.el,'width:520px;height:1100px','<div class="scr"><div class="isl"></div></div>','phone'),{x:540,y:[[0,1330],[.6,1250,E.out]],s:[[1.82,1],[1.9,1.045,E.out],[2.2,1,E.spr]]});
 const scrA=phA.querySelector('.scr');
-const strip=mk(scrA,'left:0;top:0;width:100%;height:6200px;transform:none','','');
+const strip=mk(scrA,'left:0;top:0;width:100%;height:5400px;transform:none','','');
 strip.style.willChange='transform';
-for(let i=0;i<14;i++){const im=document.createElement('img');im.src=`assets/ph/t${i}.jpg`;im.style.cssText=`position:absolute;left:12px;top:${i*486+12}px;width:468px;height:468px;object-fit:cover;border-radius:20px;`;strip.appendChild(im);IMG.push(im)}
-an(strip,{x:0,y:[[0,0],[1.9,-4300,E.out]]},{mb:1,fn:(el,t,p)=>{el.style.transform=`translateY(${p.y.toFixed(1)}px)`;el.style.left='0';el.style.top='0'}});
+const IC={h:'<svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#0B0B0C" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20.5s-7-4.3-9-8.6C1.600 8.700 3.600 5.500 6.800 5.500c1.900 0 3.200.9 5.200 2.900 2-2 3.300-2.900 5.200-2.900 3.200 0 5.200 3.200 3.800 6.400-2 4.300-9 8.600-9 8.600z"/></svg>',
+ c:'<svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#0B0B0C" stroke-width="1.9" stroke-linejoin="round"><path d="M21 11.500a8.500 8.500 0 0 1-12.300 7.600L3 20.500l1.400-5.200A8.500 8.500 0 1 1 21 11.500z"/></svg>',
+ s:'<svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#0B0B0C" stroke-width="1.9" stroke-linejoin="round"><path d="M21.500 3L10 14M21.500 3l-7 18-3.500-7L4 10.500z"/></svg>',
+ b:'<svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#0B0B0C" stroke-width="1.9" stroke-linejoin="round"><path d="M6 3.500h12v17l-6-4.500-6 4.500z"/></svg>'};
+const FEED=[['gr/c1-1.png','bravos.studios','2.418','Tudo que a sua marca precisa, no mesmo lugar.'],['ai/ai1.jpg','referencia.grifes','8.931','Nova coleção. Peça pelo WhatsApp.'],['gr/c2-1.png','bravos.studios','1.204','Seu negócio precisa de site ou só de Instagram?'],['ai/ai2.jpg','pulso.store','5.377','Sinal em movimento. Chegou o drop.'],['ai/ai3.jpg','bravos.barber','12.640','Corte de respeito. Agende pelo app.'],['gr/c3-1.png','bravos.studios','3.052','Criamos um app completo para barbearias.']];
+FEED.forEach(([src,user,likes,cap],i)=>{const p=document.createElement('div');p.style.cssText=`position:absolute;left:0;top:${118+i*870}px;width:492px;height:870px;background:#fff;font-family:Inter,sans-serif`;
+ p.innerHTML=`<div style="height:84px;display:flex;align-items:center;gap:14px;padding:0 18px"><div style="width:54px;height:54px;border-radius:50%;padding:3px;background:conic-gradient(#F87F23,#FFB27A,#F87F23)"><div style="width:100%;height:100%;border-radius:50%;background:#0B0B0C;border:3px solid #fff"></div></div><div style="font:700 25px Inter,sans-serif;color:#0B0B0C;flex:1">${user}</div><div style="font:700 30px Inter;color:#0B0B0C;letter-spacing:2px">···</div></div><div style="width:492px;height:615px;overflow:hidden"><img src="assets/${src}" style="position:static;width:492px;height:615px;object-fit:cover;display:block"></div><div style="display:flex;align-items:center;gap:20px;padding:14px 18px 0">${IC.h}${IC.c}${IC.s}<div style="flex:1"></div>${IC.b}</div><div style="padding:6px 20px 0;font:700 23px Inter,sans-serif;color:#0B0B0C">${likes} curtidas</div><div style="padding:4px 20px 0;font:500 22px Inter,sans-serif;color:#2A2826;line-height:1.25"><b>${user}</b> ${cap}</div>`;
+ strip.appendChild(p);p.querySelectorAll('img').forEach(im=>IMG.push(im))});
+an(strip,{x:0,y:[[0,0],[1.9,-3480,E.out]]},{mb:1,fn:(el,t,p)=>{el.style.transform=`translateY(${p.y.toFixed(1)}px)`;el.style.left='0';el.style.top='0'}});
 strip.style.left='0';
+const topbar=mk(scrA,'left:0;top:0;width:492px;height:118px;background:rgba(255,255,255,.96);z-index:4;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 14px','<div style="font:800 40px Bricolage Grotesque;letter-spacing:-.03em;color:#0B0B0C">Feed</div><div style="display:flex;gap:22px">'+IC.h+IC.s+'</div>');
+an(mk(scrA,'width:200px;height:200px;z-index:6;color:#fff;filter:drop-shadow(0 8px 24px rgba(0,0,0,.35))',ICON.heart),{x:246,y:509,s:[[1.9,0],[2.1,1,E.spr]],o:[[1.9,0],[1.92,1],[2.16,1],[2.32,0]]});
 // finger tap + ring at 'tela'
 const fing=an(mk(A.el,'width:120px;height:120px;border-radius:50%;background:rgba(11,11,12,.16)',''),{x:540,y:1600,s:[[1.5,0],[1.7,1,E.spr],[1.82,.78,E.out],[2.2,1,E.out]],o:[[1.5,0],[1.62,1],[2.1,1],[2.25,0]]});
 an(mk(A.el,'width:560px;height:1140px;border-radius:96px;border:8px solid #F87F23',''),{x:540,y:1250,s:[[1.82,1],[2.3,1.38,E.out]],o:[[1.82,.9],[2.3,0,E.out]]});
@@ -230,7 +240,7 @@ const J=scene('J','#F87F23',50.9,.7,'circle',540,1000,999);
 an(mk(J.el,'width:640px;height:170px','<img src="assets/bravos-word-dark.png" style="width:100%;display:block">'),{x:540,y:200,s:[[51.0,.55],[51.55,1,E.spr]],o:[[51.0,0],[51.05,1]]});
 an(mk(J.el,'width:780px;height:780px;border-radius:50%;background:#fff',''),{x:540,y:760,s:[[51.15,0],[51.7,1,E.spr]],o:[[51.15,0],[51.16,1]]});
 an(mk(J.el,'width:560px;height:844px','<img src="assets/mascote.webp" style="width:100%;display:block">'),{x:540,y:[[51.3,1650],[51.95,830,E.out]],r:[[51.3,5],[51.95,0,E.out]]},{mb:1});
-line(J,1300,100,[[52.34,'Bora'],[52.56,'tirar'],[52.74,'sua'],[52.92,'ideia'],[53.0,'|'],[53.1,'do'],[53.22,'papel?','k']],99,{color:'#0B0B0C'});
+line(J,1300,100,[[52.34,'Bora'],[52.56,'tirar'],[52.74,'sua'],[52.92,'ideia'],[53.0,'|'],[53.1,'do'],[53.22,'papel?','wh']],99,{color:'#0B0B0C'});
 const cta=an(mk(J.el,'padding:26px 56px;border-radius:999px;background:#0B0B0C;color:#fff;font:700 58px Bricolage Grotesque;letter-spacing:-.02em;display:flex;align-items:center;gap:20px;white-space:nowrap;box-shadow:0 30px 60px rgba(0,0,0,.25)','Chama a gente <span style="width:54px;height:54px;display:block;color:#F87F23">'+ICON.arrow+'</span>'),{x:540,y:1650,s:[[53.92,0],[54.45,1,E.spr],[54.62,.93,E.out],[54.95,1,E.spr]],o:[[53.92,0],[53.93,1]]});
 an(mk(J.el,'width:140px;height:140px',''),{x:540,y:1665,s:[[54.62,.2],[55.2,2.6,E.out]],o:[[54.62,.95],[55.2,0,E.out]]}).innerHTML='<div class="ring" style="width:100%;height:100%;border-color:#fff"></div>';
 an(mk(J.el,'width:90px;height:90px','<svg viewBox="0 0 24 24" width="100%" height="100%"><path d="M5 3l14 8-6.2 1.6L9.6 19z" fill="#fff" stroke="#0B0B0C" stroke-width="1.6" stroke-linejoin="round"/></svg>'),{x:[[54.0,880],[54.6,585,E.io]],y:[[54.0,1900],[54.6,1690,E.io]],o:[[54.0,0],[54.2,1]]});
