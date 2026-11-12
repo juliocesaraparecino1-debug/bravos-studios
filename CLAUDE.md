@@ -9,3 +9,6 @@ Antes de entregar: `earshot critique` no MP4 e confira que nenhuma palavra da na
 
 ## Mascote nos vídeos
 Usar o mascote só na abertura e no final. Não colocar em todas as cenas; no meio do vídeo o protagonista é o conteúdo (apps, sites, posts, texto animado).
+
+## Instagram
+Plano de publicações diárias e referências em `instagram/PLANO.md`. Seguir as regras de criação de lá.
