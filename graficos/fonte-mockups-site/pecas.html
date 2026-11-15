@@ -1,0 +1,66 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Peças de clientes para os mockups do site</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600&family=Plus+Jakarta+Sans:wght@500;700;800&family=Space+Grotesk:wght@500;700&display=block" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#ddd;padding:20px;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.pc{position:relative;overflow:hidden;flex:none}
+.ph{position:absolute;background-size:cover;background-position:center}
+/* panfleto hamburgueria 560x784 */
+#panfleto{width:560px;height:784px;background:#0d0b0a;color:#fff;font-family:Sora}
+#panfleto .ph{left:0;right:0;top:0;height:470px;background-image:url(p1.jpg)}
+#panfleto .ph:after{content:'';position:absolute;inset:0;background:linear-gradient(#0d0b0a00 55%,#0d0b0a)}
+#panfleto .tg{position:absolute;left:36px;top:32px;font:700 16px 'Space Grotesk';letter-spacing:.24em;color:#FFB23E}
+#panfleto h2{position:absolute;left:36px;right:36px;top:430px;font:800 66px/.95 Sora;letter-spacing:-.04em}
+#panfleto h2 em{font-style:normal;color:#FF7A1A}
+#panfleto p{position:absolute;left:36px;right:36px;top:592px;font:500 20px/1.4 'Space Grotesk';color:#d9d2c8}
+#panfleto .pr{position:absolute;left:36px;bottom:36px;display:flex;align-items:center;gap:14px}
+#panfleto .pr b{font:800 44px Sora;color:#FFB23E}
+#panfleto .pr span{font:500 16px/1.2 'Space Grotesk';color:#bdb5aa}
+#panfleto .bt{position:absolute;right:36px;bottom:40px;background:#FF7A1A;color:#fff;font:700 18px Sora;padding:14px 22px;border-radius:999px}
+/* banner açaí 320x796 */
+#banner{width:320px;height:796px;background:#4B1873;color:#fff;font-family:'Plus Jakarta Sans'}
+#banner .ph{left:0;right:0;top:250px;height:400px;background-image:url(p4.jpg)}
+#banner .ph:before,#banner .ph:after{content:'';position:absolute;left:0;right:0;height:90px}
+#banner .ph:before{top:0;background:linear-gradient(#4B1873,#4B187300)}#banner .ph:after{bottom:0;background:linear-gradient(#4B187300,#4B1873)}
+#banner .tg{position:absolute;left:0;right:0;top:40px;text-align:center;font:700 13px 'Plus Jakarta Sans';letter-spacing:.3em;color:#E6C2FF}
+#banner h2{position:absolute;left:20px;right:20px;top:72px;text-align:center;font:800 60px/.92 'Plus Jakarta Sans';letter-spacing:-.05em}
+#banner h2 em{font-style:normal;color:#C6F24E}
+#banner .ft{position:absolute;left:0;right:0;bottom:0;height:146px;background:#C6F24E;color:#2b0b45;text-align:center;padding-top:26px}
+#banner .ft b{display:block;font:800 30px 'Plus Jakarta Sans';letter-spacing:-.03em}
+#banner .ft span{font:500 15px 'Plus Jakarta Sans'}
+/* carrossel 540x675 */
+.car{width:540px;height:675px;font-family:Fraunces}
+#car1{background:#F2E9DC;color:#2C1C12}
+#car1 .ph{left:40px;right:40px;top:250px;bottom:110px;border-radius:24px;background-image:url(p2.jpg)}
+#car1 .tg{position:absolute;left:40px;top:40px;font:700 14px 'Space Grotesk';letter-spacing:.2em;color:#B5652E}
+#car1 h2{position:absolute;left:40px;right:40px;top:70px;font:800 54px/1 Fraunces;letter-spacing:-.03em}
+#car1 h2 em{font-weight:600;color:#B5652E}
+#car1 .ft{position:absolute;left:40px;right:40px;bottom:40px;display:flex;justify-content:space-between;font:500 15px 'Space Grotesk';color:#7a6555}
+#car2{background:#7FC8F8;color:#0E2A47;font-family:'Plus Jakarta Sans'}
+#car2 .ph{left:0;right:0;bottom:0;height:400px;background-image:url(p3.jpg);background-position:center 30%}
+#car2 h2{position:absolute;left:40px;right:40px;top:60px;font:800 58px/.95 'Plus Jakarta Sans';letter-spacing:-.05em}
+#car2 h2 em{font-style:normal;color:#fff}
+#car2 .tg{position:absolute;left:40px;top:30px;font:700 13px 'Plus Jakarta Sans';letter-spacing:.24em}
+#car3{background:#120f0d;color:#fff;font-family:Sora}
+#car3 .ph{left:0;right:0;top:0;height:675px;background-image:url(p1.jpg);opacity:.55}
+#car3 h2{position:absolute;left:40px;right:40px;bottom:70px;font:800 52px/1 Sora;letter-spacing:-.04em}
+#car3 h2 em{font-style:normal;color:#FFB23E}
+/* cartões 760x444 */
+.cv{width:760px;height:444px;font-family:Sora}
+.cv .ph{top:0;bottom:0;width:47%}
+#cv1{background:#0d0d0d}#cv1 .ph{left:0;background-image:url(a1.jpg)}
+#cv1 .tx{position:absolute;right:48px;top:118px;text-align:right;color:#D8B565}
+#cv2{background:#FBF6EE}#cv2 .ph{right:0;background-image:url(a2.jpg)}
+#cv2 .tx{position:absolute;left:48px;top:118px;color:#5A3020}
+.cv b{display:block;font:700 54px/1.02 Sora;letter-spacing:-.03em}
+.cv span{display:block;font:600 17px 'Space Grotesk';letter-spacing:.28em;margin-top:18px}
+#cv2 span{color:#C2501C}
+</style></head><body>
+<div class="pc" id="panfleto"><div class="ph"></div><span class="tg">BRASA BURGER · DESDE 2019</span><h2>Smash que<br><em>estala.</em></h2><p>Combo smash duplo + batata + refri. Peça pelo app ou no balcão.</p><div class="pr"><b>R$ 34</b><span>combo<br>de terça</span></div><span class="bt">Peça já</span></div>
+<div class="pc" id="banner"><span class="tg">AÇAÍ DA VILA</span><h2>Monte o <em>seu</em> açaí.</h2><div class="ph"></div><div class="ft"><b>+ de 30 adicionais</b><span>Delivery e retirada no balcão</span></div></div>
+<div class="pc car" id="car1"><span class="tg">GRÃO CAFÉ · 1/5</span><h2>5 cafés para provar <em>antes do almoço</em></h2><div class="ph"></div><div class="ft"><span>@graocafe</span><span>Arrasta →</span></div></div>
+<div class="pc car" id="car2"><span class="tg">PET DO BAIRRO</span><h2>Banho e tosa <em>com hora marcada.</em></h2><div class="ph"></div></div>
+<div class="pc car" id="car3"><div class="ph"></div><h2>O smash da <em>sexta</em> chegou.</h2></div>
+<div class="pc cv" id="cv1"><div class="ph"></div><div class="tx"><b>NAVALHA<br>CLUB</b><span>BARBEARIA</span></div></div>
+<div class="pc cv" id="cv2"><div class="ph"></div><div class="tx"><b>DOCES<br>DA CAROL</b><span>CONFEITARIA</span></div></div>
+</body></html>
